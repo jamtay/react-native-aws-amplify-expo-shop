@@ -1,0 +1,27 @@
+type Store @model @searchable {
+  id: ID!
+  name: String!
+  description: String!
+  fullAddress: String!
+  addressLine1: String!
+  addressLine2: String
+  postcode: String!
+  county: String
+  country: String!
+  longitude: String
+  latitude: String
+  recordings: [Recording!]
+    @connection(name: "StoreRecordings", keyField: "storeID")
+  itemsRecorded: [String!]
+}
+
+type Recording @model @searchable {
+  id: ID!
+  type: String!
+  storeID: String!
+  store: Store @connection(name: "StoreRecordings", keyField: "storeID")
+  queueTime: Float
+  missingItems: [String!]
+  availableItems: [String!]
+  floatTimestamp: Float!
+}

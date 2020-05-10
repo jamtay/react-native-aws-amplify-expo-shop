@@ -1,0 +1,28 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-shopqueuefinder-dev-105612-authRole",
+            "UnauthRoleArn": "arn:aws:iam::052324068173:role/amplify-shopqueuefinder-dev-105612-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::052324068173:role/amplify-shopqueuefinder-dev-105612-authRole",
+            "Region": "eu-west-2",
+            "DeploymentBucketName": "amplify-shopqueuefinder-dev-105612-deployment",
+            "UnauthRoleName": "amplify-shopqueuefinder-dev-105612-unauthRole",
+            "StackName": "amplify-shopqueuefinder-dev-105612",
+            "StackId": "arn:aws:cloudformation:eu-west-2:052324068173:stack/amplify-shopqueuefinder-dev-105612/dabe9ce0-7ca3-11ea-bab3-0ab07291f102",
+            "AmplifyAppId": "d12fs2j2ibk8c0"
+        }
+    },
+    "devnew": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-shopqueuefinder-devnew-182429-authRole",
+            "UnauthRoleArn": "arn:aws:iam::052324068173:role/amplify-shopqueuefinder-devnew-182429-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::052324068173:role/amplify-shopqueuefinder-devnew-182429-authRole",
+            "Region": "eu-west-2",
+            "DeploymentBucketName": "amplify-shopqueuefinder-devnew-182429-deployment",
+            "UnauthRoleName": "amplify-shopqueuefinder-devnew-182429-unauthRole",
+            "StackName": "amplify-shopqueuefinder-devnew-182429",
+            "StackId": "arn:aws:cloudformation:eu-west-2:052324068173:stack/amplify-shopqueuefinder-devnew-182429/4da3c8c0-8587-11ea-860c-0a5f6fd32d44",
+            "AmplifyAppId": "d12fs2j2ibk8c0"
+        }
+    }
+}

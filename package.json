@@ -1,0 +1,90 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "name": "shop-queue-finder",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "old-android": "react-native run-android",
+    "old-ios": "react-native run-ios",
+    "old-start": "react-native start",
+    "test": "jest",
+    "detox:build": "detox build",
+    "detox:test": "detox test",
+    "lint": "eslint .",
+    "storybook": "start-storybook -p 7007",
+    "start": "expo start --tunnel",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.9.0",
+    "@react-native-community/masked-view": "0.1.6",
+    "@react-native-community/netinfo": "5.5.1",
+    "@react-navigation/native": "^5.1.6",
+    "@react-navigation/stack": "^5.2.13",
+    "@use-expo/font": "^2.0.0",
+    "aws-amplify": "^3.0.7",
+    "aws-amplify-react-native": "^4.0.3",
+    "expo": "~37.0.3",
+    "expo-font": "~8.1.0",
+    "moment": "^2.25.1",
+    "native-base": "^2.13.12",
+    "react": "16.11.0",
+    "react-dom": "~16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-reanimated": "1.7.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "2.2.0",
+    "react-native-web": "~0.11.7",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "@storybook/addon-actions": "5.3.18",
+    "@storybook/addon-links": "5.3.18",
+    "@storybook/addons": "5.3.18",
+    "@storybook/react-native": "5.3.18",
+    "@storybook/react-native-server": "5.3.18",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.1.0",
+    "babel-preset-expo": "~8.1.0",
+    "detox": "^16.2.0",
+    "eslint": "^6.8.0",
+    "jest": "^24.9.0",
+    "jest-expect-message": "^1.0.2",
+    "metro-react-native-babel-preset": "^0.58.0",
+    "react-dom": "16.11.0",
+    "react-test-renderer": "16.11.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testPathIgnorePatterns": [
+      "<rootDir>/e2e/"
+    ],
+    "setupFiles": [
+      "./__jestSetup__/setupAsyncStorage.js"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-expect-message"
+    ]
+  },
+  "detox": {
+    "test-runner": "jest",
+    "configurations": {
+      "ios.release": {
+        "binaryPath": "./ios/build/Build/Products/Release-iphonesimulator/shopQueueFinder.app",
+        "build": "xcodebuild -workspace ios/shopQueueFinder.xcworkspace -configuration release -scheme shopQueueFinder -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 11 Pro"
+      }
+    }
+  }
+}

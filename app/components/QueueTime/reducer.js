@@ -1,5 +1,5 @@
 import {QUEUE_TIME_ACTION_TYPES} from './actions';
-import {No_DATA_INT} from '../../service/recordings';
+import {No_DATA_INT} from './averageCalc';
 
 const initialTimeState = {
   average: 0,

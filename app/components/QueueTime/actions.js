@@ -1,4 +1,4 @@
-import {getQueueTimeData, addQueueTimeForStore} from '../../service/recordings';
+import QueueTimeService from '../../service/QueueTime';
 
 export const QUEUE_TIME_ACTION_TYPES = Object.freeze({
   GET_QUEUE_TIME_STARTED: 'GET_QUEUE_TIME_STARTED',
@@ -9,11 +9,14 @@ export const QUEUE_TIME_ACTION_TYPES = Object.freeze({
   ADD_QUEUE_TIME_ERROR: 'ADD_QUEUE_TIME_ERROR',
 });
 
+//TODO get this true/false from env file
+const service = new QueueTimeService(true);
+
 export const getQueueTimes = storeID => {
   return async dispatch => {
     dispatch(getQueueTimeStarted());
     try {
-      const queueTimes = await getQueueTimeData(storeID);
+      const queueTimes = await service.getQueueTimeData(storeID);
       dispatch(getQueueTimeSuccess(queueTimes));
     } catch (error) {
       console.error(error);
@@ -30,7 +33,7 @@ export const addQueueTime = (storeID, queueTime) => {
       dispatch(addQueueTimeFailure(nanError));
     }
     try {
-      await addQueueTimeForStore(storeID, queueTime);
+      await service.addQueueTimeForStore(storeID, queueTime);
       dispatch(addQueueTimeSuccess(queueTime));
     } catch (error) {
       console.error(error);

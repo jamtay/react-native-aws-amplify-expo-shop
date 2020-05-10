@@ -6,9 +6,9 @@ const SIMPLE_ID = 'TEST_ID1';
 
 const simpleData = {
   id: SIMPLE_ID,
-  name: '<>',
-  description: '<>',
-  fullAddress: '<>',
+  name: 'Booths test',
+  description: 'Booths test',
+  fullAddress: 'Test address',
   addressLine1: '<>',
   addressLine2: '<>',
   postcode: '<>',

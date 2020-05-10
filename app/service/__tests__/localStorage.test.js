@@ -1,6 +1,6 @@
 import AsyncStorageMock from '@react-native-community/async-storage/jest/async-storage-mock';
 import AsyncStorage from '@react-native-community/async-storage';
-import {getFavouriteData, addFavourite, removeFavourite} from './localStorage';
+import {getFavouriteData, addFavourite, removeFavourite} from '../localStorage';
 
 const fakeData = [
   {

@@ -42,12 +42,29 @@ export ANDROID_SDK_ROOT=$ANDROID_HOME
 export ANDROID_AVD_HOME=~/.android/avd
 ```
 
+# Environment variables with expo
+
+Using the https://github.com/manoj-nama/expo-env#readme package for setting environment variables. See the `./config` folder for config files, and run `npm run env:<ENV_NAME>` where env name is the same as the file name (e.g staging, mock, developmemt) and there is a corresponding npm script (e.g `"env:mock": "expo-env --env=mock --configPath=./config",`) for the environment.
+
+To access the variable a function like this can be used
+
+```js
+import Constants from 'expo-constants';
+
+export const getIsUsingMock = () => {
+  return Constants.manifest.extra.isUsingMock || false;
+};
+```
+
+Where the values are stored in `Constants.manifest.extra`
+
 # Mocking API
 
 1. Run mock with `amplify mock`
 2. Change `aws-exports.js` file to point to `http://localhost:20002/graphql` and not `http://192.168.1.245:20002/graphql` for aws_appsync_graphqlEndpoint
 3. Vist `http://localhost:20002/graphql` and add data to API
-4. Run frontend with `npm run ios`
+4. Change to use mock config `npm run env:mock`
+5. Run frontend with `npm start` then start the simulator or device
 
 # Frontend tests
 

@@ -16,6 +16,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "env:mock": "expo-env --env=mock --configPath=./config",
+    "env:development": "expo-env --env=development --configPath=./config",
     "eject": "expo eject"
   },
   "dependencies": {
@@ -28,6 +30,8 @@
     "aws-amplify": "^3.0.7",
     "aws-amplify-react-native": "^4.0.3",
     "expo": "~37.0.3",
+    "expo-constants": "~9.0.0",
+    "expo-env": "^1.1.1",
     "expo-font": "~8.1.0",
     "moment": "^2.25.1",
     "native-base": "^2.13.12",
@@ -46,6 +50,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-private-methods": "^7.8.3",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.5",
     "@storybook/addon-actions": "5.3.18",
@@ -53,6 +59,7 @@
     "@storybook/addons": "5.3.18",
     "@storybook/react-native": "5.3.18",
     "@storybook/react-native-server": "5.3.18",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.1.0",
     "babel-preset-expo": "~8.1.0",

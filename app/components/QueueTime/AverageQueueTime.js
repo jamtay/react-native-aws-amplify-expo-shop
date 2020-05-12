@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector, shallowEqual} from 'react-redux';
 import Loading from '../shared/Loading';
 
-import {Content, Text, Toast} from 'native-base';
+import {Content, Text} from 'native-base';
 
 const AverageQueueTime = () => {
   const {

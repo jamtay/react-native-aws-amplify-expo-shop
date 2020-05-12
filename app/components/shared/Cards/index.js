@@ -27,8 +27,7 @@ const DataCard = ({
           header
           button
           onPress={() => {
-            alert('This is Card Header ' + id);
-            onItemButtonPress(id);
+            onItemButtonPress ? onItemButtonPress(id) : null;
           }}>
           <Text style={styles.capital} testID={headerTestID}>
             {headerText}
@@ -42,8 +41,7 @@ const DataCard = ({
         <CardItem
           button
           onPress={() => {
-            alert('This is Card Body ' + id);
-            onItemButtonPress(id);
+            onItemButtonPress ? onItemButtonPress(id) : null;
           }}>
           <Body>
             <Text style={styles.capital}>{bodyText}</Text>

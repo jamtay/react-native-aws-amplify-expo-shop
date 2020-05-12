@@ -1,5 +1,6 @@
 import ItemRecording from '../../service/ItemRecording';
 import {getIsUsingMock} from '../../config/getConfigVals';
+import { Toast } from 'native-base';
 
 export const AVAILABLE_ITEM_ACTION_TYPES = Object.freeze({
   GET_AVAILABLE_ITEM_STARTED: 'GET_AVAILABLE_ITEM_STARTED',
@@ -18,9 +19,22 @@ export const addAvailableItems = (storeID, availableItems) => {
     dispatch(addAvailableItemStarted());
     try {
       await service.addItemsForStore(storeID, availableItems, false);
+      //Toast needs to come before the dispatch in order for it to display
+      Toast.show({
+        text: `Available items of ${availableItems} added`,
+        buttonText: 'Okay',
+        type: 'success',
+        duration: 2000,
+      });
       dispatch(addAvailableItemSuccess(availableItems));
     } catch (error) {
       console.error(error);
+      Toast.show({
+        text: error.message,
+        buttonText: 'Okay',
+        type: 'error',
+        duration: 2000,
+      });
       dispatch(addAvailableItemFailure(error));
     }
   };
@@ -34,6 +48,12 @@ export const getAvailableItems = storeID => {
       dispatch(getAvailableItemSuccess(availableItems));
     } catch (error) {
       console.error(error);
+      Toast.show({
+        text: error.message,
+        buttonText: 'Okay',
+        type: 'error',
+        duration: 2000,
+      });
       dispatch(getAvailableItemFailure(error));
     }
   };

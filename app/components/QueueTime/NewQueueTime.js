@@ -49,7 +49,7 @@ const NewQueueTime = ({store}) => {
               Toast.show({
                 text: 'Queue time must be a number',
                 buttonText: 'Okay',
-                type: 'error',
+                type: 'warning',
                 duration: 2000,
               });
             } else {

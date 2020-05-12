@@ -1,4 +1,4 @@
-type Store @model @searchable {
+type Store @model {
   id: ID!
   name: String!
   description: String!
@@ -15,7 +15,7 @@ type Store @model @searchable {
   itemsRecorded: [String!]
 }
 
-type Recording @model @searchable {
+type Recording @model {
   id: ID!
   type: String!
   storeID: String!

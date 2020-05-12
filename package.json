@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "storybook": "start-storybook -p 7007",
     "start": "expo start --tunnel",
+    "start:broken-tunnel": "expo r --tunnel",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -68,6 +69,7 @@
     "jest": "^24.9.0",
     "jest-expect-message": "^1.0.2",
     "metro-react-native-babel-preset": "^0.58.0",
+    "mock-async-storage": "^1.0.3",
     "react-dom": "16.11.0",
     "react-test-renderer": "16.11.0"
   },

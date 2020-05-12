@@ -33,7 +33,7 @@ const HomePage = () => {
           <Container>
             <Content padder>
               {/* UNCOMMENT ME TO DISPLAY SOME USEFUL TESTING BUTTONS FOR ADDING DATA TO API AND LOCAL STORAGE */}
-              {/* <TestButtons /> */}
+              <TestButtons />
               <Favourites />
               <SearchBar />
               <Loading isLoading={loading} />

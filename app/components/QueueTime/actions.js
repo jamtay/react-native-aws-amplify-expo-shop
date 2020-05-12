@@ -1,4 +1,5 @@
 import QueueTimeService from '../../service/QueueTime';
+import { getIsUsingMock } from '../../config/getConfigVals';
 
 export const QUEUE_TIME_ACTION_TYPES = Object.freeze({
   GET_QUEUE_TIME_STARTED: 'GET_QUEUE_TIME_STARTED',
@@ -9,8 +10,8 @@ export const QUEUE_TIME_ACTION_TYPES = Object.freeze({
   ADD_QUEUE_TIME_ERROR: 'ADD_QUEUE_TIME_ERROR',
 });
 
-//TODO get this true/false from env file
-const service = new QueueTimeService(true);
+const isUsingMock = getIsUsingMock();
+const service = new QueueTimeService(isUsingMock);
 
 export const getQueueTimes = storeID => {
   return async dispatch => {

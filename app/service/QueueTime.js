@@ -4,27 +4,15 @@ import {createRecording} from '../../src/graphql/mutations';
 import {
   RECORDING_TYPES,
   DEFAULT_SORT_OPTION,
-  MAXIMUM_ITEM_COUNT,
 } from '../constants/recordingConstants';
 import {
   getAverageTime,
   getAverageQueueTimeFromDate,
 } from '../components/QueueTime/averageCalc';
-import {getMostRecentRecordings} from '../components/QueueTime/activity';
+import { getMostRecentRecordings } from '../components/QueueTime/activity';
 
 import moment from 'moment';
-
-const getUnixSecondTimestamp = momentDate => momentDate.format('X');
-
-const lastWeekTimestampFilter = () => {
-  const now = getUnixSecondTimestamp(moment());
-  const oneWeekAgo = getUnixSecondTimestamp(moment().subtract(1, 'week'));
-  return {
-    floatTimestamp: {
-      range: [oneWeekAgo, now],
-    },
-  };
-};
+import { getUnixSecondTimestamp, lastWeekTimestampFilter } from './recordingUtils';
 
 export default class QueueTime {
   /**
@@ -33,24 +21,6 @@ export default class QueueTime {
    */
   constructor(isUsingMock) {
     this.isUsingMock = isUsingMock;
-  }
-
-  /**
-   * Add a new queuetime for a given store id
-   * @param {*} storeID
-   * @param {*} queueTime
-   */
-  async addQueueTimeForStore(storeID, queueTime) {
-    await API.graphql(
-      graphqlOperation(createRecording, {
-        input: {
-          type: RECORDING_TYPES.QUEUE_TIME,
-          queueTime: parseFloat(queueTime),
-          storeID: storeID,
-          floatTimestamp: getUnixSecondTimestamp(moment()),
-        },
-      }),
-    );
   }
 
   /**
@@ -106,6 +76,12 @@ export default class QueueTime {
     return queueTimes.data.listRecordings.items;
   }
 
+  /**
+   *
+   * @param storeID
+   * @return A promise of Queuetime data for a give store. in the format {storeID, oneHour, today, lastWeek, mostRecentRecordings}
+   * Where oneHour, today, lastWeek are average times. mostRecentRecordings is the latest 3 recordings
+   */
   async getQueueTimeData(storeID) {
     const now = getUnixSecondTimestamp(moment());
     const lastNight = getUnixSecondTimestamp(moment().startOf('day'));
@@ -121,5 +97,23 @@ export default class QueueTime {
       lastWeek: getAverageTime(data),
       mostRecentRecordings: getMostRecentRecordings(data),
     };
+  }
+
+  /**
+   * Add a new queuetime for a given store id
+   * @param {*} storeID
+   * @param {*} queueTime
+   */
+  async addQueueTimeForStore(storeID, queueTime) {
+    await API.graphql(
+      graphqlOperation(createRecording, {
+        input: {
+          type: RECORDING_TYPES.QUEUE_TIME,
+          queueTime: parseFloat(queueTime),
+          storeID: storeID,
+          floatTimestamp: getUnixSecondTimestamp(moment()),
+        },
+      }),
+    );
   }
 }

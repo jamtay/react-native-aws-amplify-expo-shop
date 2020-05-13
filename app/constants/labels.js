@@ -16,7 +16,7 @@ export const headerOptions = {
   headerTintColor: '#fff',
   headerTitleStyle: {
     fontWeight: 'bold',
-  },
+  }
 };
 
 export const tableLabels = Object.freeze({

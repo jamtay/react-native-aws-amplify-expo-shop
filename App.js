@@ -18,6 +18,7 @@ import config from './aws-exports';
 import {useFonts} from '@use-expo/font';
 import {Ionicons} from '@expo/vector-icons';
 import {AppLoading} from 'expo';
+import Explore from './app/screens/AirbnbExplore';
 Amplify.configure(config);
 
 // Add this line to remove the yellow warnings
@@ -38,7 +39,12 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName={PAGE_NAMES.EXPLORE_PAGE}>
+          <Stack.Screen
+            name={PAGE_NAMES.EXPLORE_PAGE}
+            component={Explore}
+            options={{headerShown: false}}
+          />
           <Stack.Screen
             name={PAGE_NAMES.HOME_PAGE}
             component={HomePage}

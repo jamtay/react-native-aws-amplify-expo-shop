@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch, shallowEqual} from 'react-redux';
-import {Content, Title} from 'native-base';
-import DataTable from '../../components/shared/DataTable';
 import {favouriteLabels} from '../../constants/labels';
-import {getFavouriteIds} from './utils';
+import { getFavouriteIds, getImageFromStoreName } from './utils';
 import {getFavourites} from './actions';
+import {ScrollView, Text, View, StyleSheet} from 'react-native';
+import FavouritesCard from './FavouritesCard';
+import Loading from '../shared/Loading';
 
 const Favourites = () => {
   const {
@@ -15,20 +16,44 @@ const Favourites = () => {
 
   useEffect(() => {
     dispatch(getFavourites());
-  }, []);
+  }, [dispatch]);
 
-  return favourites.length > 0 && (!error || error === null) ? (
-    <Content style={{marginTop: 10}}>
-      <Title style={{marginBottom: 10}}>
+  if (loading) {
+    return <Loading />;
+  }
+
+  return favourites.length > 0 && !error ? (
+    <>
+      <Text style={styles.titleText}>
         {favouriteLabels.FAVOURITES_SECTION_HEADER}
-      </Title>
-      <DataTable
-        data={favourites}
-        favouriteStoreIds={getFavouriteIds(favourites)}
-        horizontal={true}
-      />
-    </Content>
+      </Text>
+      <View style={styles.favouritesScrollContainer}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {favourites.map(fav => (
+            <FavouritesCard
+              key={fav.id}
+              imageUri={getImageFromStoreName(fav.name)}
+              name={fav.description}
+              description={fav.addressLine1}
+              item={fav}
+            />
+          ))}
+        </ScrollView>
+      </View>
+    </>
   ) : null;
 };
+
+const styles = StyleSheet.create({
+  titleText: {
+    fontSize: 24,
+    fontWeight: '700',
+    paddingHorizontal: 20,
+  },
+  favouritesScrollContainer: {
+    height: 130,
+    marginTop: 20,
+  },
+});
 
 export default Favourites;

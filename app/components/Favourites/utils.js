@@ -21,5 +21,24 @@ export const isAlreadyFavourite = (dataId, favouriteIds) => {
     return false;
   }
   const idExists = favouriteIds.find(favouriteId => favouriteId === dataId);
-  return idExists ? true : false;
+  return !!idExists;
+};
+
+/**
+ * Get the image from the store name. If it is not found then return the default image
+ * @param {String} storeName
+ * @return required image
+ */
+export const getImageFromStoreName = storeName => {
+  if (!storeName) {
+    return require('../../assets/default.jpeg');
+  }
+  const lowercaseName = storeName.toLowerCase();
+  if (lowercaseName.includes('booths')) {
+    return require('../../assets/booths.png');
+  } else if (lowercaseName.includes('tesco')) {
+    return require('../../assets/tesco.png');
+  }
+
+  return require('../../assets/default.jpeg');
 };

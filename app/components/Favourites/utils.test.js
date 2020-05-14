@@ -1,4 +1,8 @@
-import {getFavouriteIds, isAlreadyFavourite} from './utils';
+import {
+  getFavouriteIds,
+  getImageFromStoreName,
+  isAlreadyFavourite,
+} from './utils';
 
 describe('getFavouriteIds() util', () => {
   it('should get the favourite ids from an array of favourites', () => {
@@ -69,5 +73,73 @@ describe('isAlreadyFavourite() util', () => {
     const actual = isAlreadyFavourite('1', favourites);
 
     expect(actual).toEqual(false);
+  });
+});
+
+describe('getImageFromStoreName() unit tests', () => {
+  const boothsTestCases = [
+    'booths',
+    'Booths',
+    'bOOtHs',
+    'Booths ',
+    ' Booths random place',
+    'BOOTHS TEST STRING',
+    'TEST BOOTHS_STRING',
+    'tes_BoOths-string',
+    'aBoothsA',
+  ];
+  boothsTestCases.forEach(testCase => {
+    it(`should get booths when variants of booths are supplied - ${testCase}`, () => {
+      const imageName = getImageFromStoreName(testCase);
+      expect(imageName).toEqual({testUri: '../../../app/assets/booths.png'});
+    });
+  });
+
+  const tescoTestCases = [
+    'tesco',
+    'Tesco',
+    'tEsCo',
+    'Tesco  ',
+    ' Tesco random place',
+    'TESCO TEST STRING',
+    'TEST TESCO_STRING',
+    'tes_TesCO-string',
+    'aTescoa',
+  ];
+  tescoTestCases.forEach(testCase => {
+    it(`should get tesco when variants of tesco are supplied - ${testCase}`, () => {
+      const imageName = getImageFromStoreName(testCase);
+      expect(imageName).toEqual({testUri: '../../../app/assets/tesco.png'});
+    });
+  });
+
+  const closeProximityStringTests = [
+    'tesca',
+    'bootha',
+    'ooths',
+    'Tescho',
+    'Baooths',
+    'SBooth',
+  ];
+
+  closeProximityStringTests.forEach(testCase => {
+    it(`should return the default when a string is close (but is not) to tesco/booths - ${testCase}`, () => {
+      const imageName = getImageFromStoreName(testCase);
+      expect(imageName).toEqual({testUri: '../../../app/assets/default.jpeg'});
+    });
+  });
+
+  const emptyTestCases = [
+    {value: '', message: 'empty string'},
+    {value: '   ', message: 'empty string with spaces'},
+    {value: undefined, message: 'undefined'},
+    {value: null, message: 'null'},
+  ];
+
+  emptyTestCases.forEach(testCase => {
+    it(`should return the default when ${testCase.message} is supplied`, () => {
+      const imageName = getImageFromStoreName(testCase.value);
+      expect(imageName).toEqual({testUri: '../../../app/assets/default.jpeg'});
+    });
   });
 });

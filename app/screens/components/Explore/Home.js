@@ -4,7 +4,7 @@ import {
   View,
   Text,
   StyleSheet,
-  Image
+  Image,
 } from 'react-native';
 import StarRating from 'react-native-star-rating';
 class Home extends Component {

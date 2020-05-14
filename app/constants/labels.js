@@ -35,7 +35,7 @@ export const errorLabels = Object.freeze({
 });
 
 export const favouriteLabels = Object.freeze({
-  FAVOURITES_SECTION_HEADER: 'My favourite stores',
+  FAVOURITES_SECTION_HEADER: 'Here are your favourites',
 });
 
 export const storePageLabels = Object.freeze({

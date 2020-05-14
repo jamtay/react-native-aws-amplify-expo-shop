@@ -1,5 +1,6 @@
 import React from 'react';
 import {Icon, Button} from 'native-base';
+import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {updateFavourite} from './actions';
 
@@ -21,7 +22,8 @@ const FavouritesIcon = ({displayFavouriteOption, isFavourite, item}) => {
       transparent
       onPress={async () => {
         dispatch(await updateFavourite(isFavourite, item));
-      }}>
+      }}
+      style={styles.topRightIcon}>
       <Icon name="heart-multiple" type="MaterialCommunityIcons" />
     </Button>
   );
@@ -30,11 +32,20 @@ const FavouritesIcon = ({displayFavouriteOption, isFavourite, item}) => {
       transparent
       onPress={async () => {
         dispatch(await updateFavourite(isFavourite, item));
-      }}>
+      }}
+      style={styles.topRightIcon}>
       <Icon name="heart-multiple-outline" type="MaterialCommunityIcons" />
     </Button>
   );
   return isFavourite ? AlreadyFavouriteIcon : NotAlreadyFavouriteIcon;
 };
+
+const styles = StyleSheet.create({
+  topRightIcon: {
+    position: 'absolute',
+    top: 0,
+    right: -10,
+  },
+});
 
 export default FavouritesIcon;

@@ -7,18 +7,23 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+
 import HomePage from './app/screens/HomePage';
 import StorePage from './app/screens/StorePage';
 import AddRecordingPage from './app/screens/AddRecordingPage';
+import Explore from './app/screens/ExplorePage';
+
 import {PAGE_NAMES} from './app/screens/pageNames';
 import {headerOptions} from './app/constants/labels';
-import store from './app/store/index';
+
 import Amplify from 'aws-amplify';
+import store from './app/store/index';
 import config from './aws-exports';
+
 import {useFonts} from '@use-expo/font';
 import {Ionicons} from '@expo/vector-icons';
 import {AppLoading} from 'expo';
-import Explore from './app/screens/AirbnbExplore';
+
 Amplify.configure(config);
 
 // Add this line to remove the yellow warnings

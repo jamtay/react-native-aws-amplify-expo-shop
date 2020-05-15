@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch, shallowEqual} from 'react-redux';
 import {favouriteLabels} from '../../constants/labels';
-import { getFavouriteIds, getImageFromStoreName } from './utils';
+import { getImageFromStoreName } from './utils';
 import {getFavourites} from './actions';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import FavouritesCard from './FavouritesCard';

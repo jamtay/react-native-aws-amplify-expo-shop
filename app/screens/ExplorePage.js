@@ -4,9 +4,6 @@ import {
   Text,
   StyleSheet,
   SafeAreaView,
-  TextInput,
-  Platform,
-  StatusBar,
   ScrollView,
   Image,
   Dimensions,
@@ -15,17 +12,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Home from './components/Explore/Home';
 import {shallowEqual, useSelector} from 'react-redux';
 import Favourites from '../components/Favourites';
+import SearchBar from '../components/Search';
 
 const {height, width} = Dimensions.get('window');
 
 const Explore = () => {
-  const [startHeaderHeight, setStartHeaderHeight] = useState();
-
-  useEffect(() => {
-    setStartHeaderHeight(
-      Platform.OS === 'android' ? 100 + StatusBar.currentHeight : 80,
-    );
-  }, []);
 
   const {
     storesSearch: {loading, stores, error},
@@ -38,76 +29,12 @@ const Explore = () => {
         <ScrollView scrollEventThrottle={16}>
           <View style={{flex: 1, backgroundColor: 'white', paddingTop: 20}}>
             <Favourites />
-            <View
-              style={{
-                height: startHeaderHeight,
-                backgroundColor: 'white',
-                marginTop: 0,
-                marginBottom: 0,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  padding: 10,
-                  backgroundColor: 'white',
-                  marginHorizontal: 20,
-                  shadowOffset: {width: 0, height: 0},
-                  shadowColor: 'black',
-                  shadowOpacity: 0.2,
-                  elevation: 1,
-                  marginTop: Platform.OS === 'android' ? 30 : 20,
-                }}>
-                <Icon name="ios-search" size={20} style={{marginRight: 10}} />
-                <TextInput
-                  underlineColorAndroid="transparent"
-                  placeholder="Try a stores name..."
-                  placeholderTextColor="grey"
-                  style={{
-                    flex: 1,
-                    fontWeight: '700',
-                    backgroundColor: 'white',
-                  }}
-                />
-              </View>
-            </View>
-            <View
-              style={{
-                height: startHeaderHeight,
-                backgroundColor: 'white',
-                borderBottomWidth: 1,
-                borderBottomColor: '#dddddd',
-                marginTop: -30,
-                marginBottom: 0,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  padding: 10,
-                  backgroundColor: 'white',
-                  marginHorizontal: 20,
-                  shadowOffset: {width: 0, height: 0},
-                  shadowColor: 'black',
-                  shadowOpacity: 0.2,
-                  elevation: 1,
-                  marginTop: Platform.OS === 'android' ? 30 : 20,
-                }}>
-                <Icon name="ios-search" size={20} style={{marginRight: 10}} />
-                <TextInput
-                  underlineColorAndroid="transparent"
-                  placeholder="Try a stores location..."
-                  placeholderTextColor="grey"
-                  style={{
-                    flex: 1,
-                    fontWeight: '700',
-                    backgroundColor: 'white',
-                  }}
-                />
-              </View>
-            </View>
+            <Text style={{fontSize: 24, fontWeight: '700', marginTop: 20, paddingHorizontal: 20}}>
+              Find a store
+            </Text>
+            <SearchBar />
             <View style={{marginTop: 0, paddingHorizontal: 20}}>
-              <Text style={{fontSize: 24, fontWeight: '700'}}>
-                Find a store
-              </Text>
+
               <Text style={{fontWeight: '100', marginTop: 10}}>
                 A list of stores matching your search criteria
               </Text>

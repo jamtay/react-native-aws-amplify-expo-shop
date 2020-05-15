@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  Image,
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -13,48 +12,50 @@ import Home from './components/Explore/Home';
 import {shallowEqual, useSelector} from 'react-redux';
 import Favourites from '../components/Favourites';
 import SearchBar from '../components/Search';
+import SearchResults from '../components/SearchResults';
 
 const {height, width} = Dimensions.get('window');
 
 const Explore = () => {
-
   const {
     storesSearch: {loading, stores, error},
     favouritesData: {favourites},
   } = useSelector(state => state, shallowEqual);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1}}>
+    <SafeAreaView style={styles.standardFlex}>
+      <View style={styles.standardFlex}>
         <ScrollView scrollEventThrottle={16}>
-          <View style={{flex: 1, backgroundColor: 'white', paddingTop: 20}}>
+          <View style={{...styles.standardFlex, backgroundColor: 'white', paddingTop: 20}}>
             <Favourites />
-            <Text style={{fontSize: 24, fontWeight: '700', marginTop: 20, paddingHorizontal: 20}}>
+            <Text
+              style={{
+                fontSize: 24,
+                fontWeight: '700',
+                marginTop: 20,
+                paddingHorizontal: 20,
+              }}>
               Find a store
             </Text>
             <SearchBar />
-            <View style={{marginTop: 0, paddingHorizontal: 20}}>
-
-              <Text style={{fontWeight: '100', marginTop: 10}}>
+            <View style={{marginTop: 0}}>
+              <Text style={{fontWeight: '100', marginTop: 10, paddingHorizontal: 20}}>
                 A list of stores matching your search criteria
               </Text>
-              <View style={{width: width - 40, height: 200, marginTop: 20}}>
-                <Image
-                  style={{
-                    flex: 1,
-                    height: null,
-                    width: null,
-                    resizeMode: 'cover',
-                    borderRadius: 5,
-                    borderWidth: 1,
-                    borderColor: '#dddddd',
-                  }}
-                  source={require('../assets/home.jpg')}
-                />
+              <View style={{marginTop: 0}}>
+                <SearchResults>
+                  <Home
+                    width={width * 2}
+                    name="The main result"
+                    type="THE MAIN RESULT"
+                    price={82}
+                    rating={5}
+                  />
+                </SearchResults>
               </View>
             </View>
           </View>
-          <View style={{marginTop: 40}}>
+          <View style={{marginTop: 10}}>
             <Text
               style={{
                 fontSize: 24,
@@ -63,14 +64,7 @@ const Explore = () => {
               }}>
               More search results
             </Text>
-            <View
-              style={{
-                paddingHorizontal: 20,
-                marginTop: 20,
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-              }}>
+            <SearchResults>
               <Home
                 width={width}
                 name="The Cozy Place"
@@ -92,7 +86,7 @@ const Explore = () => {
                 price={82}
                 rating={4}
               />
-            </View>
+            </SearchResults>
           </View>
         </ScrollView>
       </View>
@@ -107,5 +101,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  standardFlex: {
+    flex: 1,
   },
 });

@@ -4,7 +4,7 @@ import FavouritesIcon from './FavouritesIcon';
 import {getImageFromStoreName} from './utils';
 import {PAGE_NAMES} from '../../screens/pageNames';
 import {useNavigation} from '@react-navigation/native';
-import { BUTTONS } from '../../styles/button';
+import {BUTTONS} from '../../styles/button';
 
 const FavouritesCard = ({width, item}) => {
   const styles = StyleSheet.create({

@@ -2,12 +2,9 @@ import React from 'react';
 
 import {storiesOf} from '@storybook/react-native';
 
-import CenterView from './CenterView';
 import HeaderStory from './Header';
 import SearchBarStory from './SearchBar';
 import LoadingStory from './Loading';
-import DataTableStory from './DataTable';
-import CardStory from './Card';
 import FavouritesStory from './Favourites';
 import FavouritesIconStory from './FavouritesIcon';
 import TitleSectionStory from './TitleSection';
@@ -67,87 +64,6 @@ storiesOf('Loading', module)
 storiesOf('SearchBar', module)
   .addDecorator(getStory => getStory())
   .add('testing', () => <SearchBarStory />);
-
-storiesOf('Cards', module)
-  .addDecorator(getStory => getStory())
-  .add('Default card with data', () => (
-    <CardStory
-      id="1"
-      headerTestID="results-card-1"
-      headerText="Some header text"
-      bodyText="Some description"
-      cardType="standard"
-    />
-  ))
-  .add('Default card with data and is not a favourite card', () => (
-    <CardStory
-      id="1"
-      headerTestID="results-card-1"
-      headerText="Some header text"
-      bodyText="Some description"
-      cardType="standard"
-      displayFavouriteOption={false}
-    />
-  ))
-  .add(
-    'Default card with data and is a favourite card but not a favourite (isFavourite=false)',
-    () => (
-      <CardStory
-        id="1"
-        headerTestID="results-card-1"
-        headerText="Some header text"
-        bodyText="Some description"
-        cardType="standard"
-        displayFavouriteOption={true}
-        isFavourite={false}
-      />
-    ),
-  )
-  .add(
-    'Default card with data and is a favourite card but not a favourite (isFavourite={undefined})',
-    () => (
-      <CardStory
-        id="1"
-        headerTestID="results-card-1"
-        headerText="Some header text"
-        bodyText="Some description"
-        cardType="standard"
-        displayFavouriteOption={true}
-      />
-    ),
-  )
-  .add(
-    'Default card with data and is a favourite cardand it is a favourite (isFavourite={true})',
-    () => (
-      <CardStory
-        id="1"
-        headerTestID="results-card-1"
-        headerText="Some header text"
-        bodyText="Some description"
-        cardType="standard"
-        displayFavouriteOption={true}
-        isFavourite={true}
-      />
-    ),
-  )
-  .add('Empty warning data card', () => (
-    <CardStory
-      id="1"
-      headerTestID="results-card-1"
-      headerText="No data"
-      bodyText="You have no data"
-      cardType="warning"
-    />
-  ))
-  .add('Error message card', () => (
-    <CardStory
-      id="1"
-      headerTestID="results-card-1"
-      headerText="Error"
-      bodyText="Some error occured"
-      cardType="error"
-    />
-  ));
 
 storiesOf('Favourites', module)
   .addDecorator(getStory => getStory())

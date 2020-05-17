@@ -26,7 +26,7 @@ const FavouritesIcon = ({
       position: 'absolute',
       top: topStyle,
       right: -10,
-      zIndex: -1,
+      zIndex: 999,
     },
   });
 

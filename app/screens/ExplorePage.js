@@ -19,8 +19,7 @@ const {height, width} = Dimensions.get('window');
 
 const Explore = () => {
   const {
-    storesSearch: {loading, stores, error},
-    favouritesData: {favourites},
+    storesSearch: {loading, stores},
   } = useSelector(state => state, shallowEqual);
 
   const isStores = stores && stores.length > 0;
@@ -28,11 +27,13 @@ const Explore = () => {
   const MainSearchResult = isStores ? (
     <View style={styles.emptyTopMargin}>
       <SearchResults>
-        <LargeResult
+        <Result
           width={width * 2}
           description={stores[0].description}
           location={stores[0].addressLine1}
           item={stores[0]}
+          topStyle={-30}
+          isLarge
         />
       </SearchResults>
     </View>

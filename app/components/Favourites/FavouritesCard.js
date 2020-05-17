@@ -35,7 +35,7 @@ const styles = width =>
       borderWidth: 0.5,
       borderColor: '#dddddd',
       marginTop: 20,
-      marginHorizontal: 10,
+      marginHorizontal: 5,
       paddingHorizontal: 10,
     },
     standardFlex: {

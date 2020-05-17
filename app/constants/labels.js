@@ -1,37 +1,10 @@
-import React from 'react';
-import {Text} from 'native-base';
 export const headerLabels = Object.freeze({
   HEADER: 'Quevid 19',
-});
-
-export const headerOptions = {
-  headerTitle: props => (
-    <Text style={{color: 'white', fontWeight: 'bold'}}>
-      {headerLabels.HEADER}
-    </Text>
-  ),
-  headerStyle: {
-    backgroundColor: 'pink',
-  },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-  },
-};
-
-export const tableLabels = Object.freeze({
-  NO_RESULTS: 'No results',
-  NO_RESULTS_HINT: 'Please enter or refine your search',
 });
 
 export const searchLabels = Object.freeze({
   NAME: 'Search by name...',
   ADDRESS: 'Search by address...',
-});
-
-export const errorLabels = Object.freeze({
-  MESSAGE: 'Something went wrong! Try again later',
-  BUTTON_TEXT: 'Okay',
 });
 
 export const favouriteLabels = Object.freeze({

@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontWeight: '700',
     backgroundColor: 'white',
-  }
+  },
 });
 
 export default SearchBar;

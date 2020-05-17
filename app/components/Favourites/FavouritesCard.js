@@ -13,7 +13,7 @@ const FavouritesCard = ({width, item}) => {
       height: width / 2 - 50,
       borderWidth: 0.5,
       borderColor: '#dddddd',
-      marginTop: 20,
+      marginTop: 30,
       marginHorizontal: 5,
       paddingHorizontal: 10,
     },
@@ -75,7 +75,7 @@ const FavouritesCard = ({width, item}) => {
           isFavourite={true}
           displayFavouriteOption={true}
           item={item}
-          topStyle={-32}
+          topStyle={-36}
         />
       </View>
       <TouchableHighlight

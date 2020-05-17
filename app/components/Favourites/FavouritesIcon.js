@@ -3,7 +3,7 @@ import {Icon, Button} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {updateFavourite} from './actions';
-
+import { COLOURS } from '../../styles/colours';
 /**
  * Get the favourites icon from the supplied boolean parameters
  * @param {bool} displayFavouriteOption Whether or not to display the favourite icon
@@ -28,6 +28,9 @@ const FavouritesIcon = ({
       right: -10,
       zIndex: 999,
     },
+    icon: {
+      color: COLOURS.DARK_PINK,
+    },
   });
 
   const dispatch = useDispatch();
@@ -39,7 +42,12 @@ const FavouritesIcon = ({
         dispatch(await updateFavourite(isFavourite, item));
       }}
       style={styles.topRightIcon}>
-      <Icon name="heart-multiple" type="MaterialCommunityIcons" />
+      <Icon
+        name="heart-multiple"
+        type="MaterialCommunityIcons"
+        color="black"
+        style={styles.icon}
+      />
     </Button>
   );
   const NotAlreadyFavouriteIcon = (
@@ -49,7 +57,11 @@ const FavouritesIcon = ({
         dispatch(await updateFavourite(isFavourite, item));
       }}
       style={styles.topRightIcon}>
-      <Icon name="heart-multiple-outline" type="MaterialCommunityIcons" />
+      <Icon
+        name="heart-multiple-outline"
+        type="MaterialCommunityIcons"
+        style={styles.icon}
+      />
     </Button>
   );
   return isFavourite ? AlreadyFavouriteIcon : NotAlreadyFavouriteIcon;

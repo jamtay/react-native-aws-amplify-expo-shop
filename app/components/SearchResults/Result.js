@@ -16,7 +16,7 @@ import {BUTTONS} from '../../styles/button';
  * @returns {*}
  * @constructor
  */
-const Result = ({width, item, topStyle = -20, isLarge = false}) => {
+const Result = ({width, item, topStyle = -16, isLarge = false}) => {
   const styles = isLarge
     ? StyleSheet.create({
         container: {

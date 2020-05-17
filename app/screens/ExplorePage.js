@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   searchResultsMarginBottom: {
-    marginBottom: -30,
+    marginBottom: -20,
   },
   descriptionText: {
     fontWeight: '100',

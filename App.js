@@ -13,7 +13,7 @@ import AddRecordingPage from './app/screens/AddRecordingPage';
 import Explore from './app/screens/ExplorePage';
 
 import {PAGE_NAMES} from './app/screens/pageNames';
-import {headerOptions} from './app/constants/labels';
+import {headerOptions} from './app/styles/header';
 
 import Amplify from 'aws-amplify';
 import store from './app/store/index';

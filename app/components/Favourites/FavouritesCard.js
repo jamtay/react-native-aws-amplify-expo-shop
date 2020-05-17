@@ -6,7 +6,7 @@ const FavouritesCard = props => {
   return (
     <View style={styles.cardBorder}>
       <View style={styles.flexedImageView}>
-        <Image source={props.imageUri} style={styles.image} />
+        <Image source={props.imageDetails} style={styles.image} />
         <FavouritesIcon
           isFavourite={true}
           displayFavouriteOption={true}

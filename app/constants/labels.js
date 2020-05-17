@@ -38,6 +38,16 @@ export const favouriteLabels = Object.freeze({
   FAVOURITES_SECTION_HEADER: 'Here are your favourites',
 });
 
+export const explorePageLabels = isStores => {
+  return {
+    STORE_SEARCH: 'Find a store',
+    SEARCH_DESCRIPTION: 'A list of stores matching your search criteria',
+    SEARCH_RESULTS: isStores
+      ? 'More search results'
+      : 'No search results, please enter some search criteria to find results',
+  };
+};
+
 export const storePageLabels = Object.freeze({
   ACTIVITY_OVERVIEW: 'Activity overview',
   ACTIVITY_HISTORY: 'Activity history',

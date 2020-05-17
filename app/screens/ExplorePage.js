@@ -7,13 +7,14 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Home from './components/Explore/Home';
+import Result from '../components/SearchResults/Result';
 import {shallowEqual, useSelector} from 'react-redux';
 import Favourites from '../components/Favourites';
 import SearchBar from '../components/Search';
 import SearchResults from '../components/SearchResults';
-
+import LargeResult from '../components/SearchResults/LargeResult';
+import {explorePageLabels} from '../constants/labels';
+import Loading from '../components/shared/Loading';
 const {height, width} = Dimensions.get('window');
 
 const Explore = () => {
@@ -22,71 +23,62 @@ const Explore = () => {
     favouritesData: {favourites},
   } = useSelector(state => state, shallowEqual);
 
+  const isStores = stores && stores.length > 0;
+
+  const MainSearchResult = isStores ? (
+    <View style={styles.emptyTopMargin}>
+      <SearchResults>
+        <LargeResult
+          width={width * 2}
+          description={stores[0].description}
+          location={stores[0].addressLine1}
+        />
+      </SearchResults>
+    </View>
+  ) : null;
+
+  const OtherSearchResults = () => {
+    if (loading) {
+      return <Loading />;
+    }
+    return stores.map((store, index) =>
+      index !== 0 ? (
+        <Result
+          width={width}
+          description={store.description}
+          location={store.addressLine1}
+          key={store.id}
+        />
+      ) : null,
+    );
+  };
+
   return (
     <SafeAreaView style={styles.standardFlex}>
       <View style={styles.standardFlex}>
         <ScrollView scrollEventThrottle={16}>
-          <View style={{...styles.standardFlex, backgroundColor: 'white', paddingTop: 20}}>
+          <View style={styles.container}>
             <Favourites />
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: '700',
-                marginTop: 20,
-                paddingHorizontal: 20,
-              }}>
-              Find a store
+            <Text style={styles.titleText}>
+              {explorePageLabels(isStores).STORE_SEARCH}
             </Text>
             <SearchBar />
-            <View style={{marginTop: 0}}>
-              <Text style={{fontWeight: '100', marginTop: 10, paddingHorizontal: 20}}>
-                A list of stores matching your search criteria
+            <View style={styles.emptyTopMargin}>
+              <Text style={styles.descriptionText}>
+                {explorePageLabels(isStores).SEARCH_DESCRIPTION}
               </Text>
-              <View style={{marginTop: 0}}>
-                <SearchResults>
-                  <Home
-                    width={width * 2}
-                    name="The main result"
-                    type="THE MAIN RESULT"
-                    price={82}
-                    rating={5}
-                  />
-                </SearchResults>
-              </View>
+              {MainSearchResult}
             </View>
           </View>
-          <View style={{marginTop: 10}}>
+          <View style={styles.smallTopMargin}>
             <Text
               style={{
-                fontSize: 24,
-                fontWeight: '700',
-                paddingHorizontal: 20,
+                ...styles.titleText,
+                ...styles.searchResultsMarginBottom,
               }}>
-              More search results
+              {explorePageLabels(isStores).SEARCH_RESULTS}
             </Text>
-            <SearchResults>
-              <Home
-                width={width}
-                name="The Cozy Place"
-                type="PRIVATE ROOM - 2 BEDS"
-                price={82}
-                rating={4}
-              />
-              <Home
-                width={width}
-                name="The Cozy Place"
-                type="PRIVATE ROOM - 2 BEDS"
-                price={82}
-                rating={4}
-              />
-              <Home
-                width={width}
-                name="The Cozy Place"
-                type="PRIVATE ROOM - 2 BEDS"
-                price={82}
-                rating={4}
-              />
-            </SearchResults>
+            <SearchResults>{OtherSearchResults()}</SearchResults>
           </View>
         </ScrollView>
       </View>
@@ -99,10 +91,31 @@ export default Explore;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    paddingTop: 20,
   },
   standardFlex: {
     flex: 1,
+  },
+  titleText: {
+    fontSize: 24,
+    fontWeight: '700',
+    marginTop: 10,
+    paddingHorizontal: 20,
+  },
+  searchResultsMarginBottom: {
+    marginBottom: -30,
+  },
+  descriptionText: {
+    fontWeight: '100',
+    marginTop: 10,
+    marginBottom: 10,
+    paddingHorizontal: 20,
+  },
+  emptyTopMargin: {
+    marginTop: 0,
+  },
+  smallTopMargin: {
+    marginTop: 10,
   },
 });

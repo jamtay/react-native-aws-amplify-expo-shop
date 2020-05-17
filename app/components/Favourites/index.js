@@ -32,7 +32,7 @@ const Favourites = () => {
           {favourites.map(fav => (
             <FavouritesCard
               key={fav.id}
-              imageUri={getImageFromStoreName(fav.name)}
+              imageDetails={getImageFromStoreName(fav.name)}
               name={fav.description}
               description={fav.addressLine1}
               item={fav}

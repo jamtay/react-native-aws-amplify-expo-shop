@@ -12,7 +12,6 @@ import {shallowEqual, useSelector} from 'react-redux';
 import Favourites from '../components/Favourites';
 import SearchBar from '../components/Search';
 import SearchResults from '../components/SearchResults';
-import LargeResult from '../components/SearchResults/LargeResult';
 import {explorePageLabels} from '../constants/labels';
 import Loading from '../components/shared/Loading';
 const {height, width} = Dimensions.get('window');

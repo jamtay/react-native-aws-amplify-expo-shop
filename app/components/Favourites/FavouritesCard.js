@@ -1,34 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight, Image} from 'react-native';
 import FavouritesIcon from './FavouritesIcon';
-import { getImageFromStoreName } from './utils';
+import {getImageFromStoreName} from './utils';
+import {PAGE_NAMES} from '../../screens/pageNames';
+import {useNavigation} from '@react-navigation/native';
+import { BUTTONS } from '../../styles/button';
 
 const FavouritesCard = ({width, description, location, item}) => {
-  return (
-    <View style={styles(width).container}>
-      <View style={styles(width).flexedImageView}>
-        <Image
-          style={styles(width).image}
-          source={getImageFromStoreName(description)}
-        />
-        <FavouritesIcon
-          isFavourite={true}
-          displayFavouriteOption={true}
-          item={item}
-          topStyle={-32}
-        />
-      </View>
-      <View style={styles(width).textWrapper}>
-        <Text style={styles(width).largeText}>{description}</Text>
-        <Text style={styles(width).smallText}>{location}</Text>
-      </View>
-    </View>
-  );
-};
-export default FavouritesCard;
-
-const styles = width =>
-  StyleSheet.create({
+  const styles = StyleSheet.create({
     container: {
       width: width / 2 - 30,
       height: width / 2 - 50,
@@ -66,3 +45,46 @@ const styles = width =>
       fontWeight: 'bold',
     },
   });
+
+  const navigation = useNavigation();
+  const onItemButtonPress = () => {
+    navigation.navigate(PAGE_NAMES.STORE_PAGE, {
+      store: item,
+    });
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.flexedImageView}>
+        <TouchableHighlight
+          onPress={onItemButtonPress}
+          style={styles.image}
+          activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+          underlayColor={BUTTONS.CLICK_COLOUR}>
+          <Image
+            style={styles.image}
+            source={getImageFromStoreName(description)}
+          />
+        </TouchableHighlight>
+        <FavouritesIcon
+          isFavourite={true}
+          displayFavouriteOption={true}
+          item={item}
+          topStyle={-32}
+        />
+      </View>
+      <TouchableHighlight
+        style={styles.textWrapper}
+        onPress={onItemButtonPress}
+        activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
+        underlayColor={BUTTONS.CLICK_COLOUR}>
+        <View>
+          <Text style={styles.largeText}>{description}</Text>
+          <Text style={styles.smallText}>{location}</Text>
+        </View>
+      </TouchableHighlight>
+    </View>
+  );
+};
+
+export default FavouritesCard;

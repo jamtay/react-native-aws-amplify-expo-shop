@@ -1,8 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
 import {getImageFromStoreName} from '../Favourites/utils';
 import FavouritesIcon from '../Favourites/FavouritesIcon';
 import {useIsFavHook} from '../Favourites/isFavHook';
+import {PAGE_NAMES} from '../../screens/pageNames';
+import {useNavigation} from '@react-navigation/native';
+import {BUTTONS} from '../../styles/button';
 
 const Result = ({
   width,
@@ -89,13 +92,27 @@ const Result = ({
       });
 
   const isFavourite = useIsFavHook(item.id);
+
+  const navigation = useNavigation();
+  const onItemButtonPress = () => {
+    navigation.navigate(PAGE_NAMES.STORE_PAGE, {
+      store: item,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.flexedImageView}>
-        <Image
+        <TouchableHighlight
+          onPress={onItemButtonPress}
           style={styles.image}
-          source={getImageFromStoreName(description)}
-        />
+          activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+          underlayColor={BUTTONS.CLICK_COLOUR}>
+          <Image
+            style={styles.image}
+            source={getImageFromStoreName(description)}
+          />
+        </TouchableHighlight>
         <FavouritesIcon
           isFavourite={isFavourite}
           displayFavouriteOption={true}
@@ -103,10 +120,16 @@ const Result = ({
           topStyle={topStyle}
         />
       </View>
-      <View style={styles.textWrapper}>
-        <Text style={styles.largeText}>{description}</Text>
-        <Text style={styles.smallText}>{location}</Text>
-      </View>
+      <TouchableHighlight
+        style={styles.textWrapper}
+        onPress={onItemButtonPress}
+        activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
+        underlayColor={BUTTONS.CLICK_COLOUR}>
+        <View>
+          <Text style={styles.largeText}>{description}</Text>
+          <Text style={styles.smallText}>{location}</Text>
+        </View>
+      </TouchableHighlight>
     </View>
   );
 };

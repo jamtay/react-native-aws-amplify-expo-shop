@@ -7,6 +7,8 @@ import {
   ScrollView,
   Dimensions,
   StatusBar,
+  Image,
+  TouchableHighlight,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {explorePageLabels, storePageLabels} from '../constants/labels';
@@ -14,10 +16,11 @@ import {getQueueTimes} from '../components/QueueTime/actions';
 import {getMissingItems} from '../components/MissingItems/actions';
 import {getAvailableItems} from '../components/AvailableItems/actions';
 import {PAGE_NAMES} from './pageNames';
-import {Root} from 'native-base';
+import {Icon, Root} from 'native-base';
 import SearchResults from '../components/SearchResults';
 import Result from '../components/SearchResults/Result';
 import {COLOURS} from '../styles/colours';
+import {BUTTONS} from '../styles/button';
 
 const {width} = Dimensions.get('window');
 
@@ -50,12 +53,49 @@ const SingleStorePage = ({route, navigation}) => {
             </View>
             <View style={styles.section}>
               <Text style={styles.titleText}>{storePageLabels.AVG_Q_TIME}</Text>
+              <TouchableHighlight
+                onPress={onNewRecordingButtonClick}
+                style={styles.standardFlex}
+                activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+                underlayColor={BUTTONS.CLICK_COLOUR}>
+                <Icon
+                  name="new-box"
+                  type="MaterialCommunityIcons"
+                  style={styles.button}
+                />
+              </TouchableHighlight>
             </View>
             <View style={styles.section}>
-              <Text style={styles.titleText}>{storePageLabels.WEEKS_MISSING}</Text>
+              <Text style={styles.titleText}>
+                {storePageLabels.WEEKS_MISSING}
+              </Text>
+              <TouchableHighlight
+                onPress={onNewRecordingButtonClick}
+                style={styles.standardFlex}
+                activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+                underlayColor={BUTTONS.CLICK_COLOUR}>
+                <Icon
+                  name="new-box"
+                  type="MaterialCommunityIcons"
+                  style={styles.button}
+                />
+              </TouchableHighlight>
             </View>
             <View style={styles.section}>
-              <Text style={styles.titleText}>{storePageLabels.WEEKS_AVAILABLE}</Text>
+              <Text style={styles.titleText}>
+                {storePageLabels.WEEKS_AVAILABLE}
+              </Text>
+              <TouchableHighlight
+                onPress={onNewRecordingButtonClick}
+                style={styles.standardFlex}
+                activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+                underlayColor={BUTTONS.CLICK_COLOUR}>
+                <Icon
+                  name="new-box"
+                  type="MaterialCommunityIcons"
+                  style={styles.button}
+                />
+              </TouchableHighlight>
             </View>
           </ScrollView>
         </View>
@@ -99,6 +139,12 @@ const styles = StyleSheet.create({
   section: {
     borderBottomWidth: 1,
     borderBottomColor: COLOURS.DARK_PINK,
+    marginHorizontal: 20,
     paddingBottom: 30,
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+  },
+  button: {
+    color: COLOURS.DARK_PINK,
   },
 });

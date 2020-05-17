@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch, shallowEqual} from 'react-redux';
 import {favouriteLabels} from '../../constants/labels';
 import {getFavourites} from './actions';
-import { ScrollView, Text, View, StyleSheet } from 'react-native';
+import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import FavouritesCard from './FavouritesCard';
 
 const Favourites = ({pageWidth}) => {
   const {
-    favouritesData: {loading, favourites, error},
+    favouritesData: {favourites, error},
   } = useSelector(state => state, shallowEqual);
 
   const dispatch = useDispatch();
@@ -26,8 +26,6 @@ const Favourites = ({pageWidth}) => {
           {favourites.map(fav => (
             <FavouritesCard
               width={pageWidth}
-              description={fav.description}
-              location={fav.addressLine1}
               item={fav}
               key={`fav-${fav.id}`}
             />
@@ -35,7 +33,16 @@ const Favourites = ({pageWidth}) => {
         </ScrollView>
       </View>
     </>
-  ) : null;
+  ) : (
+    <View>
+      <Text style={styles.titleText}>
+        {favouriteLabels.FAVOURITES_SECTION_HEADER}
+      </Text>
+      <Text style={styles.descriptionText}>
+        {favouriteLabels.NO_FAVOURITES}
+      </Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -47,6 +54,12 @@ const styles = StyleSheet.create({
   favouritesScrollContainer: {
     height: 130,
     marginTop: 20,
+  },
+  descriptionText: {
+    fontWeight: '100',
+    marginTop: 10,
+    marginBottom: 10,
+    paddingHorizontal: 20,
   },
 });
 

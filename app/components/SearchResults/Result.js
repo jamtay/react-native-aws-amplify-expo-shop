@@ -3,23 +3,25 @@ import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
 import {getImageFromStoreName} from '../Favourites/utils';
 import FavouritesIcon from '../Favourites/FavouritesIcon';
 import {useIsFavHook} from '../Favourites/isFavHook';
-import {PAGE_NAMES} from '../../screens/pageNames';
 import {useNavigation} from '@react-navigation/native';
+import {PAGE_NAMES} from '../../screens/pageNames';
 import {BUTTONS} from '../../styles/button';
 
-const Result = ({
-  width,
-  description,
-  location,
-  item,
-  topStyle = -20,
-  isLarge = false,
-}) => {
+/**
+ * A result to display search results for
+ * @param width The width of the screen
+ * @param item The item to display
+ * @param topStyle
+ * @param isLarge Is the button standard or large. Defaults to standard size
+ * @returns {*}
+ * @constructor
+ */
+const Result = ({width, item, topStyle = -20, isLarge = false}) => {
   const styles = isLarge
     ? StyleSheet.create({
         container: {
-          width: width / 2 - 50,
-          height: width / 2 - 200,
+          width: width - 50,
+          height: width - 200,
           borderWidth: 0.5,
           borderColor: '#dddddd',
           marginTop: 0,
@@ -38,11 +40,16 @@ const Result = ({
           height: null,
           resizeMode: 'contain',
         },
+        imageWrapper: {
+          flex: 1,
+          width: null,
+          height: null,
+        },
         textWrapper: {
           flex: 1,
           alignItems: 'flex-start',
           justifyContent: 'space-evenly',
-          paddingLeft: 30,
+          paddingLeft: 20,
         },
         largeText: {
           fontSize: 20,
@@ -73,6 +80,11 @@ const Result = ({
           width: null,
           height: null,
           resizeMode: 'contain',
+        },
+        imageWrapper: {
+          flex: 1,
+          width: null,
+          height: null,
         },
         textWrapper: {
           flex: 1,
@@ -105,12 +117,12 @@ const Result = ({
       <View style={styles.flexedImageView}>
         <TouchableHighlight
           onPress={onItemButtonPress}
-          style={styles.image}
+          style={styles.imageWrapper}
           activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
           underlayColor={BUTTONS.CLICK_COLOUR}>
           <Image
             style={styles.image}
-            source={getImageFromStoreName(description)}
+            source={getImageFromStoreName(item.description)}
           />
         </TouchableHighlight>
         <FavouritesIcon
@@ -126,8 +138,8 @@ const Result = ({
         activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
         underlayColor={BUTTONS.CLICK_COLOUR}>
         <View>
-          <Text style={styles.largeText}>{description}</Text>
-          <Text style={styles.smallText}>{location}</Text>
+          <Text style={styles.largeText}>{item.description}</Text>
+          <Text style={styles.smallText}>{item.addressLine1}</Text>
         </View>
       </TouchableHighlight>
     </View>

@@ -14,7 +14,8 @@ import SearchBar from '../components/Search';
 import SearchResults from '../components/SearchResults';
 import {explorePageLabels} from '../constants/labels';
 import Loading from '../components/shared/Loading';
-const {height, width} = Dimensions.get('window');
+import TestButtons from '../../bin/TestButtons';
+const {width} = Dimensions.get('window');
 
 const Explore = () => {
   const {
@@ -26,14 +27,7 @@ const Explore = () => {
   const MainSearchResult = isStores ? (
     <View style={styles.emptyTopMargin}>
       <SearchResults>
-        <Result
-          width={width * 2}
-          description={stores[0].description}
-          location={stores[0].addressLine1}
-          item={stores[0]}
-          topStyle={-30}
-          isLarge
-        />
+        <Result width={width} item={stores[0]} topStyle={-30} isLarge />
       </SearchResults>
     </View>
   ) : null;
@@ -60,7 +54,9 @@ const Explore = () => {
       <View style={styles.standardFlex}>
         <ScrollView scrollEventThrottle={16}>
           <View style={styles.container}>
-            <Favourites pageWidth={width}/>
+            <Favourites pageWidth={width} />
+            {/* UNCOMMENT ME TO DISPLAY SOME USEFUL TESTING BUTTONS FOR ADDING DATA TO API AND LOCAL STORAGE */}
+            {/*<TestButtons />*/}
             <Text style={styles.titleText}>
               {explorePageLabels(isStores).STORE_SEARCH}
             </Text>

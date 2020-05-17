@@ -8,7 +8,6 @@ import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import HomePage from './app/screens/HomePage';
 import StorePage from './app/screens/StorePage';
 import AddRecordingPage from './app/screens/AddRecordingPage';
 import Explore from './app/screens/ExplorePage';
@@ -49,11 +48,6 @@ const App = () => {
             name={PAGE_NAMES.EXPLORE_PAGE}
             component={Explore}
             options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name={PAGE_NAMES.HOME_PAGE}
-            component={HomePage}
-            options={headerOptions}
           />
           <Stack.Screen
             name={PAGE_NAMES.STORE_PAGE}

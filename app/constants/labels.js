@@ -16,7 +16,7 @@ export const headerOptions = {
   headerTintColor: '#fff',
   headerTitleStyle: {
     fontWeight: 'bold',
-  }
+  },
 };
 
 export const tableLabels = Object.freeze({
@@ -36,6 +36,8 @@ export const errorLabels = Object.freeze({
 
 export const favouriteLabels = Object.freeze({
   FAVOURITES_SECTION_HEADER: 'Here are your favourites',
+  NO_FAVOURITES:
+    'You currently have no favourites. Please press the heart on a store to add to your favourites',
 });
 
 export const explorePageLabels = isStores => {

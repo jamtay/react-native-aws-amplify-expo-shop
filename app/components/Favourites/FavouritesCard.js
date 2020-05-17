@@ -6,7 +6,7 @@ import {PAGE_NAMES} from '../../screens/pageNames';
 import {useNavigation} from '@react-navigation/native';
 import { BUTTONS } from '../../styles/button';
 
-const FavouritesCard = ({width, description, location, item}) => {
+const FavouritesCard = ({width, item}) => {
   const styles = StyleSheet.create({
     container: {
       width: width / 2 - 30,
@@ -28,6 +28,11 @@ const FavouritesCard = ({width, description, location, item}) => {
       width: null,
       height: null,
       resizeMode: 'contain',
+    },
+    imageWrapper: {
+      flex: 1,
+      width: null,
+      height: null,
     },
     textWrapper: {
       flex: 1,
@@ -58,12 +63,12 @@ const FavouritesCard = ({width, description, location, item}) => {
       <View style={styles.flexedImageView}>
         <TouchableHighlight
           onPress={onItemButtonPress}
-          style={styles.image}
+          style={styles.imageWrapper}
           activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
           underlayColor={BUTTONS.CLICK_COLOUR}>
           <Image
             style={styles.image}
-            source={getImageFromStoreName(description)}
+            source={getImageFromStoreName(item.description)}
           />
         </TouchableHighlight>
         <FavouritesIcon
@@ -79,8 +84,8 @@ const FavouritesCard = ({width, description, location, item}) => {
         activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
         underlayColor={BUTTONS.CLICK_COLOUR}>
         <View>
-          <Text style={styles.largeText}>{description}</Text>
-          <Text style={styles.smallText}>{location}</Text>
+          <Text style={styles.largeText}>{item.description}</Text>
+          <Text style={styles.smallText}>{item.addressLine1}</Text>
         </View>
       </TouchableHighlight>
     </View>

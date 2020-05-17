@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch, shallowEqual} from 'react-redux';
 import {favouriteLabels} from '../../constants/labels';
-import { getImageFromStoreName } from './utils';
 import {getFavourites} from './actions';
-import {ScrollView, Text, View, StyleSheet} from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Dimensions } from 'react-native';
 import FavouritesCard from './FavouritesCard';
-import Loading from '../shared/Loading';
+import Result from '../SearchResults/Result';
 
-const Favourites = () => {
+const Favourites = ({pageWidth}) => {
   const {
     favouritesData: {loading, favourites, error},
   } = useSelector(state => state, shallowEqual);
@@ -18,10 +17,6 @@ const Favourites = () => {
     dispatch(getFavourites());
   }, [dispatch]);
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return favourites.length > 0 && !error ? (
     <>
       <Text style={styles.titleText}>
@@ -31,11 +26,11 @@ const Favourites = () => {
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {favourites.map(fav => (
             <FavouritesCard
-              key={fav.id}
-              imageDetails={getImageFromStoreName(fav.name)}
-              name={fav.description}
-              description={fav.addressLine1}
+              width={pageWidth}
+              description={fav.description}
+              location={fav.addressLine1}
               item={fav}
+              key={`fav-${fav.id}`}
             />
           ))}
         </ScrollView>

@@ -1,14 +1,23 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {getImageFromStoreName} from '../Favourites/utils';
+import FavouritesIcon from '../Favourites/FavouritesIcon';
+import {useIsFavHook} from '../Favourites/isFavHook';
 
-const Result = ({width, description, location}) => {
+const Result = ({width, description, location, item}) => {
+  const isFavourite = useIsFavHook(item.id);
   return (
     <View style={styles(width).container}>
-      <View style={styles(width).standardFlex}>
+      <View style={styles(width).flexedImageView}>
         <Image
           style={styles(width).image}
           source={getImageFromStoreName(description)}
+        />
+        <FavouritesIcon
+          isFavourite={isFavourite}
+          displayFavouriteOption={true}
+          item={item}
+          topStyle={-15}
         />
       </View>
       <View style={styles(width).textWrapper}>
@@ -32,6 +41,9 @@ const styles = width =>
     },
     standardFlex: {
       flex: 1,
+    },
+    flexedImageView: {
+      flex: 2,
     },
     image: {
       flex: 1,

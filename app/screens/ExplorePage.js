@@ -32,6 +32,7 @@ const Explore = () => {
           width={width * 2}
           description={stores[0].description}
           location={stores[0].addressLine1}
+          item={stores[0]}
         />
       </SearchResults>
     </View>
@@ -47,6 +48,7 @@ const Explore = () => {
           width={width}
           description={store.description}
           location={store.addressLine1}
+          item={store}
           key={store.id}
         />
       ) : null,
@@ -58,7 +60,7 @@ const Explore = () => {
       <View style={styles.standardFlex}>
         <ScrollView scrollEventThrottle={16}>
           <View style={styles.container}>
-            <Favourites />
+            <Favourites pageWidth={width}/>
             <Text style={styles.titleText}>
               {explorePageLabels(isStores).STORE_SEARCH}
             </Text>
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 24,
     fontWeight: '700',
-    marginTop: 10,
+    marginTop: 20,
     paddingHorizontal: 20,
   },
   searchResultsMarginBottom: {

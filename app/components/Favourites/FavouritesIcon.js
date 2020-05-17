@@ -9,11 +9,26 @@ import {updateFavourite} from './actions';
  * @param {bool} displayFavouriteOption Whether or not to display the favourite icon
  * @param {bool} isFavourite Whether or not to display the already favourited icon or the not already favourite icon
  * @param {*} item The item being displayed
+ * @param topStyle Top style property to apply
  */
-const FavouritesIcon = ({displayFavouriteOption, isFavourite, item}) => {
+const FavouritesIcon = ({
+  displayFavouriteOption,
+  isFavourite,
+  item,
+  topStyle = -15,
+}) => {
   if (!displayFavouriteOption) {
     return null;
   }
+
+  const styles = StyleSheet.create({
+    topRightIcon: {
+      position: 'absolute',
+      top: topStyle,
+      right: -10,
+      zIndex: -1,
+    },
+  });
 
   const dispatch = useDispatch();
 
@@ -39,13 +54,5 @@ const FavouritesIcon = ({displayFavouriteOption, isFavourite, item}) => {
   );
   return isFavourite ? AlreadyFavouriteIcon : NotAlreadyFavouriteIcon;
 };
-
-const styles = StyleSheet.create({
-  topRightIcon: {
-    position: 'absolute',
-    top: 0,
-    right: -10,
-  },
-});
 
 export default FavouritesIcon;

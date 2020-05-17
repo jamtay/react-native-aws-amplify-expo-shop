@@ -138,8 +138,8 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
         activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
         underlayColor={BUTTONS.CLICK_COLOUR}>
         <View>
-          <Text style={styles.largeText}>{item.description}</Text>
-          <Text style={styles.smallText}>{item.addressLine1}</Text>
+          <Text style={styles.largeText}>{item.description}{isLarge && `, ${item.postcode}`}</Text>
+          <Text style={styles.smallText}>{item.addressLine1}{isLarge && `, ${item.addressLine2}, ${item.county}`}</Text>
         </View>
       </TouchableHighlight>
     </View>

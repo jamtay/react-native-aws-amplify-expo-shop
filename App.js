@@ -22,6 +22,7 @@ import config from './aws-exports';
 import {useFonts} from '@use-expo/font';
 import {Ionicons} from '@expo/vector-icons';
 import {AppLoading} from 'expo';
+import SingleStorePage from './app/screens/SiingleStorePage';
 
 Amplify.configure(config);
 
@@ -51,7 +52,7 @@ const App = () => {
           />
           <Stack.Screen
             name={PAGE_NAMES.STORE_PAGE}
-            component={StorePage}
+            component={SingleStorePage}
             options={headerOptions}
           />
           <Stack.Screen

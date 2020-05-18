@@ -43,11 +43,7 @@ const SearchBar = () => {
           />
         </View>
       </View>
-      <View
-        style={{
-          ...styles.finalSearchContainer,
-          height: startHeaderHeight,
-        }}>
+      <View style={[styles.finalSearchContainer, {height: startHeaderHeight}]}>
         <View style={styles.searchBarView}>
           <Icon name="ios-search" size={20} style={styles.searchBarIcon} />
           <TextInput

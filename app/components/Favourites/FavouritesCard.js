@@ -7,7 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import {BUTTONS} from '../../styles/button';
 
 const FavouritesCard = ({width, item}) => {
-  const styles = StyleSheet.create({
+  const dynamicStyles = StyleSheet.create({
     container: {
       width: width / 2 - 30,
       height: width / 2 - 50,
@@ -16,38 +16,6 @@ const FavouritesCard = ({width, item}) => {
       marginTop: 30,
       marginHorizontal: 5,
       paddingHorizontal: 10,
-    },
-    standardFlex: {
-      flex: 1,
-    },
-    flexedImageView: {
-      flex: 0.5,
-    },
-    image: {
-      flex: 1,
-      width: null,
-      height: null,
-      resizeMode: 'contain',
-    },
-    imageWrapper: {
-      flex: 1,
-      width: null,
-      height: null,
-    },
-    textWrapper: {
-      flex: 1,
-      alignItems: 'flex-start',
-      paddingLeft: 10,
-    },
-    largeText: {
-      fontSize: 12,
-      color: '#b63838',
-      marginBottom: 10,
-      marginTop: 10,
-    },
-    smallText: {
-      fontSize: 14,
-      fontWeight: 'bold',
     },
   });
 
@@ -59,7 +27,7 @@ const FavouritesCard = ({width, item}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={dynamicStyles.container}>
       <View style={styles.flexedImageView}>
         <TouchableHighlight
           onPress={onItemButtonPress}
@@ -84,8 +52,8 @@ const FavouritesCard = ({width, item}) => {
         activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
         underlayColor={BUTTONS.CLICK_COLOUR}>
         <View>
-          <Text style={styles.largeText}>{item.description}</Text>
-          <Text style={styles.smallText}>{item.addressLine1}</Text>
+          <Text style={styles.titleText}>{item.description}</Text>
+          <Text style={styles.bodyText}>{item.addressLine1}</Text>
         </View>
       </TouchableHighlight>
     </View>
@@ -93,3 +61,35 @@ const FavouritesCard = ({width, item}) => {
 };
 
 export default FavouritesCard;
+
+const styles = StyleSheet.create({
+  flexedImageView: {
+    flex: 0.5,
+  },
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain',
+  },
+  imageWrapper: {
+    flex: 1,
+    width: null,
+    height: null,
+  },
+  textWrapper: {
+    flex: 1,
+    alignItems: 'flex-start',
+    paddingLeft: 10,
+  },
+  titleText: {
+    fontSize: 12,
+    color: '#b63838',
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  bodyText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+});

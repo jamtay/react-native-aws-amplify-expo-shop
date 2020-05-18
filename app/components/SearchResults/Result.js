@@ -13,94 +13,36 @@ import {BUTTONS} from '../../styles/button';
  * @param item The item to display
  * @param topStyle
  * @param isLarge Is the button standard or large. Defaults to standard size
- * @returns {*}
- * @constructor
  */
 const Result = ({width, item, topStyle = -16, isLarge = false}) => {
-  const styles = isLarge
-    ? StyleSheet.create({
-        container: {
-          width: width - 50,
-          height: width - 200,
-          borderWidth: 0.5,
-          borderColor: '#dddddd',
-          marginTop: 0,
-          marginBottom: 40,
-          marginLeft: 12,
-        },
-        standardFlex: {
-          flex: 1,
-        },
-        flexedImageView: {
-          flex: 2,
-        },
-        image: {
-          flex: 1,
-          width: null,
-          height: null,
-          resizeMode: 'contain',
-        },
-        imageWrapper: {
-          flex: 1,
-          width: null,
-          height: null,
-        },
-        textWrapper: {
-          flex: 1,
-          paddingLeft: 20,
-          paddingTop: 10,
-        },
-        largeText: {
-          fontSize: 20,
-          color: '#b63838',
-          marginBottom: 10,
-        },
-        smallText: {
-          fontSize: 24,
-          fontWeight: 'bold',
-        },
-      })
-    : StyleSheet.create({
-        container: {
-          width: width / 2 - 30,
-          height: width / 2 - 50,
-          borderWidth: 0.5,
-          borderColor: '#dddddd',
-          marginTop: 20,
-        },
-        standardFlex: {
-          flex: 1,
-        },
-        flexedImageView: {
-          flex: 2,
-        },
-        image: {
-          flex: 1,
-          width: null,
-          height: null,
-          resizeMode: 'contain',
-        },
-        imageWrapper: {
-          flex: 1,
-          width: null,
-          height: null,
-        },
-        textWrapper: {
-          flex: 1,
-          alignItems: 'flex-start',
-          paddingLeft: 10,
-        },
-        largeText: {
-          fontSize: 12,
-          color: '#b63838',
-          marginBottom: 10,
-          marginTop: 10,
-        },
-        smallText: {
-          fontSize: 14,
-          fontWeight: 'bold',
-        },
-      });
+
+  const styles = StyleSheet.create({
+    container: {
+      width: isLarge ? width - 50 : width / 2 - 30,
+      height: isLarge ? width - 200 : width / 2 - 50,
+      borderWidth: 0.5,
+      borderColor: '#dddddd',
+      marginTop: isLarge ? 0 : 20,
+      marginBottom: isLarge ? 40 : undefined,
+      marginLeft: isLarge ? 12 : undefined,
+    },
+    textWrapper: {
+      flex: 1,
+      paddingLeft: isLarge ? 20 : 10,
+      paddingTop: isLarge ? 10 : undefined,
+      alignItems: isLarge ? undefined : 'flex-start',
+    },
+    largeText: {
+      fontSize: isLarge ? 20 : 12,
+      color: '#b63838',
+      marginBottom: 10,
+      marginTop: isLarge ? undefined : 10,
+    },
+    smallText: {
+      fontSize: isLarge ? 24 : 14,
+      fontWeight: 'bold',
+    },
+  });
 
   const isFavourite = useIsFavHook(item.id);
 
@@ -113,14 +55,14 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.flexedImageView}>
+      <View style={sharedStyles.flexedImageView}>
         <TouchableHighlight
           onPress={onItemButtonPress}
-          style={styles.imageWrapper}
+          style={sharedStyles.imageWrapper}
           activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
           underlayColor={BUTTONS.CLICK_COLOUR}>
           <Image
-            style={styles.image}
+            style={sharedStyles.image}
             source={getImageFromStoreName(item.description)}
           />
         </TouchableHighlight>
@@ -137,8 +79,14 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
         activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
         underlayColor={BUTTONS.CLICK_COLOUR}>
         <View>
-          <Text style={styles.largeText}>{item.description}{isLarge && `, ${item.postcode}`}</Text>
-          <Text style={styles.smallText}>{item.addressLine1}{isLarge && `, ${item.addressLine2}, ${item.county}`}</Text>
+          <Text style={styles.largeText}>
+            {item.description}
+            {isLarge && `, ${item.postcode}`}
+          </Text>
+          <Text style={styles.smallText}>
+            {item.addressLine1}
+            {isLarge && `, ${item.addressLine2}, ${item.county}`}
+          </Text>
         </View>
       </TouchableHighlight>
     </View>
@@ -146,3 +94,20 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
 };
 
 export default Result;
+
+const sharedStyles = StyleSheet.create({
+  flexedImageView: {
+    flex: 2,
+  },
+  imageWrapper: {
+    flex: 1,
+    width: null,
+    height: null,
+  },
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain',
+  },
+});

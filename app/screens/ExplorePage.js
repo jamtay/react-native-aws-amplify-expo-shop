@@ -69,11 +69,7 @@ const Explore = () => {
             </View>
           </View>
           <View style={styles.smallTopMargin}>
-            <Text
-              style={{
-                ...styles.titleText,
-                ...styles.searchResultsMarginBottom,
-              }}>
+            <Text style={[styles.titleText, styles.searchResultsMarginBottom]}>
               {explorePageLabels(isStores).SEARCH_RESULTS}
             </Text>
             <SearchResults>{OtherSearchResults()}</SearchResults>

@@ -8,7 +8,6 @@ import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import StorePage from './app/screens/StorePage';
 import AddRecordingPage from './app/screens/AddRecordingPage';
 import Explore from './app/screens/ExplorePage';
 

@@ -7,6 +7,15 @@ export const searchLabels = Object.freeze({
   ADDRESS: 'Search by address...',
 });
 
+export const queueTimeLabels = Object.freeze({
+  LAST_HOUR: 'Last hour:',
+  TODAY: 'Today:',
+  LAST_WEEK: 'Last week: ',
+  MINUTES: 'minutes',
+  N_A: 'n/a',
+  LATEST_ENTRY: 'Latest entries:',
+});
+
 export const favouriteLabels = Object.freeze({
   FAVOURITES_SECTION_HEADER: 'Here are your favourites',
   NO_FAVOURITES:

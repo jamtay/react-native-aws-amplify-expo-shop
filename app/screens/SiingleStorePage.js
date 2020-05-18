@@ -19,6 +19,8 @@ import SearchResults from '../components/SearchResults';
 import Result from '../components/SearchResults/Result';
 import {COLOURS} from '../styles/colours';
 import {BUTTONS} from '../styles/button';
+import AverageQueueTime from '../components/QueueTime/AverageQueueTime';
+import ActivityQueueTime from '../components/QueueTime/ActivityQueueTime';
 
 const {width} = Dimensions.get('window');
 
@@ -65,6 +67,8 @@ const SingleStorePage = ({route, navigation}) => {
                   />
                 </TouchableHighlight>
               </View>
+              <AverageQueueTime style={styles.horizontalPagePadding} fontStyle={styles.dataText} />
+              <ActivityQueueTime style={styles.horizontalPagePadding} fontStyle={styles.dataText} />
             </View>
             <View style={styles.border}>
               <View style={styles.section}>
@@ -110,6 +114,9 @@ const SingleStorePage = ({route, navigation}) => {
 export default SingleStorePage;
 
 const styles = StyleSheet.create({
+  horizontalPagePadding: {
+    paddingHorizontal: 20,
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -123,6 +130,9 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: 20,
     paddingHorizontal: 20,
+  },
+  dataText: {
+    fontSize: 18,
   },
   searchResultsMarginBottom: {
     marginBottom: -20,
@@ -140,7 +150,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   section: {
-    paddingBottom: 30,
+    paddingBottom: 10,
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     flexDirection: 'row',
@@ -150,6 +160,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: COLOURS.DARK_PINK,
     marginHorizontal: 20,
+    paddingVertical: 10,
   },
   button: {
     color: COLOURS.DARK_PINK,

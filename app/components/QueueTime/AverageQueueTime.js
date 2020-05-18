@@ -2,9 +2,10 @@ import React from 'react';
 import {useSelector, shallowEqual} from 'react-redux';
 import Loading from '../shared/Loading';
 
-import {Content, Text} from 'native-base';
+import {View, Text} from 'react-native';
+import { queueTimeLabels } from '../../constants/labels';
 
-const AverageQueueTime = () => {
+const AverageQueueTime = ({style, fontStyle}) => {
   const {
     qTimesData: {queueTimes, loading},
   } = useSelector(state => state, shallowEqual);
@@ -14,15 +15,15 @@ const AverageQueueTime = () => {
   }
   const getQueueText = time => {
     return !time || !time.average || !time.dataLength || time.dataLength === 0
-      ? 'n/a'
-      : `${time.average} minutes`;
+      ? queueTimeLabels.N_A
+      : `${Math.round(time.average)} ${queueTimeLabels.MINUTES}`;
   };
   return (
-    <Content>
-      <Text>Last hour: {getQueueText(queueTimes.oneHour)}</Text>
-      <Text>Today: {getQueueText(queueTimes.today)}</Text>
-      <Text>Last week: {getQueueText(queueTimes.lastWeek)}</Text>
-    </Content>
+    <View style={style}>
+      <Text style={fontStyle}>{queueTimeLabels.LAST_HOUR} {getQueueText(queueTimes.oneHour)}</Text>
+      <Text style={fontStyle}>{queueTimeLabels.TODAY} {getQueueText(queueTimes.today)}</Text>
+      <Text style={fontStyle}>{queueTimeLabels.LAST_WEEK} {getQueueText(queueTimes.lastWeek)}</Text>
+    </View>
   );
 };
 

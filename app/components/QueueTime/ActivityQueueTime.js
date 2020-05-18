@@ -1,9 +1,10 @@
 import React from 'react';
 import {useSelector, shallowEqual} from 'react-redux';
 import Loading from '../shared/Loading';
-import {Content, Text} from 'native-base';
+import {View, Text} from 'react-native';
+import {queueTimeLabels} from '../../constants/labels';
 
-const ActivityQueueTime = () => {
+const ActivityQueueTime = ({style, fontStyle}) => {
   const {
     qTimesData: {queueTimes, loading},
   } = useSelector(state => state, shallowEqual);
@@ -12,14 +13,23 @@ const ActivityQueueTime = () => {
     return <Loading isLoading />;
   }
 
+  const cleanedQueueTimes =
+    queueTimes && queueTimes.mostRecentRecordings
+      ? queueTimes.mostRecentRecordings.filter(qtime => qtime && qtime !== '')
+      : [];
   return (
-    <Content>
-      {queueTimes.mostRecentRecordings.map((recording, index) => (
-        <Text key={`lastest-q-time-${index + 1}`}>
-          Most recent queue time {index + 1}: {recording} minutes
-        </Text>
-      ))}
-    </Content>
+    <View style={style}>
+      <Text style={fontStyle}>
+        {queueTimeLabels.LATEST_ENTRY}{' '}
+        {cleanedQueueTimes.map((recording, index) => {
+          if (index === 0) {
+            return `${recording} ${queueTimeLabels.MINUTES}`;
+          } else {
+            return `, ${recording} ${queueTimeLabels.MINUTES}`;
+          }
+        })}
+      </Text>
+    </View>
   );
 };
 

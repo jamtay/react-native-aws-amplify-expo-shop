@@ -25,7 +25,7 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
           borderWidth: 0.5,
           borderColor: '#dddddd',
           marginTop: 0,
-          marginBottom: 20,
+          marginBottom: 40,
           marginLeft: 12,
         },
         standardFlex: {
@@ -47,14 +47,13 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
         },
         textWrapper: {
           flex: 1,
-          alignItems: 'flex-start',
-          justifyContent: 'space-evenly',
           paddingLeft: 20,
+          paddingTop: 10,
         },
         largeText: {
           fontSize: 20,
           color: '#b63838',
-          marginBottom: 0,
+          marginBottom: 10,
         },
         smallText: {
           fontSize: 24,

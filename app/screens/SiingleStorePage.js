@@ -6,12 +6,10 @@ import {
   SafeAreaView,
   ScrollView,
   Dimensions,
-  StatusBar,
-  Image,
   TouchableHighlight,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import {explorePageLabels, storePageLabels} from '../constants/labels';
+import {storePageLabels} from '../constants/labels';
 import {getQueueTimes} from '../components/QueueTime/actions';
 import {getMissingItems} from '../components/MissingItems/actions';
 import {getAvailableItems} from '../components/AvailableItems/actions';
@@ -48,54 +46,59 @@ const SingleStorePage = ({route, navigation}) => {
           <ScrollView scrollEventThrottle={16}>
             <View style={styles.smallTopMargin}>
               <SearchResults>
-                <Result width={width} item={store} topStyle={-30} isLarge />
+                <Result width={width} item={store} topStyle={-35} isLarge />
               </SearchResults>
             </View>
-            <View style={styles.section}>
-              <Text style={styles.titleText}>{storePageLabels.AVG_Q_TIME}</Text>
-              <TouchableHighlight
-                onPress={onNewRecordingButtonClick}
-                style={styles.standardFlex}
-                activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
-                underlayColor={BUTTONS.CLICK_COLOUR}>
-                <Icon
-                  name="new-box"
-                  type="MaterialCommunityIcons"
-                  style={styles.button}
-                />
-              </TouchableHighlight>
+            <View style={styles.border}>
+              <View style={styles.section}>
+                <Text style={styles.titleText}>
+                  {storePageLabels.AVG_Q_TIME}
+                </Text>
+                <TouchableHighlight
+                  onPress={onNewRecordingButtonClick}
+                  activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+                  underlayColor={BUTTONS.CLICK_COLOUR}>
+                  <Icon
+                    name="add-circle-outline"
+                    type="MaterialIcons"
+                    style={styles.button}
+                  />
+                </TouchableHighlight>
+              </View>
             </View>
-            <View style={styles.section}>
-              <Text style={styles.titleText}>
-                {storePageLabels.WEEKS_MISSING}
-              </Text>
-              <TouchableHighlight
-                onPress={onNewRecordingButtonClick}
-                style={styles.standardFlex}
-                activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
-                underlayColor={BUTTONS.CLICK_COLOUR}>
-                <Icon
-                  name="new-box"
-                  type="MaterialCommunityIcons"
-                  style={styles.button}
-                />
-              </TouchableHighlight>
+            <View style={styles.border}>
+              <View style={styles.section}>
+                <Text style={styles.titleText}>
+                  {storePageLabels.WEEKS_MISSING}
+                </Text>
+                <TouchableHighlight
+                  onPress={onNewRecordingButtonClick}
+                  activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+                  underlayColor={BUTTONS.CLICK_COLOUR}>
+                  <Icon
+                    name="add-circle-outline"
+                    type="MaterialIcons"
+                    style={styles.button}
+                  />
+                </TouchableHighlight>
+              </View>
             </View>
-            <View style={styles.section}>
-              <Text style={styles.titleText}>
-                {storePageLabels.WEEKS_AVAILABLE}
-              </Text>
-              <TouchableHighlight
-                onPress={onNewRecordingButtonClick}
-                style={styles.standardFlex}
-                activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
-                underlayColor={BUTTONS.CLICK_COLOUR}>
-                <Icon
-                  name="new-box"
-                  type="MaterialCommunityIcons"
-                  style={styles.button}
-                />
-              </TouchableHighlight>
+            <View style={styles.border}>
+              <View style={styles.section}>
+                <Text style={styles.titleText}>
+                  {storePageLabels.WEEKS_AVAILABLE}
+                </Text>
+                <TouchableHighlight
+                  onPress={onNewRecordingButtonClick}
+                  activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+                  underlayColor={BUTTONS.CLICK_COLOUR}>
+                  <Icon
+                    name="add-circle-outline"
+                    type="MaterialIcons"
+                    style={styles.button}
+                  />
+                </TouchableHighlight>
+              </View>
             </View>
           </ScrollView>
         </View>
@@ -137,14 +140,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   section: {
+    paddingBottom: 30,
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    flex: 1,
+  },
+  border: {
     borderBottomWidth: 1,
     borderBottomColor: COLOURS.DARK_PINK,
     marginHorizontal: 20,
-    paddingBottom: 30,
-    alignItems: 'flex-end',
-    flexDirection: 'row',
   },
   button: {
     color: COLOURS.DARK_PINK,
+    marginRight: 10,
   },
 });

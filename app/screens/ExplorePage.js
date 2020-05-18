@@ -27,7 +27,7 @@ const Explore = () => {
   const MainSearchResult = isStores ? (
     <View style={styles.emptyTopMargin}>
       <SearchResults>
-        <Result width={width} item={stores[0]} topStyle={-30} isLarge />
+        <Result width={width} item={stores[0]} topStyle={-35} isLarge />
       </SearchResults>
     </View>
   ) : null;
@@ -57,7 +57,7 @@ const Explore = () => {
             <Favourites pageWidth={width} />
             {/* UNCOMMENT ME TO DISPLAY SOME USEFUL TESTING BUTTONS FOR ADDING DATA TO API AND LOCAL STORAGE */}
             {/*<TestButtons />*/}
-            <Text style={styles.titleText}>
+            <Text style={[styles.titleText, styles.searchTitle]}>
               {explorePageLabels(isStores).STORE_SEARCH}
             </Text>
             <SearchBar />
@@ -100,6 +100,9 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginTop: 20,
     paddingHorizontal: 20,
+  },
+  searchTitle: {
+    marginBottom: 10,
   },
   searchResultsMarginBottom: {
     marginBottom: -20,

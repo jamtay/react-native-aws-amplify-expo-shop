@@ -23,7 +23,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <View style={{...styles.searchContainer, height: startHeaderHeight}}>
+      <View style={[styles.searchContainer, {height: startHeaderHeight}]}>
         <View style={styles.searchBarView}>
           <Icon name="ios-search" size={20} style={styles.searchBarIcon} />
           <TextInput

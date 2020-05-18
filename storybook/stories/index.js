@@ -8,7 +8,6 @@ import LoadingStory from './Loading';
 import FavouritesStory from './Favourites';
 import FavouritesIconStory from './FavouritesIcon';
 import TitleSectionStory from './TitleSection';
-import AddressTitleStory from './AddressTitle';
 import {Content} from 'native-base';
 
 const exampleTableData = [
@@ -41,15 +40,6 @@ storiesOf('Title section', module)
   ))
   .add('Long title', () => (
     <TitleSectionStory titleText="Some test title that is a bit longer" />
-  ));
-
-storiesOf('Address title section', module)
-  .addDecorator(getStory => <Content>{getStory()}</Content>)
-  .add('simple title text', () => (
-    <AddressTitleStory
-      titleText="Some test title"
-      bodyText=": some data information"
-    />
   ));
 
 storiesOf('Header', module)

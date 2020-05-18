@@ -33,14 +33,7 @@ export const explorePageLabels = isStores => {
 };
 
 export const storePageLabels = Object.freeze({
-  ACTIVITY_OVERVIEW: 'Activity overview',
-  ACTIVITY_HISTORY: 'Activity history',
-  ADDRESS_SUB_TITLE: 'Address',
-  POSTCODE_SUB_TITLE: 'Postcode',
   AVG_Q_TIME: 'Average queue times',
-  TODAY: 'Today',
-  PREVIOUS_HOUR: '1hr',
-  LAST_WEEK: 'This week',
   WEEKS_MISSING: 'Weeks missing items',
   WEEKS_AVAILABLE: 'Weeks available items',
 });

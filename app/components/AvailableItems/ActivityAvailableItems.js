@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector, shallowEqual} from 'react-redux';
 import Loading from '../shared/Loading';
-import {Content, Text} from 'native-base';
+import {View, Text} from 'react-native';
 
-const ActivityAvailableItems = () => {
+const ActivityAvailableItems = ({style, fontStyle}) => {
   const {
     availableItemsData: {availableItems, loading},
   } = useSelector(state => state, shallowEqual);
@@ -13,13 +13,13 @@ const ActivityAvailableItems = () => {
   }
 
   return (
-    <Content>
+    <View style={style}>
       {availableItems.map((recording, index) => (
-        <Text key={`lastest-available-item-${index + 1}`}>
-          Most recent available item list {index + 1}: {recording}
+        <Text style={fontStyle} key={`lastest-available-item-${index + 1}`}>
+          {index + 1}: {recording.join(', ')}
         </Text>
       ))}
-    </Content>
+    </View>
   );
 };
 

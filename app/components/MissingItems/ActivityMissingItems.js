@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector, shallowEqual} from 'react-redux';
 import Loading from '../shared/Loading';
-import {Content, Text} from 'native-base';
+import {View, Text} from 'react-native';
 
-const ActivityMissingItems = () => {
+const ActivityMissingItems = ({style, fontStyle}) => {
   const {
     missingItemsData: {missingItems, loading},
   } = useSelector(state => state, shallowEqual);
@@ -13,13 +13,13 @@ const ActivityMissingItems = () => {
   }
 
   return (
-    <Content>
+    <View style={style}>
       {missingItems.map((recording, index) => (
-        <Text key={`lastest-missing-item-${index + 1}`}>
-          Most recent missing item list {index + 1}: {recording}
+        <Text style={fontStyle} key={`latest-missing-item-${index + 1}`}>
+          {index + 1}. {recording.join(', ')}
         </Text>
       ))}
-    </Content>
+    </View>
   );
 };
 

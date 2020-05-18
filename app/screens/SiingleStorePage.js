@@ -21,6 +21,8 @@ import {COLOURS} from '../styles/colours';
 import {BUTTONS} from '../styles/button';
 import AverageQueueTime from '../components/QueueTime/AverageQueueTime';
 import ActivityQueueTime from '../components/QueueTime/ActivityQueueTime';
+import ActivityMissingItems from '../components/MissingItems/ActivityMissingItems';
+import ActivityAvailableItems from '../components/AvailableItems/ActivityAvailableItems';
 
 const {width} = Dimensions.get('window');
 
@@ -67,8 +69,14 @@ const SingleStorePage = ({route, navigation}) => {
                   />
                 </TouchableHighlight>
               </View>
-              <AverageQueueTime style={styles.horizontalPagePadding} fontStyle={styles.dataText} />
-              <ActivityQueueTime style={styles.horizontalPagePadding} fontStyle={styles.dataText} />
+              <AverageQueueTime
+                style={styles.horizontalPagePadding}
+                fontStyle={styles.dataText}
+              />
+              <ActivityQueueTime
+                style={styles.horizontalPagePadding}
+                fontStyle={styles.dataText}
+              />
             </View>
             <View style={styles.border}>
               <View style={styles.section}>
@@ -86,6 +94,10 @@ const SingleStorePage = ({route, navigation}) => {
                   />
                 </TouchableHighlight>
               </View>
+              <ActivityMissingItems
+                style={styles.horizontalPagePadding}
+                fontStyle={styles.dataText}
+              />
             </View>
             <View style={styles.border}>
               <View style={styles.section}>
@@ -103,6 +115,10 @@ const SingleStorePage = ({route, navigation}) => {
                   />
                 </TouchableHighlight>
               </View>
+              <ActivityAvailableItems
+                style={styles.horizontalPagePadding}
+                fontStyle={styles.dataText}
+              />
             </View>
           </ScrollView>
         </View>

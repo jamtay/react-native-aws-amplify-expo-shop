@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {BUTTONS} from '../../../styles/button';
 import {Icon} from 'native-base';
 import {COLOURS} from '../../../styles/colours';
 import {PAGE_NAMES} from '../../../screens/pageNames';
 import {useNavigation} from '@react-navigation/native';
+import Modal from '../Modal';
 
 /**
  * A section used with a border bottom to display information for a single store
@@ -13,11 +14,9 @@ import {useNavigation} from '@react-navigation/native';
  * @param children React elements to display underneath the title
  */
 const Section = ({store, title, children}) => {
-  const navigation = useNavigation();
+  const [isModalVisible, setModalVisible] = useState(false);
   const onNewRecordingButtonClick = () => {
-    navigation.navigate(PAGE_NAMES.NEW_RECORDING_PAGE, {
-      store: store,
-    });
+    setModalVisible(true);
   };
 
   return (
@@ -34,6 +33,7 @@ const Section = ({store, title, children}) => {
             style={styles.button}
           />
         </TouchableHighlight>
+        <Modal isVisible={isModalVisible}/>
       </View>
       {children}
     </View>

@@ -7,8 +7,8 @@ import {
   Dimensions,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import {storePageLabels} from '../constants/labels';
-import {getQueueTimes} from '../components/QueueTime/actions';
+import {addNewRecordingModal, storePageLabels} from '../constants/labels';
+import {addQueueTime, getQueueTimes} from '../components/QueueTime/actions';
 import {getMissingItems} from '../components/MissingItems/actions';
 import {getAvailableItems} from '../components/AvailableItems/actions';
 import SearchResults from '../components/SearchResults';
@@ -18,13 +18,13 @@ import ActivityQueueTime from '../components/QueueTime/ActivityQueueTime';
 import ActivityMissingItems from '../components/MissingItems/ActivityMissingItems';
 import ActivityAvailableItems from '../components/AvailableItems/ActivityAvailableItems';
 import Section from '../components/shared/Section';
-
+import {PAGE_NAMES} from './pageNames';
 const {width} = Dimensions.get('window');
 
 /**
  * A page displaying the information about single store. Including name, address and activity/averages
  */
-const SingleStorePage = ({route}) => {
+const SingleStorePage = ({navigation, route}) => {
   const {store} = route.params;
   const storeID = store.id;
   const dispatch = useDispatch();
@@ -44,7 +44,16 @@ const SingleStorePage = ({route}) => {
               <Result width={width} item={store} topStyle={-35} isLarge />
             </SearchResults>
           </View>
-          <Section store={store} title={storePageLabels.AVG_Q_TIME}>
+          <Section
+            store={store}
+            title={storePageLabels.AVG_Q_TIME}
+            textLabel={addNewRecordingModal.NEW_QUEUE_TIME}
+            onDataSubmit={async qTime => {
+              dispatch(await addQueueTime(storeID, qTime));
+              navigation.navigate(PAGE_NAMES.STORE_PAGE, {
+                store: store,
+              });
+            }}>
             <AverageQueueTime
               style={styles.horizontalPagePadding}
               fontStyle={styles.dataText}
@@ -54,13 +63,31 @@ const SingleStorePage = ({route}) => {
               fontStyle={styles.dataText}
             />
           </Section>
-          <Section store={store} title={storePageLabels.WEEKS_MISSING}>
+          <Section
+            store={store}
+            title={storePageLabels.WEEKS_MISSING}
+            textLabel={addNewRecordingModal.NEW_QUEUE_TIME}
+            onDataSubmit={async qTime => {
+              dispatch(await addQueueTime(storeID, qTime));
+              navigation.navigate(PAGE_NAMES.STORE_PAGE, {
+                store: store,
+              });
+            }}>
             <ActivityMissingItems
               style={styles.horizontalPagePadding}
               fontStyle={styles.dataText}
             />
           </Section>
-          <Section store={store} title={storePageLabels.WEEKS_AVAILABLE}>
+          <Section
+            store={store}
+            title={storePageLabels.WEEKS_AVAILABLE}
+            textLabel={addNewRecordingModal.NEW_QUEUE_TIME}
+            onDataSubmit={async qTime => {
+              dispatch(await addQueueTime(storeID, qTime));
+              navigation.navigate(PAGE_NAMES.STORE_PAGE, {
+                store: store,
+              });
+            }}>
             <ActivityAvailableItems
               style={styles.horizontalPagePadding}
               fontStyle={styles.dataText}

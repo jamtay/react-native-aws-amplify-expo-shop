@@ -1,6 +1,6 @@
 import QueueTimeService from '../../service/QueueTime';
-import { getIsUsingMock } from '../../config/getConfigVals';
-import { Toast } from 'native-base';
+import {getIsUsingMock} from '../../config/getConfigVals';
+import Toast from 'react-native-tiny-toast';
 
 export const QUEUE_TIME_ACTION_TYPES = Object.freeze({
   GET_QUEUE_TIME_STARTED: 'GET_QUEUE_TIME_STARTED',
@@ -22,12 +22,6 @@ export const getQueueTimes = storeID => {
       dispatch(getQueueTimeSuccess(queueTimes));
     } catch (error) {
       console.error(error);
-      Toast.show({
-        text: error.message,
-        buttonText: 'Okay',
-        type: 'error',
-        duration: 2000,
-      });
       dispatch(getQueueTimeFailure(error));
     }
   };
@@ -38,32 +32,14 @@ export const addQueueTime = (storeID, queueTime) => {
     dispatch(addQueueTimeStarted());
     if (isNaN(parseFloat(queueTime))) {
       const nanError = new Error('Must enter a number');
-      Toast.show({
-        text: 'Please enter a number',
-        buttonText: 'Okay',
-        type: 'warning',
-        duration: 2000,
-      });
       dispatch(addQueueTimeFailure(nanError));
     }
     try {
       await service.addQueueTimeForStore(storeID, queueTime);
-      //Toast needs to come before the dispatch in order for it to display
-      Toast.show({
-        text: `Queue time of ${queueTime} added`,
-        buttonText: 'Okay',
-        type: 'success',
-        duration: 2000,
-      });
+      Toast.showSuccess(`You queued for ${queueTime} minutes`);
       dispatch(addQueueTimeSuccess(queueTime));
     } catch (error) {
       console.error(error);
-      Toast.show({
-        text: error.message,
-        buttonText: 'Okay',
-        type: 'error',
-        duration: 2000,
-      });
       dispatch(addQueueTimeFailure(error));
     }
   };

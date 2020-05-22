@@ -11,9 +11,11 @@ import Modal from '../Modal';
  * A section used with a border bottom to display information for a single store
  * @param store The store to display data for. Passed onto the next page for new recordings
  * @param title The title of the section
+ * @param textLabel The text label prompt for data entry in the modal
+ * @param onDataSubmit Function called when data is entered
  * @param children React elements to display underneath the title
  */
-const Section = ({store, title, children}) => {
+const Section = ({store, title, children, textLabel, onDataSubmit}) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const onNewRecordingButtonClick = () => {
     setModalVisible(true);
@@ -33,7 +35,12 @@ const Section = ({store, title, children}) => {
             style={styles.button}
           />
         </TouchableHighlight>
-        <Modal isVisible={isModalVisible}/>
+        <Modal
+          isVisible={isModalVisible}
+          textLabel={textLabel}
+          onDismiss={() => setModalVisible(false)}
+          onDataSubmit={onDataSubmit}
+        />
       </View>
       {children}
     </View>

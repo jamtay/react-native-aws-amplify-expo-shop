@@ -34,8 +34,8 @@ export const explorePageLabels = isStores => {
 
 export const storePageLabels = Object.freeze({
   AVG_Q_TIME: 'Average queue times',
-  WEEKS_MISSING: 'Weeks missing items',
-  WEEKS_AVAILABLE: 'Weeks available items',
+  WEEKS_MISSING: "This week's missing items",
+  WEEKS_AVAILABLE: "This week's available items",
 });
 
 export const addNewRecordingPageLabels = Object.freeze({
@@ -50,4 +50,5 @@ export const addNewRecordingPageLabels = Object.freeze({
 export const addNewRecordingModal = Object.freeze({
   SUBMIT: 'Submit',
   NEW_QUEUE_TIME: 'How many minutes did you queue for?',
+  SUCCESS_QUEUE_TIME: qTime => `You queued for ${qTime} minutes`,
 });

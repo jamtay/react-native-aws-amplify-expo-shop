@@ -3,8 +3,6 @@ import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import {BUTTONS} from '../../../styles/button';
 import {Icon} from 'native-base';
 import {COLOURS} from '../../../styles/colours';
-import {PAGE_NAMES} from '../../../screens/pageNames';
-import {useNavigation} from '@react-navigation/native';
 import Modal from '../Modal';
 
 /**

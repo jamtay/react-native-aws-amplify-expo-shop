@@ -1,6 +1,9 @@
 import QueueTimeService from '../../service/QueueTime';
 import {getIsUsingMock} from '../../config/getConfigVals';
 import Toast from 'react-native-tiny-toast';
+import {ERROR_MESSAGES} from '../../constants/error';
+import {addNewRecordingModal} from '../../constants/labels';
+import {COLOURS} from '../../styles/colours';
 
 export const QUEUE_TIME_ACTION_TYPES = Object.freeze({
   GET_QUEUE_TIME_STARTED: 'GET_QUEUE_TIME_STARTED',
@@ -27,20 +30,37 @@ export const getQueueTimes = storeID => {
   };
 };
 
+const showErrorToast = errorMessage =>
+  Toast.show(errorMessage, {
+    containerStyle: {
+      backgroundColor: COLOURS.ERROR_PINK,
+      borderRadius: 15,
+      paddingHorizontal: 20,
+      paddingVertical: 15,
+    },
+    position: Toast.position.CENTER,
+  });
+
 export const addQueueTime = (storeID, queueTime) => {
   return async dispatch => {
     dispatch(addQueueTimeStarted());
     if (isNaN(parseFloat(queueTime))) {
-      const nanError = new Error('Must enter a number');
+      const nanError = new Error(ERROR_MESSAGES.ENTER_NUMBER);
+      showErrorToast(nanError.message);
       dispatch(addQueueTimeFailure(nanError));
+      return;
     }
     try {
       await service.addQueueTimeForStore(storeID, queueTime);
-      Toast.showSuccess(`You queued for ${queueTime} minutes`);
+      Toast.showSuccess(
+        addNewRecordingModal.SUCCESS_QUEUE_TIME(parseFloat(queueTime)),
+      );
       dispatch(addQueueTimeSuccess(queueTime));
     } catch (error) {
       console.error(error);
       dispatch(addQueueTimeFailure(error));
+      const userError = new Error(ERROR_MESSAGES.GENERIC);
+      showErrorToast(userError.message);
     }
   };
 };

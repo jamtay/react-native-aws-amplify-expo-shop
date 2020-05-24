@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import {Item, Input, Label} from 'native-base';
 import ReactNativeModal from 'react-native-modal';
 import {addNewRecordingModal} from '../../../constants/labels';
+import { COLOURS } from '../../../styles/colours';
 
+/**
+ * A modal to enter data from
+ * @param isVisible Is the modal visible
+ * @param textLabel The label to display to the user entering text
+ * @param onDismiss Function to invoke when modal is dismissed by either swiping or submitting
+ * @param onDataSubmit Function to invoke when modal data is submitted
+ */
 const Modal = ({isVisible, textLabel, onDismiss, onDataSubmit}) => {
   const [data, setData] = useState('');
   return (
@@ -28,7 +36,7 @@ const Modal = ({isVisible, textLabel, onDismiss, onDataSubmit}) => {
           <Button
             onPress={() => {
               onDataSubmit(data);
-              //TODO: Only call onDismiss if onDataSubmit returns true?
+              setData('');
               onDismiss();
             }}
             title={addNewRecordingModal.SUBMIT}
@@ -48,8 +56,9 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
+    borderRadius: 8,
+    borderColor: COLOURS.DARK_PINK,
+    borderWidth: 4,
   },
   contentTitle: {
     fontSize: 18,

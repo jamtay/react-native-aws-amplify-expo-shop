@@ -49,11 +49,12 @@ const SingleStorePage = ({navigation, route}) => {
             title={storePageLabels.AVG_Q_TIME}
             textLabel={addNewRecordingModal.NEW_QUEUE_TIME}
             onDataSubmit={async qTime => {
-              dispatch(await addQueueTime(storeID, qTime));
+              dispatch(await addQueueTime(storeID, qTime[0]));
               navigation.navigate(PAGE_NAMES.STORE_PAGE, {
                 store: store,
               });
-            }}>
+            }}
+            keyboardType="number-pad">
             <AverageQueueTime
               style={styles.horizontalPagePadding}
               fontStyle={styles.dataText}

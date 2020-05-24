@@ -3,7 +3,7 @@ import {View, StyleSheet, Button} from 'react-native';
 import {Item, Input, Label} from 'native-base';
 import ReactNativeModal from 'react-native-modal';
 import {addNewRecordingModal} from '../../../constants/labels';
-import { COLOURS } from '../../../styles/colours';
+import {COLOURS} from '../../../styles/colours';
 
 /**
  * A modal to enter data from
@@ -11,9 +11,16 @@ import { COLOURS } from '../../../styles/colours';
  * @param textLabel The label to display to the user entering text
  * @param onDismiss Function to invoke when modal is dismissed by either swiping or submitting
  * @param onDataSubmit Function to invoke when modal data is submitted
+ * @param keyboardType Type of keyboard for text input e.g "number-pad"
  */
-const Modal = ({isVisible, textLabel, onDismiss, onDataSubmit}) => {
-  const [data, setData] = useState('');
+const Modal = ({
+  isVisible,
+  textLabel,
+  onDismiss,
+  onDataSubmit,
+  keyboardType,
+}) => {
+  const [data, setData] = useState(['']);
   return (
     <View>
       <ReactNativeModal
@@ -25,18 +32,20 @@ const Modal = ({isVisible, textLabel, onDismiss, onDataSubmit}) => {
           <Item floatingLabel>
             <Label style={styles.label}>{textLabel}</Label>
             <Input
-              keyboardType="number-pad"
+              keyboardType={keyboardType}
               textAlign="center"
               onChangeText={text => {
-                setData(text);
+                const updatedData = [...data];
+                updatedData[data.length - 1] = text;
+                setData(updatedData);
               }}
-              value={data}
+              value={data[data.length - 1]}
             />
           </Item>
           <Button
             onPress={() => {
               onDataSubmit(data);
-              setData('');
+              setData(['']);
               onDismiss();
             }}
             title={addNewRecordingModal.SUBMIT}

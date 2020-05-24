@@ -11,9 +11,17 @@ import Modal from '../Modal';
  * @param title The title of the section
  * @param textLabel The text label prompt for data entry in the modal
  * @param onDataSubmit Function called when data is entered
+ * @param keyboardType Type of keyboard for text input e.g "number-pad" for the modal
  * @param children React elements to display underneath the title
  */
-const Section = ({store, title, children, textLabel, onDataSubmit}) => {
+const Section = ({
+  store,
+  title,
+  children,
+  textLabel,
+  onDataSubmit,
+  keyboardType,
+}) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const onNewRecordingButtonClick = () => {
     setModalVisible(true);
@@ -21,14 +29,11 @@ const Section = ({store, title, children, textLabel, onDataSubmit}) => {
 
   return (
     <View style={styles.border}>
-      <View
-        style={styles.section}>
-        <View
-          style={[styles.textWrapper]}>
+      <View style={styles.section}>
+        <View style={[styles.textWrapper]}>
           <Text style={styles.titleText}>{title}</Text>
         </View>
-        <View
-          style={styles.buttonWrapper}>
+        <View style={styles.buttonWrapper}>
           <TouchableHighlight
             onPress={onNewRecordingButtonClick}
             activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
@@ -45,6 +50,7 @@ const Section = ({store, title, children, textLabel, onDataSubmit}) => {
           textLabel={textLabel}
           onDismiss={() => setModalVisible(false)}
           onDataSubmit={onDataSubmit}
+          keyboardType={keyboardType}
         />
       </View>
       {children}

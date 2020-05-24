@@ -1,15 +1,12 @@
 import 'react-native-gesture-handler';
-/**
- * @format
- * @flow strict-local
- */
+
 import React from 'react';
 import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import AddRecordingPage from './app/screens/AddRecordingPage';
 import Explore from './app/screens/ExplorePage';
+import SingleStorePage from './app/screens/SingleStorePage';
 
 import {PAGE_NAMES} from './app/screens/pageNames';
 import {headerOptions} from './app/styles/header';
@@ -21,7 +18,6 @@ import config from './aws-exports';
 import {useFonts} from '@use-expo/font';
 import {Ionicons} from '@expo/vector-icons';
 import {AppLoading} from 'expo';
-import SingleStorePage from './app/screens/SiingleStorePage';
 
 Amplify.configure(config);
 
@@ -52,11 +48,6 @@ const App = () => {
           <Stack.Screen
             name={PAGE_NAMES.STORE_PAGE}
             component={SingleStorePage}
-            options={headerOptions}
-          />
-          <Stack.Screen
-            name={PAGE_NAMES.NEW_RECORDING_PAGE}
-            component={AddRecordingPage}
             options={headerOptions}
           />
         </Stack.Navigator>

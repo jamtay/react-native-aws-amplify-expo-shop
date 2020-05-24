@@ -21,18 +21,25 @@ const Section = ({store, title, children, textLabel, onDataSubmit}) => {
 
   return (
     <View style={styles.border}>
-      <View style={styles.section}>
-        <Text style={styles.titleText}>{title}</Text>
-        <TouchableHighlight
-          onPress={onNewRecordingButtonClick}
-          activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
-          underlayColor={BUTTONS.CLICK_COLOUR}>
-          <Icon
-            name="add-circle-outline"
-            type="MaterialIcons"
-            style={styles.button}
-          />
-        </TouchableHighlight>
+      <View
+        style={styles.section}>
+        <View
+          style={[styles.textWrapper]}>
+          <Text style={styles.titleText}>{title}</Text>
+        </View>
+        <View
+          style={styles.buttonWrapper}>
+          <TouchableHighlight
+            onPress={onNewRecordingButtonClick}
+            activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+            underlayColor={BUTTONS.CLICK_COLOUR}>
+            <Icon
+              name="add-circle-outline"
+              type="MaterialIcons"
+              style={styles.button}
+            />
+          </TouchableHighlight>
+        </View>
         <Modal
           isVisible={isModalVisible}
           textLabel={textLabel}
@@ -49,17 +56,26 @@ export default Section;
 
 const styles = StyleSheet.create({
   titleText: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: '700',
     marginTop: 20,
     paddingHorizontal: 20,
   },
+  textWrapper: {
+    flex: 5,
+    marginBottom: 5,
+  },
+  buttonWrapper: {
+    flex: 1,
+    top: 6,
+  },
   section: {
     paddingBottom: 10,
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    flexDirection: 'row',
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: -10,
+    alignItems: 'center',
   },
   border: {
     borderBottomWidth: 1,

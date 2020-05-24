@@ -4,7 +4,7 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  Dimensions,
+  Dimensions, Text,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {addNewRecordingModal, storePageLabels} from '../constants/labels';

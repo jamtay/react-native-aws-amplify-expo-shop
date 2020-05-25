@@ -1,7 +1,7 @@
 import QueueTimeService from '../../service/QueueTime';
 import {getIsUsingMock} from '../../config/getConfigVals';
 import Toast from 'react-native-tiny-toast';
-import {ERROR_MESSAGES} from '../../constants/error';
+import { ERROR_MESSAGES, showErrorToast } from '../../constants/error';
 import {addNewRecordingModal} from '../../constants/labels';
 import {COLOURS} from '../../styles/colours';
 
@@ -29,17 +29,6 @@ export const getQueueTimes = storeID => {
     }
   };
 };
-
-const showErrorToast = errorMessage =>
-  Toast.show(errorMessage, {
-    containerStyle: {
-      backgroundColor: COLOURS.ERROR_PINK,
-      borderRadius: 15,
-      paddingHorizontal: 20,
-      paddingVertical: 15,
-    },
-    position: Toast.position.CENTER,
-  });
 
 export const addQueueTime = (storeID, queueTime) => {
   return async dispatch => {

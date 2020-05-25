@@ -1,6 +1,8 @@
 import ItemRecording from '../../service/ItemRecording';
 import {getIsUsingMock} from '../../config/getConfigVals';
-import { Toast } from 'native-base';
+import Toast from 'react-native-tiny-toast';
+import { ERROR_MESSAGES, showErrorToast } from '../../constants/error';
+import { addNewRecordingModal } from '../../constants/labels';
 
 export const AVAILABLE_ITEM_ACTION_TYPES = Object.freeze({
   GET_AVAILABLE_ITEM_STARTED: 'GET_AVAILABLE_ITEM_STARTED',
@@ -17,24 +19,22 @@ const service = new ItemRecording(isUsingMock);
 export const addAvailableItems = (storeID, availableItems) => {
   return async dispatch => {
     dispatch(addAvailableItemStarted());
+    if (!availableItems || !availableItems[0]) {
+      const error = new Error(ERROR_MESSAGES.ENTER_ITEM);
+      showErrorToast(error.message);
+      dispatch(addAvailableItemFailure(error));
+      return;
+    }
     try {
       await service.addItemsForStore(storeID, availableItems, false);
-      //Toast needs to come before the dispatch in order for it to display
-      Toast.show({
-        text: `Available items of ${availableItems} added`,
-        buttonText: 'Okay',
-        type: 'success',
-        duration: 2000,
-      });
+      Toast.showSuccess(
+        addNewRecordingModal.SUCCESS_ITEMS(availableItems, false),
+      );
       dispatch(addAvailableItemSuccess(availableItems));
     } catch (error) {
       console.error(error);
-      Toast.show({
-        text: error.message,
-        buttonText: 'Okay',
-        type: 'error',
-        duration: 2000,
-      });
+      const userError = new Error(ERROR_MESSAGES.GENERIC);
+      showErrorToast(userError.message);
       dispatch(addAvailableItemFailure(error));
     }
   };
@@ -48,12 +48,6 @@ export const getAvailableItems = storeID => {
       dispatch(getAvailableItemSuccess(availableItems));
     } catch (error) {
       console.error(error);
-      Toast.show({
-        text: error.message,
-        buttonText: 'Okay',
-        type: 'error',
-        duration: 2000,
-      });
       dispatch(getAvailableItemFailure(error));
     }
   };

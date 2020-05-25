@@ -1,6 +1,9 @@
 import ItemRecording from '../../service/ItemRecording';
 import {getIsUsingMock} from '../../config/getConfigVals';
-import { Toast } from 'native-base';
+import Toast from 'react-native-tiny-toast';
+import {addNewRecordingModal} from '../../constants/labels';
+import {COLOURS} from '../../styles/colours';
+import { ERROR_MESSAGES, showErrorToast } from '../../constants/error';
 
 export const MISSING_ITEM_ACTION_TYPES = Object.freeze({
   GET_MISSING_ITEM_STARTED: 'GET_MISSING_ITEM_STARTED',
@@ -17,25 +20,24 @@ const service = new ItemRecording(isUsingMock);
 export const addMissingItems = (storeID, missingItems) => {
   return async dispatch => {
     dispatch(addMissingItemStarted());
+    if (!missingItems || !missingItems[0]) {
+      const error = new Error(ERROR_MESSAGES.ENTER_ITEM);
+      showErrorToast(error.message);
+      dispatch(addMissingItemFailure(error));
+      return;
+    }
+
     try {
       await service.addItemsForStore(storeID, missingItems, true);
-      //Toast needs to come before the dispatch in order for it to display
-      Toast.show({
-        text: `Missing items of ${missingItems} added`,
-        buttonText: 'Okay',
-        type: 'success',
-        duration: 2000,
-      });
+      Toast.showSuccess(
+        addNewRecordingModal.SUCCESS_ITEMS(missingItems, true),
+      );
       dispatch(addMissingItemSuccess(missingItems));
     } catch (error) {
       console.error(error);
-      Toast.show({
-        text: error.message,
-        buttonText: 'Okay',
-        type: 'error',
-        duration: 2000,
-      });
       dispatch(addMissingItemFailure(error));
+      const userError = new Error(ERROR_MESSAGES.GENERIC);
+      showErrorToast(userError.message);
     }
   };
 };
@@ -48,12 +50,6 @@ export const getMissingItems = storeID => {
       dispatch(getMissingItemSuccess(missingItems));
     } catch (error) {
       console.error(error);
-      Toast.show({
-        text: error.message,
-        buttonText: 'Okay',
-        type: 'error',
-        duration: 2000,
-      });
       dispatch(getMissingItemFailure(error));
     }
   };

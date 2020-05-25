@@ -50,5 +50,9 @@ export const addNewRecordingPageLabels = Object.freeze({
 export const addNewRecordingModal = Object.freeze({
   SUBMIT: 'Submit',
   NEW_QUEUE_TIME: 'How many minutes did you queue for?',
+  NEW_MISSING_ITEMS: 'What items are missing?',
+  NEW_AVAILABLE_ITEMS: 'What items are available?',
   SUCCESS_QUEUE_TIME: qTime => `You queued for ${qTime} minutes`,
+  SUCCESS_ITEMS: (items, isMissing) =>
+    `${isMissing ? 'Missing' : 'Available'} items added including ${items[0]}`,
 });

@@ -12,6 +12,7 @@ import Modal from '../Modal';
  * @param textLabel The text label prompt for data entry in the modal
  * @param onDataSubmit Function called when data is entered
  * @param keyboardType Type of keyboard for text input e.g "number-pad" for the modal
+ * @param multiItemEntry Is the data entry multiple lines or a single line
  * @param children React elements to display underneath the title
  */
 const Section = ({
@@ -21,6 +22,7 @@ const Section = ({
   textLabel,
   onDataSubmit,
   keyboardType,
+  multiItemEntry,
 }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const onNewRecordingButtonClick = () => {
@@ -51,6 +53,7 @@ const Section = ({
           onDismiss={() => setModalVisible(false)}
           onDataSubmit={onDataSubmit}
           keyboardType={keyboardType}
+          multiItemEntry={multiItemEntry}
         />
       </View>
       {children}

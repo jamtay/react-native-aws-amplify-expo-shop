@@ -4,13 +4,17 @@ import {
   StyleSheet,
   SafeAreaView,
   ScrollView,
-  Dimensions, Text,
+  Dimensions,
+  Text,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {addNewRecordingModal, storePageLabels} from '../constants/labels';
 import {addQueueTime, getQueueTimes} from '../components/QueueTime/actions';
-import {getMissingItems} from '../components/MissingItems/actions';
-import {getAvailableItems} from '../components/AvailableItems/actions';
+import {
+  addMissingItems,
+  getMissingItems,
+} from '../components/MissingItems/actions';
+import { addAvailableItems, getAvailableItems } from '../components/AvailableItems/actions';
 import SearchResults from '../components/SearchResults';
 import Result from '../components/SearchResults/Result';
 import AverageQueueTime from '../components/QueueTime/AverageQueueTime';
@@ -67,13 +71,15 @@ const SingleStorePage = ({navigation, route}) => {
           <Section
             store={store}
             title={storePageLabels.WEEKS_MISSING}
-            textLabel={addNewRecordingModal.NEW_QUEUE_TIME}
-            onDataSubmit={async qTime => {
-              dispatch(await addQueueTime(storeID, qTime));
+            textLabel={addNewRecordingModal.NEW_MISSING_ITEMS}
+            onDataSubmit={async missingItems => {
+              dispatch(await addMissingItems(storeID, missingItems));
               navigation.navigate(PAGE_NAMES.STORE_PAGE, {
                 store: store,
               });
-            }}>
+            }}
+            keyboardType="default"
+            multiItemEntry>
             <ActivityMissingItems
               style={styles.horizontalPagePadding}
               fontStyle={styles.dataText}
@@ -82,13 +88,15 @@ const SingleStorePage = ({navigation, route}) => {
           <Section
             store={store}
             title={storePageLabels.WEEKS_AVAILABLE}
-            textLabel={addNewRecordingModal.NEW_QUEUE_TIME}
-            onDataSubmit={async qTime => {
-              dispatch(await addQueueTime(storeID, qTime));
+            textLabel={addNewRecordingModal.NEW_AVAILABLE_ITEMS}
+            onDataSubmit={async availableItems => {
+              dispatch(await addAvailableItems(storeID, availableItems));
               navigation.navigate(PAGE_NAMES.STORE_PAGE, {
                 store: store,
               });
-            }}>
+            }}
+            keyboardType="default"
+            multiItemEntry>
             <ActivityAvailableItems
               style={styles.horizontalPagePadding}
               fontStyle={styles.dataText}

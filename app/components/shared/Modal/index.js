@@ -25,12 +25,6 @@ const Modal = ({
 }) => {
   const [data, setData] = useState(['']);
 
-  const addNewItem = () => {
-    const updatedData = [...data];
-    updatedData.push('');
-    setData(updatedData);
-  };
-
   const onModalDismiss = () => {
     setData(['']);
     onDismiss();
@@ -39,13 +33,29 @@ const Modal = ({
   const items = multiItemEntry ? (
     data.map((item, index) => {
       const isLastItem = index === data.length - 1;
+      const addNewItem = () => {
+        if (data[data.length - 1] !== '' && isLastItem) {
+          const updatedData = [...data];
+          updatedData.push('');
+          setData(updatedData);
+        }
+        // If it is not the last item then remove the item instead of adding it
+        if (!isLastItem) {
+          const updatedData = data.filter(
+            (_, itemsIndex) => itemsIndex !== index,
+          );
+          setData(updatedData);
+        }
+      };
       return (
-        <>
-          <Item floatingLabel={isLastItem}>
+        <View
+          style={[styles.section, isLastItem ? styles.paddedBottom : undefined]}
+          key={`items-${index}`}>
+          <Item floatingLabel={isLastItem} style={[styles.textWrapper]}>
             {isLastItem && <Label style={styles.label}>{textLabel}</Label>}
             <Input
               keyboardType={keyboardType}
-              textAlign="center"
+              textAlign="left"
               onChangeText={text => {
                 const updatedData = [...data];
                 updatedData[index] = text;
@@ -54,17 +64,22 @@ const Modal = ({
               value={item}
             />
           </Item>
-          <TouchableHighlight
-            onPress={addNewItem}
-            activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
-            underlayColor={BUTTONS.CLICK_COLOUR}>
-            <Icon
-              name="add-circle-outline"
-              type="MaterialIcons"
-              style={styles.button}
-            />
-          </TouchableHighlight>
-        </>
+          {!(isLastItem && item === '') && (
+            <TouchableHighlight
+              onPress={addNewItem}
+              activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+              underlayColor={BUTTONS.CLICK_COLOUR}
+              style={styles.buttonWrapper}>
+              <Icon
+                name={
+                  isLastItem ? 'add-circle-outline' : 'minus-circle-outline'
+                }
+                type={isLastItem ? 'MaterialIcons' : 'MaterialCommunityIcons'}
+                style={styles.button}
+              />
+            </TouchableHighlight>
+          )}
+        </View>
       );
     })
   ) : (
@@ -111,17 +126,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 22,
     paddingBottom: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 8,
     borderColor: COLOURS.DARK_PINK,
     borderWidth: 4,
   },
-  contentTitle: {
-    fontSize: 18,
-    marginBottom: 12,
-    height: 40,
-    width: 100,
+  label: {textAlign: 'left'},
+  section: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  label: {textAlign: 'center'},
+  paddedBottom: {
+    marginBottom: 10,
+  },
+  textWrapper: {
+    flex: 1,
+    marginRight: 40,
+  },
+  buttonWrapper: {
+    top: 8,
+  },
+  button: {
+    color: COLOURS.DARK_PINK,
+    marginRight: 5,
+  },
 });

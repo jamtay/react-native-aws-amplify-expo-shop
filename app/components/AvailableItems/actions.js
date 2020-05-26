@@ -1,8 +1,8 @@
 import ItemRecording from '../../service/ItemRecording';
 import {getIsUsingMock} from '../../config/getConfigVals';
 import Toast from 'react-native-tiny-toast';
-import { ERROR_MESSAGES, showErrorToast } from '../../constants/error';
-import { addNewRecordingModal } from '../../constants/labels';
+import {ERROR_MESSAGES, showErrorToast} from '../../constants/error';
+import {addNewRecordingModal} from '../../constants/labels';
 
 export const AVAILABLE_ITEM_ACTION_TYPES = Object.freeze({
   GET_AVAILABLE_ITEM_STARTED: 'GET_AVAILABLE_ITEM_STARTED',

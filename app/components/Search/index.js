@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import {Platform, StatusBar, StyleSheet, TextInput, View} from 'react-native';
+import {Platform, StyleSheet, TextInput, View} from 'react-native';
 import {searchLabels} from '../../constants/labels';
 import {searchStores} from './actions';
 
@@ -15,9 +15,7 @@ const SearchBar = () => {
   const [startHeaderHeight, setStartHeaderHeight] = useState();
 
   useEffect(() => {
-    setStartHeaderHeight(
-      Platform.OS === 'android' ? 100 + StatusBar.currentHeight : 80,
-    );
+    setStartHeaderHeight(80);
   }, []);
 
   const dispatch = useDispatch();
@@ -78,13 +76,13 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     shadowOpacity: 0.2,
     elevation: 1,
-    marginTop: Platform.OS === 'android' ? 20 : 10,
+    marginTop: Platform.OS === 'android' ? 0 : 10,
   },
   finalSearchContainer: {
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: '#dddddd',
-    marginTop: -30,
+    marginTop: -25,
     marginBottom: 0,
   },
   searchContainer: {

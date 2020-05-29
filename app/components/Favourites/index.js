@@ -4,6 +4,7 @@ import {favouriteLabels} from '../../constants/labels';
 import {getFavourites} from './actions';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import FavouritesCard from './FavouritesCard';
+import SearchResults from '../SearchResults';
 
 const Favourites = ({pageWidth}) => {
   const {
@@ -23,13 +24,15 @@ const Favourites = ({pageWidth}) => {
       </Text>
       <View style={styles.favouritesScrollContainer}>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {favourites.map(fav => (
-            <FavouritesCard
-              width={pageWidth}
-              item={fav}
-              key={`fav-${fav.id}`}
-            />
-          ))}
+          <SearchResults>
+            {favourites.map(fav => (
+              <FavouritesCard
+                width={pageWidth}
+                item={fav}
+                key={`fav-${fav.id}`}
+              />
+            ))}
+          </SearchResults>
         </ScrollView>
       </View>
     </>

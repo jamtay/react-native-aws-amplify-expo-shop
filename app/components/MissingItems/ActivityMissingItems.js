@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector, shallowEqual} from 'react-redux';
 import Loading from '../shared/Loading';
 import {View, Text} from 'react-native';
+import { storePageLabels } from '../../constants/labels';
 
 const ActivityMissingItems = ({style, fontStyle}) => {
   const {
@@ -19,6 +20,11 @@ const ActivityMissingItems = ({style, fontStyle}) => {
           {index + 1}. {recording.join(', ')}
         </Text>
       ))}
+      {missingItems.length === 0 && (
+        <Text style={fontStyle}>
+          {storePageLabels.NO_ITEMS(true)}
+        </Text>
+      )}
     </View>
   );
 };

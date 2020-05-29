@@ -1,3 +1,6 @@
+import {Text} from 'react-native';
+import React from 'react';
+
 export const headerLabels = Object.freeze({
   HEADER: 'Quevid 19',
 });
@@ -36,15 +39,10 @@ export const storePageLabels = Object.freeze({
   AVG_Q_TIME: 'Average queue times',
   WEEKS_MISSING: "This week's missing items",
   WEEKS_AVAILABLE: "This week's available items",
-});
-
-export const addNewRecordingPageLabels = Object.freeze({
-  ADD_NEW_TITLE: 'Add new recording',
-  ADD_NEW_MISSING_ITEM: 'Add new missing item',
-  ADD_NEW_AVAILABLE_ITEM: 'Add new available item',
-  ADD_NEW_Q_TIME: 'Queue time: ',
-  MISSING_ITEM: 'Missing items',
-  AVAILABLE_ITEM: 'Available items',
+  NO_ITEMS: isMissing =>
+    `No items have been recorded this week. Record ${
+      isMissing ? 'a missing' : 'an available'
+    } item for it to appear here`,
 });
 
 export const addNewRecordingModal = Object.freeze({

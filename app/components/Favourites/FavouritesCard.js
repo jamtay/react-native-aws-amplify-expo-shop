@@ -3,9 +3,10 @@ import Result from '../SearchResults/Result';
 import SearchResults from '../SearchResults';
 
 const FavouritesCard = ({width, item}) => {
+  const isAndroid = Platform.OS === 'android';
   return (
     <SearchResults>
-      <Result width={width - 50} item={item} topStyle={-20} />
+      <Result width={width - 50} item={item} topStyle={isAndroid ? -32 : -20} isFavouriteCard/>
     </SearchResults>
   );
 };

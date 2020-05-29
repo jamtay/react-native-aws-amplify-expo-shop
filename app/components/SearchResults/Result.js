@@ -13,15 +13,31 @@ import {BUTTONS} from '../../styles/button';
  * @param item The item to display
  * @param topStyle
  * @param isLarge Is the button standard or large. Defaults to standard size
+ * @param isFavouriteCard Is this result to be displayed as a favourite
  */
-const Result = ({width, item, topStyle = -16, isLarge = false}) => {
+const Result = ({
+  width,
+  item,
+  topStyle = -16,
+  isLarge = false,
+  isFavouriteCard = false,
+}) => {
+  const isAndroid = Platform.OS === 'android';
+
   const styles = StyleSheet.create({
     container: {
       width: isLarge ? width - 50 : width / 2 - 30,
-      height: isLarge ? width - 175 : width / 2 - 75,
+      height: isLarge
+        ? width - 175
+        : isAndroid && isFavouriteCard
+        ? width / 2
+        : width / 2 - 75,
       borderWidth: 0.5,
       borderColor: '#dddddd',
       marginTop: isLarge ? 0 : 20,
+      paddingBottom:
+        isLarge || !isAndroid || !isFavouriteCard ? undefined : 100,
+      paddingTop: isLarge || !isAndroid || !isFavouriteCard ? undefined : 20,
       marginBottom: isLarge ? 40 : undefined,
       marginLeft: isLarge ? 12 : undefined,
     },
@@ -36,7 +52,7 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
       fontSize: isLarge ? 20 : 12,
       color: '#b63838',
       marginBottom: 10,
-      marginTop: isLarge ? undefined : 10,
+      marginTop: isLarge ? undefined : isAndroid && isFavouriteCard ? 20 : 10,
     },
     smallText: {
       fontSize: isLarge ? 24 : 14,

@@ -13,7 +13,10 @@ import {
   addMissingItems,
   getMissingItems,
 } from '../components/MissingItems/actions';
-import { addAvailableItems, getAvailableItems } from '../components/AvailableItems/actions';
+import {
+  addAvailableItems,
+  getAvailableItems,
+} from '../components/AvailableItems/actions';
 import SearchResults from '../components/SearchResults';
 import Result from '../components/SearchResults/Result';
 import AverageQueueTime from '../components/QueueTime/AverageQueueTime';
@@ -84,23 +87,25 @@ const SingleStorePage = ({navigation, route}) => {
               fontStyle={styles.dataText}
             />
           </Section>
-          <Section
-            store={store}
-            title={storePageLabels.WEEKS_AVAILABLE}
-            textLabel={addNewRecordingModal.NEW_AVAILABLE_ITEMS}
-            onDataSubmit={async availableItems => {
-              dispatch(await addAvailableItems(storeID, availableItems));
-              navigation.navigate(PAGE_NAMES.STORE_PAGE, {
-                store: store,
-              });
-            }}
-            keyboardType="default"
-            multiItemEntry>
-            <ActivityAvailableItems
-              style={styles.horizontalPagePadding}
-              fontStyle={styles.dataText}
-            />
-          </Section>
+          <View style={styles.finalSectionPadding}>
+            <Section
+              store={store}
+              title={storePageLabels.WEEKS_AVAILABLE}
+              textLabel={addNewRecordingModal.NEW_AVAILABLE_ITEMS}
+              onDataSubmit={async availableItems => {
+                dispatch(await addAvailableItems(storeID, availableItems));
+                navigation.navigate(PAGE_NAMES.STORE_PAGE, {
+                  store: store,
+                });
+              }}
+              keyboardType="default"
+              multiItemEntry>
+              <ActivityAvailableItems
+                style={styles.horizontalPagePadding}
+                fontStyle={styles.dataText}
+              />
+            </Section>
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -121,5 +126,9 @@ const styles = StyleSheet.create({
   },
   smallTopMargin: {
     marginTop: 20,
+    marginBottom: -20,
+  },
+  finalSectionPadding: {
+    marginBottom: 75,
   },
 });

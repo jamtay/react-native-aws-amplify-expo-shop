@@ -17,6 +17,8 @@ import Loading from '../components/shared/Loading';
 import TestButtons from '../../bin/TestButtons';
 const {width} = Dimensions.get('window');
 
+const isAndroid = Platform.OS === 'android';
+
 const Explore = () => {
   const {
     storesSearch: {loading, stores},
@@ -26,7 +28,7 @@ const Explore = () => {
 
   const MainSearchResult = isStores ? (
     <View style={styles.emptyTopMargin}>
-      <SearchResults style={{marginTop: 10}}>
+      <SearchResults style={styles.smallTopMargin}>
         <Result width={width} item={stores[0]} topStyle={-15} isLarge />
       </SearchResults>
     </View>
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: 20,
+    paddingTop: isAndroid ? 50 : 20,
   },
   standardFlex: {
     flex: 1,

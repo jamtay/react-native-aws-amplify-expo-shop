@@ -7,8 +7,6 @@ import SearchBarStory from './SearchBar';
 import LoadingStory from './Loading';
 import FavouritesStory from './Favourites';
 import FavouritesIconStory from './FavouritesIcon';
-import TitleSectionStory from './TitleSection';
-import {Content} from 'native-base';
 
 const exampleTableData = [
   {
@@ -32,15 +30,6 @@ const exampleTableData = [
     addressLine1: 'A fourth description again',
   },
 ];
-
-storiesOf('Title section', module)
-  .addDecorator(getStory => <Content>{getStory()}</Content>)
-  .add('simple title text', () => (
-    <TitleSectionStory titleText="Some test title" />
-  ))
-  .add('Long title', () => (
-    <TitleSectionStory titleText="Some test title that is a bit longer" />
-  ));
 
 storiesOf('Header', module)
   .addDecorator(getStory => getStory())

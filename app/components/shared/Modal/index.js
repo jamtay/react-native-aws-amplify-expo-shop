@@ -104,6 +104,19 @@ const Modal = ({
         onSwipeComplete={onModalDismiss}
         swipeDirection={['down', 'up', 'left', 'right']}
         onDismiss={onModalDismiss}>
+        <View style={{alignItems: 'flex-end', top: 30, right: 5, zIndex: 999}}>
+          <TouchableHighlight
+            onPress={onModalDismiss}
+            activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
+            underlayColor={BUTTONS.CLICK_COLOUR}
+            style={styles.buttonWrapper}>
+            <Icon
+              name="close"
+              type="MaterialCommunityIcons"
+              style={styles.button}
+            />
+          </TouchableHighlight>
+        </View>
         <View style={styles.content}>
           {items}
           <Button

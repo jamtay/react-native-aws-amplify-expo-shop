@@ -13,11 +13,11 @@ export default class SearchService {
   }
 
   /**
-   * A private function (represented by #) for searching stores (Used when eleastic search is running)
+   * A private function (represented by #) for searching stores (Used when elastic search is running)
    * Because of ES cost can run a mock api and just use list instead of search
    * NOTE: The eslint warnings can be ignored here about private class methods
    * @param {*} filterOptions Options used to filter the response by
-   * @returns The filered list of stores
+   * @returns The filtered list of stores
    */
   async #searchStores(filterOptions) {
     const storesData = await API.graphql(

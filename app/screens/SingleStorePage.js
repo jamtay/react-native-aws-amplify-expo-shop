@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   Dimensions,
-  Text,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {addNewRecordingModal, storePageLabels} from '../constants/labels';
@@ -45,7 +44,7 @@ const SingleStorePage = ({navigation, route}) => {
         <ScrollView scrollEventThrottle={16}>
           <View style={styles.smallTopMargin}>
             <SearchResults>
-              <Result width={width} item={store} topStyle={-35} isLarge />
+              <Result width={width} item={store} topStyle={-15} isLarge />
             </SearchResults>
           </View>
           <Section

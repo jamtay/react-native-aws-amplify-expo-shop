@@ -26,8 +26,8 @@ const Explore = () => {
 
   const MainSearchResult = isStores ? (
     <View style={styles.emptyTopMargin}>
-      <SearchResults>
-        <Result width={width} item={stores[0]} topStyle={-35} isLarge />
+      <SearchResults style={{marginTop: 10}}>
+        <Result width={width} item={stores[0]} topStyle={-15} isLarge />
       </SearchResults>
     </View>
   ) : null;
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   searchResultsMarginBottom: {
-    marginBottom: -20,
+    marginBottom: 0,
   },
   descriptionText: {
     fontWeight: '100',

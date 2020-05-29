@@ -1,5 +1,5 @@
 export const LIMIT_OPTION = Object.freeze({
-  limit: 10,
+  limit: 13,
 });
 
 export const DEFAULT_SORT_OPTION = Object.freeze({

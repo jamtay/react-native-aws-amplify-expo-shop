@@ -15,11 +15,10 @@ import {BUTTONS} from '../../styles/button';
  * @param isLarge Is the button standard or large. Defaults to standard size
  */
 const Result = ({width, item, topStyle = -16, isLarge = false}) => {
-
   const styles = StyleSheet.create({
     container: {
       width: isLarge ? width - 50 : width / 2 - 30,
-      height: isLarge ? width - 200 : width / 2 - 50,
+      height: isLarge ? width - 175 : width / 2 - 50,
       borderWidth: 0.5,
       borderColor: '#dddddd',
       marginTop: isLarge ? 0 : 20,
@@ -42,6 +41,9 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
       fontSize: isLarge ? 24 : 14,
       fontWeight: 'bold',
     },
+    imageWrapperPadding: {
+      paddingTop: isLarge ? 20 : undefined,
+    },
   });
 
   const isFavourite = useIsFavHook(item.id);
@@ -58,7 +60,7 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
       <View style={sharedStyles.flexedImageView}>
         <TouchableHighlight
           onPress={onItemButtonPress}
-          style={sharedStyles.imageWrapper}
+          style={[sharedStyles.imageWrapper, styles.imageWrapperPadding]}
           activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
           underlayColor={BUTTONS.CLICK_COLOUR}>
           <Image

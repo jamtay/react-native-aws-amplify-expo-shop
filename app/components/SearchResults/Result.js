@@ -18,7 +18,7 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
   const styles = StyleSheet.create({
     container: {
       width: isLarge ? width - 50 : width / 2 - 30,
-      height: isLarge ? width - 175 : width / 2 - 50,
+      height: isLarge ? width - 175 : width / 2 - 75,
       borderWidth: 0.5,
       borderColor: '#dddddd',
       marginTop: isLarge ? 0 : 20,
@@ -27,6 +27,7 @@ const Result = ({width, item, topStyle = -16, isLarge = false}) => {
     },
     textWrapper: {
       flex: 1,
+      marginTop: isLarge ? undefined : -20,
       paddingLeft: isLarge ? 20 : 10,
       paddingTop: isLarge ? 10 : undefined,
       alignItems: isLarge ? undefined : 'flex-start',

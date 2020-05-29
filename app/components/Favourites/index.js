@@ -52,9 +52,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   favouritesScrollContainer: {
-    height: 130,
-    marginTop: 20,
-    marginBottom: 20,
+    height: 155,
+    marginTop: 10,
+    marginBottom: 10,
   },
   descriptionText: {
     fontWeight: '100',

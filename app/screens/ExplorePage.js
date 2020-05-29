@@ -50,8 +50,8 @@ const Explore = () => {
   };
 
   return (
-    <SafeAreaView style={styles.standardFlex}>
-      <View style={styles.standardFlex}>
+    <SafeAreaView style={[styles.standardFlex]}>
+      <View style={[styles.standardFlex]}>
         <ScrollView scrollEventThrottle={16}>
           <View style={styles.container}>
             <Favourites pageWidth={width} />
@@ -72,7 +72,9 @@ const Explore = () => {
             <Text style={[styles.titleText, styles.searchResultsMarginBottom]}>
               {explorePageLabels(isStores).SEARCH_RESULTS}
             </Text>
-            <SearchResults>{OtherSearchResults()}</SearchResults>
+            <SearchResults style={styles.pageContainer}>
+              {OtherSearchResults()}
+            </SearchResults>
           </View>
         </ScrollView>
       </View>
@@ -83,6 +85,9 @@ const Explore = () => {
 export default Explore;
 
 const styles = StyleSheet.create({
+  pageContainer: {
+    paddingBottom: 75,
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -94,7 +99,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 24,
     fontWeight: '700',
-    marginTop: 20,
+    marginTop: 10,
     paddingHorizontal: 20,
   },
   searchTitle: {

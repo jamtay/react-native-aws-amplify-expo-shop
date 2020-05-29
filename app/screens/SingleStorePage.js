@@ -21,10 +21,10 @@ import SearchResults from '../components/SearchResults';
 import Result from '../components/SearchResults/Result';
 import AverageQueueTime from '../components/QueueTime/AverageQueueTime';
 import ActivityQueueTime from '../components/QueueTime/ActivityQueueTime';
-import ActivityMissingItems from '../components/MissingItems/ActivityMissingItems';
-import ActivityAvailableItems from '../components/AvailableItems/ActivityAvailableItems';
 import Section from '../components/shared/Section';
 import {PAGE_NAMES} from './pageNames';
+import ItemsActivity from '../components/Items';
+import {ITEM_TYPES} from '../components/Items/constants';
 const {width} = Dimensions.get('window');
 
 /**
@@ -51,7 +51,6 @@ const SingleStorePage = ({navigation, route}) => {
             </SearchResults>
           </View>
           <Section
-            store={store}
             title={storePageLabels.AVG_Q_TIME}
             textLabel={addNewRecordingModal.NEW_QUEUE_TIME}
             onDataSubmit={async qTime => {
@@ -71,7 +70,6 @@ const SingleStorePage = ({navigation, route}) => {
             />
           </Section>
           <Section
-            store={store}
             title={storePageLabels.WEEKS_MISSING}
             textLabel={addNewRecordingModal.NEW_MISSING_ITEMS}
             onDataSubmit={async missingItems => {
@@ -82,14 +80,14 @@ const SingleStorePage = ({navigation, route}) => {
             }}
             keyboardType="default"
             multiItemEntry>
-            <ActivityMissingItems
+            <ItemsActivity
               style={styles.horizontalPagePadding}
               fontStyle={styles.dataText}
+              type={ITEM_TYPES.MISSING}
             />
           </Section>
           <View style={styles.finalSectionPadding}>
             <Section
-              store={store}
               title={storePageLabels.WEEKS_AVAILABLE}
               textLabel={addNewRecordingModal.NEW_AVAILABLE_ITEMS}
               onDataSubmit={async availableItems => {
@@ -100,9 +98,10 @@ const SingleStorePage = ({navigation, route}) => {
               }}
               keyboardType="default"
               multiItemEntry>
-              <ActivityAvailableItems
+              <ItemsActivity
                 style={styles.horizontalPagePadding}
                 fontStyle={styles.dataText}
+                type={ITEM_TYPES.AVAILABLE}
               />
             </Section>
           </View>

@@ -1,9 +1,8 @@
 import QueueTimeService from '../../service/QueueTime';
 import {getIsUsingMock} from '../../config/getConfigVals';
 import Toast from 'react-native-tiny-toast';
-import { ERROR_MESSAGES, showErrorToast } from '../../constants/error';
+import {ERROR_MESSAGES, showErrorToast} from '../../constants/error';
 import {addNewRecordingModal} from '../../constants/labels';
-import {COLOURS} from '../../styles/colours';
 
 export const QUEUE_TIME_ACTION_TYPES = Object.freeze({
   GET_QUEUE_TIME_STARTED: 'GET_QUEUE_TIME_STARTED',

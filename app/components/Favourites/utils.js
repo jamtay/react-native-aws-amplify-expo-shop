@@ -3,8 +3,6 @@
  * @param {Array} favourites
  * @returns {Array} An array of ids in string format
  */
-import { shallowEqual, useSelector } from 'react-redux';
-
 export const getFavouriteIds = favourites => {
   if (!favourites) {
     return [];

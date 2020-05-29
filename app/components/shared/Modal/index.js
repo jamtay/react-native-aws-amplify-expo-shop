@@ -167,6 +167,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     top: 30,
     right: 5,
-    zIndex: 999
+    zIndex: 999,
   },
 });

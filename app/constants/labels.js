@@ -1,6 +1,3 @@
-import {Text} from 'react-native';
-import React from 'react';
-
 export const headerLabels = Object.freeze({
   HEADER: 'Quevid 19',
 });

@@ -17,7 +17,7 @@ const ActivityMissingItems = ({style, fontStyle}) => {
     <View style={style}>
       {missingItems.map((recording, index) => (
         <Text style={fontStyle} key={`latest-missing-item-${index + 1}`}>
-          {index + 1}. {recording.join(', ')}
+          {index + 1}. {recording.filter(rec => rec && rec !== '').join(', ')}
         </Text>
       ))}
       {missingItems.length === 0 && (

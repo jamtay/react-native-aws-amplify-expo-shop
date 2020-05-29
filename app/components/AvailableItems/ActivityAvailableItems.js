@@ -17,7 +17,7 @@ const ActivityAvailableItems = ({style, fontStyle}) => {
     <View style={style}>
       {availableItems.map((recording, index) => (
         <Text style={fontStyle} key={`latest-available-item-${index + 1}`}>
-          {index + 1}: {recording.join(', ')}
+          {index + 1}: {recording.filter(rec => rec && rec !== '').join(', ')}
         </Text>
       ))}
       {availableItems.length === 0 && (

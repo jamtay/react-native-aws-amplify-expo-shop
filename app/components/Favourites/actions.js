@@ -1,7 +1,7 @@
 import {
   getFavouriteData,
   addFavourite,
-  removeFavourite,
+  removeFavourite, removeAllFavourites,
 } from '../../service/localStorage';
 
 export const FAVOURITES_ACTION_TYPES = Object.freeze({
@@ -11,6 +11,7 @@ export const FAVOURITES_ACTION_TYPES = Object.freeze({
   UPDATE_FAVOURITES_STARTED: 'UPDATE_FAVOURITES_STARTED',
   UPDATE_FAVOURITES_SUCCESS: 'UPDATE_FAVOURITES_SUCCESS',
   UPDATE_FAVOURITES_ERROR: 'UPDATE_FAVOURITES_ERROR',
+  REMOVE_ALL_FAVOURITES: 'REMOVE_ALL_FAVOURITES',
 });
 
 export const getFavourites = () => {
@@ -40,6 +41,30 @@ export const updateFavourite = (isFavourite, item) => {
     }
   };
 };
+
+/**
+ * A helper redux action to remove all favourites from async local storage
+ */
+export const removeAllFavouritesDispatch = () => {
+  return async dispatch => {
+    dispatch(updateFavouritesStarted());
+    try {
+      await removeAllFavourites();
+      dispatch(removeAllFavouritesAction());
+    } catch (error) {
+      console.error(error);
+      dispatch(updateFavouritesFailure());
+    }
+  };
+};
+
+/**
+ * A helper redux action to remove all favourites from async local storage
+ */
+const removeAllFavouritesAction = () => ({
+  type: FAVOURITES_ACTION_TYPES.REMOVE_ALL_FAVOURITES,
+  payload: [],
+});
 
 const getFavouritesSuccess = favourites => ({
   type: FAVOURITES_ACTION_TYPES.GET_FAVOURITES_SUCCESS,

@@ -22,6 +22,14 @@ const favouritesReducer = (state = initialState, action) => {
         error: null,
         favourites: action.payload,
       };
+    //  A helper for removing all favourites using TestButtons.js
+    case FAVOURITES_ACTION_TYPES.REMOVE_ALL_FAVOURITES:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        favourites: [],
+      };
     case FAVOURITES_ACTION_TYPES.GET_FAVOURITES_ERROR:
     case FAVOURITES_ACTION_TYPES.UPDATE_FAVOURITES_ERROR:
       return {

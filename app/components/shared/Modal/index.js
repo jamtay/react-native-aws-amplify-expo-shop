@@ -83,7 +83,7 @@ const Modal = ({
       );
     })
   ) : (
-    <Item floatingLabel>
+    <Item floatingLabel style={styles.paddedBottom}>
       <Label style={styles.label}>{textLabel}</Label>
       <Input
         keyboardType={keyboardType}
@@ -104,7 +104,7 @@ const Modal = ({
         onSwipeComplete={onModalDismiss}
         swipeDirection={['down', 'up', 'left', 'right']}
         onDismiss={onModalDismiss}>
-        <View style={{alignItems: 'flex-end', top: 30, right: 5, zIndex: 999}}>
+        <View style={styles.closeIcon}>
           <TouchableHighlight
             onPress={onModalDismiss}
             activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     borderColor: COLOURS.DARK_PINK,
     borderWidth: 4,
   },
-  label: {textAlign: 'left'},
+  label: {textAlign: 'left', left: 5, paddingTop: 10},
   section: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -162,5 +162,11 @@ const styles = StyleSheet.create({
   button: {
     color: COLOURS.DARK_PINK,
     marginRight: 5,
+  },
+  closeIcon: {
+    alignItems: 'flex-end',
+    top: 30,
+    right: 5,
+    zIndex: 999
   },
 });

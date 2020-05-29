@@ -32,8 +32,7 @@ const Result = ({
         : isAndroid && isFavouriteCard
         ? width / 2
         : width / 2 - 75,
-      borderWidth: 0.5,
-      borderColor: '#dddddd',
+      borderWidth: 0,
       marginTop: isLarge ? 0 : 20,
       paddingBottom:
         isLarge || !isAndroid || !isFavouriteCard ? undefined : 100,

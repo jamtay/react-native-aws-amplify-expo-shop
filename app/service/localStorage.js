@@ -48,31 +48,6 @@ export const addFavourite = async newFavourite => {
 };
 
 /**
- * A test function to add a group of favourites to localstorage
- * @param {Array} allFavouritesToAdd An array of favourites to add to local storage
- */
-export const addAllFavourites = async allFavouritesToAdd => {
-  try {
-    const value = await AsyncStorage.getItem(KEYS.FAVOURITES);
-    let updatedFavourites = [];
-    if (value !== null) {
-      const favourites = JSON.parse(value);
-      updatedFavourites = [...favourites, ...allFavouritesToAdd];
-    } else {
-      updatedFavourites = allFavouritesToAdd;
-    }
-    await AsyncStorage.setItem(
-      KEYS.FAVOURITES,
-      JSON.stringify(updatedFavourites),
-    );
-    return updatedFavourites;
-  } catch (e) {
-    console.error(e);
-    throw e;
-  }
-};
-
-/**
  * From an id, remove the favourite from the saved list. This is done by getting the list of favourites and filtering out the one with the supplied favourite id.
  * Then resetting the favourites list with the filtered list
  * @param {string} favouriteId

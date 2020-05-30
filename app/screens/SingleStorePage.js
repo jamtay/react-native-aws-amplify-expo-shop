@@ -9,14 +9,6 @@ import {
 import {useDispatch} from 'react-redux';
 import {addNewRecordingModal, storePageLabels} from '../constants/labels';
 import {addQueueTime, getQueueTimes} from '../components/QueueTime/actions';
-import {
-  addMissingItems,
-  getMissingItems,
-} from '../components/MissingItems/actions';
-import {
-  addAvailableItems,
-  getAvailableItems,
-} from '../components/AvailableItems/actions';
 import SearchResults from '../components/SearchResults';
 import Result from '../components/SearchResults/Result';
 import AverageQueueTime from '../components/QueueTime/AverageQueueTime';
@@ -25,6 +17,7 @@ import Section from '../components/shared/Section';
 import {PAGE_NAMES} from './pageNames';
 import ItemsActivity from '../components/Items';
 import {ITEM_TYPES} from '../components/Items/constants';
+import {addItems, getItems} from '../components/Items/actions';
 const {width} = Dimensions.get('window');
 
 /**
@@ -37,8 +30,8 @@ const SingleStorePage = ({navigation, route}) => {
 
   useEffect(() => {
     dispatch(getQueueTimes(storeID));
-    dispatch(getMissingItems(storeID));
-    dispatch(getAvailableItems(storeID));
+    dispatch(getItems(storeID, ITEM_TYPES.MISSING));
+    dispatch(getItems(storeID, ITEM_TYPES.AVAILABLE));
   }, [storeID, dispatch]);
 
   return (
@@ -73,7 +66,9 @@ const SingleStorePage = ({navigation, route}) => {
             title={storePageLabels.WEEKS_MISSING}
             textLabel={addNewRecordingModal.NEW_MISSING_ITEMS}
             onDataSubmit={async missingItems => {
-              dispatch(await addMissingItems(storeID, missingItems));
+              dispatch(
+                await addItems(storeID, missingItems, ITEM_TYPES.MISSING),
+              );
               navigation.navigate(PAGE_NAMES.STORE_PAGE, {
                 store: store,
               });
@@ -91,7 +86,9 @@ const SingleStorePage = ({navigation, route}) => {
               title={storePageLabels.WEEKS_AVAILABLE}
               textLabel={addNewRecordingModal.NEW_AVAILABLE_ITEMS}
               onDataSubmit={async availableItems => {
-                dispatch(await addAvailableItems(storeID, availableItems));
+                dispatch(
+                  await addItems(storeID, availableItems, ITEM_TYPES.AVAILABLE),
+                );
                 navigation.navigate(PAGE_NAMES.STORE_PAGE, {
                   store: store,
                 });

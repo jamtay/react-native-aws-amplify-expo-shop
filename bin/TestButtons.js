@@ -3,6 +3,7 @@ import {Content, Button, Text} from 'native-base';
 import {createStores} from '../bin/preloadData';
 import {useDispatch} from 'react-redux';
 import {removeAllFavouritesDispatch} from '../app/components/Favourites/actions';
+import { getData } from './getData';
 
 const TestButtons = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,17 @@ const TestButtons = () => {
           dispatch(removeAllFavouritesDispatch());
         }}>
         <Text> remove all favourites </Text>
+      </Button>
+
+      <Button
+        block
+        dark
+        onPress={async () => {
+          const searchString = 'Booths';
+          console.log(`Getting data for ${searchString}`);
+          dispatch(getData(searchString));
+        }}>
+        <Text> Get data </Text>
       </Button>
     </Content>
   );

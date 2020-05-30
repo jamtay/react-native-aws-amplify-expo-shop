@@ -19,6 +19,7 @@
     "web": "expo start --web",
     "env:mock": "expo-env --env=mock --configPath=./config",
     "env:development": "expo-env --env=development --configPath=./config",
+    "env:secret": "expo-env --env=secret --configPath=./config",
     "eject": "expo eject"
   },
   "dependencies": {
@@ -69,6 +70,7 @@
     "babel-preset-expo": "~8.1.0",
     "detox": "^16.2.0",
     "eslint": "^6.8.0",
+    "husky": "^4.2.5",
     "jest": "^24.9.0",
     "jest-expect-message": "^1.0.2",
     "metro-react-native-babel-preset": "^0.58.0",
@@ -98,6 +100,11 @@
         "type": "ios.simulator",
         "name": "iPhone 11 Pro"
       }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo 'Setting development environment back to development' && npm run env:development"
     }
   }
 }

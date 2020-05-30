@@ -44,7 +44,9 @@ export ANDROID_AVD_HOME=~/.android/avd
 
 # Environment variables with expo
 
-Using the https://github.com/manoj-nama/expo-env#readme package for setting environment variables. See the `./config` folder for config files, and run `npm run env:<ENV_NAME>` where env name is the same as the file name (e.g staging, mock, developmemt) and there is a corresponding npm script (e.g `"env:mock": "expo-env --env=mock --configPath=./config",`) for the environment.
+Using the https://github.com/manoj-nama/expo-env#readme package for setting environment variables.
+See the `./config` folder for config files, and run `npm run env:<ENV_NAME>` where env name is the same as the file name (e.g staging, mock, developmemt) 
+and there is a corresponding npm script (e.g `"env:mock": "expo-env --env=mock --configPath=./config",`) for the environment.
 
 To access the variable a function like this can be used
 
@@ -53,6 +55,24 @@ import Constants from 'expo-constants';
 
 export const getIsUsingMock = () => {
   return Constants.manifest.extra.isUsingMock || false;
+};
+```
+
+# Getting store data from api
+
+1. Create a file called `config/secret.config.js`
+2. Add the code below
+3. Run the command `npm run env:secret` to set these environment variables
+4. Expose the `TestButtons` by uncommenting the code in `app/screens/ExplorePage.js` 
+5. Click button to load data from home page.  Make sure to change `const searchString = ` in `/bin/TestButtons.js` to the data you want to upload, e.g the stores name
+6. **Important** Before committing make sure to run `npm run env:development`
+7. There is a husky pre-commit setup to do this
+
+
+```.javascript
+module.exports = {
+  isUsingMock: true,
+  hereApiKey: 'fr0jBXZK62_U4RBFuOQVeIja_q33RR4Lz4Q13AO6A2o',
 };
 ```
 

@@ -104,7 +104,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'Setting development environment back to development' && npm run env:development"
+      "pre-commit": "echo 'Setting development environment back to development' && npm run env:development && git add app.json"
     }
   }
 }

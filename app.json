@@ -25,7 +25,7 @@
       "supportsTablet": true
     },
     "extra": {
-      "isUsingMock": true
+      "isUsingMock": false
     }
   }
 }

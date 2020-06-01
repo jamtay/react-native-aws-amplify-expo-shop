@@ -1,10 +1,11 @@
-type Store @model {
+type Store @model @searchable {
   id: ID!
   name: String!
   description: String!
   fullAddress: String!
   addressLine1: String!
   addressLine2: String
+  addressLine3: String
   postcode: String!
   county: String
   country: String!
@@ -15,7 +16,7 @@ type Store @model {
   itemsRecorded: [String!]
 }
 
-type Recording @model {
+type Recording @model @searchable {
   id: ID!
   type: String!
   storeID: String!

@@ -11,6 +11,7 @@ export const getStore = /* GraphQL */ `
       fullAddress
       addressLine1
       addressLine2
+      addressLine3
       postcode
       county
       country
@@ -46,6 +47,7 @@ export const listStores = /* GraphQL */ `
         fullAddress
         addressLine1
         addressLine2
+        addressLine3
         postcode
         county
         country
@@ -73,6 +75,7 @@ export const getRecording = /* GraphQL */ `
         fullAddress
         addressLine1
         addressLine2
+        addressLine3
         postcode
         county
         country
@@ -108,6 +111,7 @@ export const listRecordings = /* GraphQL */ `
           fullAddress
           addressLine1
           addressLine2
+          addressLine3
           postcode
           county
           country
@@ -121,6 +125,84 @@ export const listRecordings = /* GraphQL */ `
         floatTimestamp
       }
       nextToken
+    }
+  }
+`;
+export const searchStores = /* GraphQL */ `
+  query SearchStores(
+    $filter: SearchableStoreFilterInput
+    $sort: SearchableStoreSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchStores(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        description
+        fullAddress
+        addressLine1
+        addressLine2
+        addressLine3
+        postcode
+        county
+        country
+        longitude
+        latitude
+        recordings {
+          nextToken
+        }
+        itemsRecorded
+      }
+      nextToken
+      total
+    }
+  }
+`;
+export const searchRecordings = /* GraphQL */ `
+  query SearchRecordings(
+    $filter: SearchableRecordingFilterInput
+    $sort: SearchableRecordingSortInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchRecordings(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        type
+        storeID
+        store {
+          id
+          name
+          description
+          fullAddress
+          addressLine1
+          addressLine2
+          addressLine3
+          postcode
+          county
+          country
+          longitude
+          latitude
+          itemsRecorded
+        }
+        queueTime
+        missingItems
+        availableItems
+        floatTimestamp
+      }
+      nextToken
+      total
     }
   }
 `;

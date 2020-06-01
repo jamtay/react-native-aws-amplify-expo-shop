@@ -9,6 +9,7 @@ export type CreateStoreInput = {
   fullAddress: string,
   addressLine1: string,
   addressLine2?: string | null,
+  addressLine3?: string | null,
   postcode: string,
   county?: string | null,
   country: string,
@@ -23,6 +24,7 @@ export type ModelStoreConditionInput = {
   fullAddress?: ModelStringInput | null,
   addressLine1?: ModelStringInput | null,
   addressLine2?: ModelStringInput | null,
+  addressLine3?: ModelStringInput | null,
   postcode?: ModelStringInput | null,
   county?: ModelStringInput | null,
   country?: ModelStringInput | null,
@@ -81,6 +83,7 @@ export type UpdateStoreInput = {
   fullAddress?: string | null,
   addressLine1?: string | null,
   addressLine2?: string | null,
+  addressLine3?: string | null,
   postcode?: string | null,
   county?: string | null,
   country?: string | null,
@@ -148,6 +151,7 @@ export type ModelStoreFilterInput = {
   fullAddress?: ModelStringInput | null,
   addressLine1?: ModelStringInput | null,
   addressLine2?: ModelStringInput | null,
+  addressLine3?: ModelStringInput | null,
   postcode?: ModelStringInput | null,
   county?: ModelStringInput | null,
   country?: ModelStringInput | null,
@@ -188,6 +192,124 @@ export type ModelRecordingFilterInput = {
   not?: ModelRecordingFilterInput | null,
 };
 
+export type SearchableStoreFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  name?: SearchableStringFilterInput | null,
+  description?: SearchableStringFilterInput | null,
+  fullAddress?: SearchableStringFilterInput | null,
+  addressLine1?: SearchableStringFilterInput | null,
+  addressLine2?: SearchableStringFilterInput | null,
+  addressLine3?: SearchableStringFilterInput | null,
+  postcode?: SearchableStringFilterInput | null,
+  county?: SearchableStringFilterInput | null,
+  country?: SearchableStringFilterInput | null,
+  longitude?: SearchableStringFilterInput | null,
+  latitude?: SearchableStringFilterInput | null,
+  itemsRecorded?: SearchableStringFilterInput | null,
+  and?: Array< SearchableStoreFilterInput | null > | null,
+  or?: Array< SearchableStoreFilterInput | null > | null,
+  not?: SearchableStoreFilterInput | null,
+};
+
+export type SearchableIDFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+};
+
+export type SearchableStringFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+};
+
+export type SearchableStoreSortInput = {
+  field?: SearchableStoreSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchableStoreSortableFields {
+  id = "id",
+  name = "name",
+  description = "description",
+  fullAddress = "fullAddress",
+  addressLine1 = "addressLine1",
+  addressLine2 = "addressLine2",
+  addressLine3 = "addressLine3",
+  postcode = "postcode",
+  county = "county",
+  country = "country",
+  longitude = "longitude",
+  latitude = "latitude",
+  itemsRecorded = "itemsRecorded",
+}
+
+
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc",
+}
+
+
+export type SearchableRecordingFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  type?: SearchableStringFilterInput | null,
+  storeID?: SearchableStringFilterInput | null,
+  queueTime?: SearchableFloatFilterInput | null,
+  missingItems?: SearchableStringFilterInput | null,
+  availableItems?: SearchableStringFilterInput | null,
+  floatTimestamp?: SearchableFloatFilterInput | null,
+  and?: Array< SearchableRecordingFilterInput | null > | null,
+  or?: Array< SearchableRecordingFilterInput | null > | null,
+  not?: SearchableRecordingFilterInput | null,
+};
+
+export type SearchableFloatFilterInput = {
+  ne?: number | null,
+  gt?: number | null,
+  lt?: number | null,
+  gte?: number | null,
+  lte?: number | null,
+  eq?: number | null,
+  range?: Array< number | null > | null,
+};
+
+export type SearchableRecordingSortInput = {
+  field?: SearchableRecordingSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchableRecordingSortableFields {
+  id = "id",
+  type = "type",
+  storeID = "storeID",
+  queueTime = "queueTime",
+  missingItems = "missingItems",
+  availableItems = "availableItems",
+  floatTimestamp = "floatTimestamp",
+}
+
+
 export type CreateStoreMutationVariables = {
   input: CreateStoreInput,
   condition?: ModelStoreConditionInput | null,
@@ -202,6 +324,7 @@ export type CreateStoreMutation = {
     fullAddress: string,
     addressLine1: string,
     addressLine2: string | null,
+    addressLine3: string | null,
     postcode: string,
     county: string | null,
     country: string,
@@ -239,6 +362,7 @@ export type UpdateStoreMutation = {
     fullAddress: string,
     addressLine1: string,
     addressLine2: string | null,
+    addressLine3: string | null,
     postcode: string,
     county: string | null,
     country: string,
@@ -276,6 +400,7 @@ export type DeleteStoreMutation = {
     fullAddress: string,
     addressLine1: string,
     addressLine2: string | null,
+    addressLine3: string | null,
     postcode: string,
     county: string | null,
     country: string,
@@ -318,6 +443,7 @@ export type CreateRecordingMutation = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,
@@ -355,6 +481,7 @@ export type UpdateRecordingMutation = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,
@@ -392,6 +519,7 @@ export type DeleteRecordingMutation = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,
@@ -423,6 +551,7 @@ export type GetStoreQuery = {
     fullAddress: string,
     addressLine1: string,
     addressLine2: string | null,
+    addressLine3: string | null,
     postcode: string,
     county: string | null,
     country: string,
@@ -463,6 +592,7 @@ export type ListStoresQuery = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,
@@ -496,6 +626,7 @@ export type GetRecordingQuery = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,
@@ -536,6 +667,7 @@ export type ListRecordingsQuery = {
         fullAddress: string,
         addressLine1: string,
         addressLine2: string | null,
+        addressLine3: string | null,
         postcode: string,
         county: string | null,
         country: string,
@@ -552,6 +684,82 @@ export type ListRecordingsQuery = {
   } | null,
 };
 
+export type SearchStoresQueryVariables = {
+  filter?: SearchableStoreFilterInput | null,
+  sort?: SearchableStoreSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type SearchStoresQuery = {
+  searchStores:  {
+    __typename: "SearchableStoreConnection",
+    items:  Array< {
+      __typename: "Store",
+      id: string,
+      name: string,
+      description: string,
+      fullAddress: string,
+      addressLine1: string,
+      addressLine2: string | null,
+      addressLine3: string | null,
+      postcode: string,
+      county: string | null,
+      country: string,
+      longitude: string | null,
+      latitude: string | null,
+      recordings:  {
+        __typename: "ModelRecordingConnection",
+        nextToken: string | null,
+      } | null,
+      itemsRecorded: Array< string > | null,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
+  } | null,
+};
+
+export type SearchRecordingsQueryVariables = {
+  filter?: SearchableRecordingFilterInput | null,
+  sort?: SearchableRecordingSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type SearchRecordingsQuery = {
+  searchRecordings:  {
+    __typename: "SearchableRecordingConnection",
+    items:  Array< {
+      __typename: "Recording",
+      id: string,
+      type: string,
+      storeID: string,
+      store:  {
+        __typename: "Store",
+        id: string,
+        name: string,
+        description: string,
+        fullAddress: string,
+        addressLine1: string,
+        addressLine2: string | null,
+        addressLine3: string | null,
+        postcode: string,
+        county: string | null,
+        country: string,
+        longitude: string | null,
+        latitude: string | null,
+        itemsRecorded: Array< string > | null,
+      } | null,
+      queueTime: number | null,
+      missingItems: Array< string > | null,
+      availableItems: Array< string > | null,
+      floatTimestamp: number,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
+  } | null,
+};
+
 export type OnCreateStoreSubscription = {
   onCreateStore:  {
     __typename: "Store",
@@ -561,6 +769,7 @@ export type OnCreateStoreSubscription = {
     fullAddress: string,
     addressLine1: string,
     addressLine2: string | null,
+    addressLine3: string | null,
     postcode: string,
     county: string | null,
     country: string,
@@ -593,6 +802,7 @@ export type OnUpdateStoreSubscription = {
     fullAddress: string,
     addressLine1: string,
     addressLine2: string | null,
+    addressLine3: string | null,
     postcode: string,
     county: string | null,
     country: string,
@@ -625,6 +835,7 @@ export type OnDeleteStoreSubscription = {
     fullAddress: string,
     addressLine1: string,
     addressLine2: string | null,
+    addressLine3: string | null,
     postcode: string,
     county: string | null,
     country: string,
@@ -662,6 +873,7 @@ export type OnCreateRecordingSubscription = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,
@@ -694,6 +906,7 @@ export type OnUpdateRecordingSubscription = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,
@@ -726,6 +939,7 @@ export type OnDeleteRecordingSubscription = {
       fullAddress: string,
       addressLine1: string,
       addressLine2: string | null,
+      addressLine3: string | null,
       postcode: string,
       county: string | null,
       country: string,

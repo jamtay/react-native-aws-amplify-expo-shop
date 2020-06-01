@@ -6,6 +6,7 @@ import {useIsFavHook} from '../Favourites/isFavHook';
 import {useNavigation} from '@react-navigation/native';
 import {PAGE_NAMES} from '../../screens/pageNames';
 import {BUTTONS} from '../../styles/button';
+import { filterNull, removeTrailingComma } from './stringFormatter';
 
 /**
  * A result to display search results for
@@ -60,6 +61,10 @@ const Result = ({
     imageWrapperPadding: {
       paddingTop: isLarge ? 20 : undefined,
     },
+    info: {
+      width: 0,
+      flexGrow: 1,
+    },
   });
 
   const isFavourite = useIsFavHook(item.id);
@@ -97,13 +102,17 @@ const Result = ({
         activeOpacity={BUTTONS.TEXT_CLICK_OPACITY}
         underlayColor={BUTTONS.CLICK_COLOUR}>
         <View>
-          <Text style={styles.largeText}>
-            {item.description}
-            {isLarge && `, ${item.postcode}`}
+          <Text style={styles.largeText} numberOfLines={1}>
+            {filterNull(item.description)}
+            {isLarge && filterNull(`, ${item.postcode}`)}
           </Text>
           <Text style={styles.smallText}>
-            {item.addressLine1}
-            {isLarge && `, ${item.addressLine2}, ${item.county}`}
+            {filterNull(item.addressLine1)}
+            {isLarge &&
+              `${removeTrailingComma(
+                filterNull(', ' + item.addressLine2) +
+                  filterNull(', ' + item.addressLine3),
+              )}`}
           </Text>
         </View>
       </TouchableHighlight>
@@ -116,6 +125,7 @@ export default Result;
 const sharedStyles = StyleSheet.create({
   flexedImageView: {
     flex: 2,
+    paddingVertical: 20,
   },
   imageWrapper: {
     flex: 1,

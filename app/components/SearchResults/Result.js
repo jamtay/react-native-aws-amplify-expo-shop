@@ -6,7 +6,7 @@ import {useIsFavHook} from '../Favourites/isFavHook';
 import {useNavigation} from '@react-navigation/native';
 import {PAGE_NAMES} from '../../screens/pageNames';
 import {BUTTONS} from '../../styles/button';
-import { filterNull, removeTrailingComma } from './stringFormatter';
+import {filterNull, removeTrailingComma} from './stringFormatter';
 
 /**
  * A result to display search results for
@@ -25,21 +25,25 @@ const Result = ({
 }) => {
   const isAndroid = Platform.OS === 'android';
 
+  const height = isLarge
+    ? width - 175
+    : isAndroid && isFavouriteCard
+    ? width / 2 - 20
+    : !isAndroid && isFavouriteCard
+    ? width / 2 - 75
+    : width / 2 - 75;
+
   const styles = StyleSheet.create({
     container: {
       width: isLarge ? width - 50 : width / 2 - 30,
-      height: isLarge
-        ? width - 175
-        : isAndroid && isFavouriteCard
-        ? width / 2
-        : width / 2 - 75,
+      height: height,
       borderWidth: 0,
       marginTop: isLarge ? 0 : 20,
-      paddingBottom:
-        isLarge || !isAndroid || !isFavouriteCard ? undefined : 100,
+      paddingBottom: isLarge || !isAndroid || !isFavouriteCard ? undefined : 50,
       paddingTop: isLarge || !isAndroid || !isFavouriteCard ? undefined : 20,
       marginBottom: isLarge ? 40 : undefined,
       marginLeft: isLarge ? 12 : undefined,
+      zIndex: 9999,
     },
     textWrapper: {
       flex: 1,
@@ -52,7 +56,7 @@ const Result = ({
       fontSize: isLarge ? 20 : 12,
       color: '#b63838',
       marginBottom: 10,
-      marginTop: isLarge ? undefined : isAndroid && isFavouriteCard ? 20 : 10,
+      marginTop: isLarge ? undefined : isAndroid && isFavouriteCard ? 0 : 10,
     },
     smallText: {
       fontSize: isLarge ? 24 : 14,
@@ -64,6 +68,9 @@ const Result = ({
     info: {
       width: 0,
       flexGrow: 1,
+    },
+    noPadding: {
+      paddingTop: isAndroid && isFavouriteCard ? 0 : undefined,
     },
   });
 
@@ -78,7 +85,7 @@ const Result = ({
 
   return (
     <View style={styles.container}>
-      <View style={sharedStyles.flexedImageView}>
+      <View style={[sharedStyles.flexedImageView, styles.noPadding]}>
         <TouchableHighlight
           onPress={onItemButtonPress}
           style={[sharedStyles.imageWrapper, styles.imageWrapperPadding]}

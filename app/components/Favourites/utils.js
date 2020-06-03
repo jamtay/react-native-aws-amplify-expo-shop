@@ -53,6 +53,14 @@ export const getImageFromStoreName = storeName => {
     return require('../../assets/asda.png');
   } else if (lowercaseName.includes('morrisons')) {
     return require('../../assets/morrisons.png');
+  } else if (lowercaseName.includes('spar')) {
+    return require('../../assets/spar.png');
+  } else if (lowercaseName.includes('nisa')) {
+    return require('../../assets/nisa.png');
+  } else if (lowercaseName.includes('aldi')) {
+    return require('../../assets/aldi.jpg');
+  } else if (lowercaseName.includes('lidl')) {
+    return require('../../assets/lidl.jpg');
   }
 
   return require('../../assets/default.png');

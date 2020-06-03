@@ -6,7 +6,7 @@ const FavouritesCard = ({width, item}) => {
   const isAndroid = Platform.OS === 'android';
   return (
     <SearchResults>
-      <Result width={width - 50} item={item} topStyle={isAndroid ? -32 : -20} isFavouriteCard/>
+      <Result width={width - 25} item={item} topStyle={isAndroid ? -32 : -20} isFavouriteCard/>
     </SearchResults>
   );
 };

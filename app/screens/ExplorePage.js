@@ -58,7 +58,7 @@ const Explore = () => {
           <View style={styles.container}>
             <Favourites pageWidth={width} />
             {/* UNCOMMENT ME TO DISPLAY SOME USEFUL TESTING BUTTONS FOR ADDING DATA TO API AND LOCAL STORAGE */}
-            <TestButtons />
+            {/*<TestButtons />*/}
             <Text style={[styles.titleText, styles.searchTitle]}>
               {explorePageLabels(isStores).STORE_SEARCH}
             </Text>

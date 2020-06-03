@@ -29,6 +29,7 @@ const SearchBar = () => {
             placeholder={searchLabels.NAME}
             placeholderTextColor="grey"
             style={styles.searchInput}
+            autoCorrect={false}
             onChangeText={text => {
               const updatedSearchCriteria = {
                 ...searchCriteria,
@@ -49,6 +50,7 @@ const SearchBar = () => {
             placeholder={searchLabels.ADDRESS}
             placeholderTextColor="grey"
             style={styles.searchInput}
+            autoCorrect={false}
             onChangeText={text => {
               const updatedSearchCriteria = {
                 ...searchCriteria,

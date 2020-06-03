@@ -29,6 +29,7 @@ const TestButtons = () => {
           setSearchText(text);
         }}
         style={{padding: 20}}
+        autoCorrect={false}
       />
       <Button
         block

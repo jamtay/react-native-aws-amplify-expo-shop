@@ -2,7 +2,7 @@ import {
   getFavouriteIds,
   getImageFromStoreName,
   isAlreadyFavourite,
-} from './utils';
+} from '../utils';
 
 describe('getFavouriteIds() util', () => {
   it('should get the favourite ids from an array of favourites', () => {

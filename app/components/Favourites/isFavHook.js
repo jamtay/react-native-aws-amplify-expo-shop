@@ -8,7 +8,7 @@ import {getFavouriteIds, isAlreadyFavourite} from './utils';
  */
 export const useIsFavHook = dataId => {
   const {
-    favouritesData: {loading, favourites, error},
+    favouritesData: {favourites},
   } = useSelector(state => state, shallowEqual);
 
   return isAlreadyFavourite(dataId, getFavouriteIds(favourites));

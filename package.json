@@ -91,6 +91,9 @@
     ],
     "setupFilesAfterEnv": [
       "jest-expect-message"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(...|...|...))"
     ]
   },
   "detox": {

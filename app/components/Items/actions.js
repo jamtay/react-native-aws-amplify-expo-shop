@@ -5,8 +5,6 @@ import {addNewRecordingModal} from '../../constants/labels';
 import {ERROR_MESSAGES, showErrorToast} from '../../constants/error';
 import {ITEM_TYPES} from './constants';
 
-//TODO; Where the switch statement uses two action types for one case, you can combine into one action
-//SAME FOR when GET_MISSING_ITEM_ERROR and GET_AVAILABLE_ITEM_ERROR
 export const ITEM_ACTION_TYPES = Object.freeze({
   ITEM_ACTION_STARTED: type => `${type}_ITEM_ACTION_STARTED`,
   GET_ITEM_SUCCESS: type => `GET_${type}_ITEM_SUCCESS`,

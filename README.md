@@ -10,6 +10,10 @@ This is a React Native application, with a backend written using GraphQL. The Gr
 - AWS Amplify
 - ElasticSearch, DynamoDB
 
+## Demo 
+
+![Demo application](demo.gif)
+
 # Running locally
 
 The api is deployed to AWS AppSync but the frontend can be run using a simulator. Follow these steps: https://reactnative.dev/docs/environment-setup

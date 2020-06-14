@@ -10,9 +10,6 @@ import {
 } from '../../../service/localStorage';
 
 jest.mock('../../../service/localStorage');
-const mockGetFavouriteData = getFavouriteData;
-const mockAddFavourite = addFavourite;
-const mockRemoveFavourite = removeFavourite;
 
 const favourites = [{favourite: 'isFavourite'}];
 
@@ -22,7 +19,7 @@ describe('getFavourites() redux action', () => {
   });
 
   it('should dispatch the getting favourites action before completing getting favourites', async () => {
-    mockGetFavouriteData.mockImplementation(() => favourites);
+    getFavouriteData.mockImplementation(() => favourites);
     const returnedReduxThunk = getFavourites();
     const mockDispatch = jest.fn();
     await returnedReduxThunk(mockDispatch);
@@ -39,7 +36,7 @@ describe('getFavourites() redux action', () => {
 
   it('should dispatch the getting favourites action before handling an error if an error occurred', async () => {
     const error = new Error('some error');
-    mockGetFavouriteData.mockImplementation(() => throw error);
+    getFavouriteData.mockImplementation(() => throw error);
     const returnedReduxThunk = getFavourites();
     const mockDispatch = jest.fn();
     await returnedReduxThunk(mockDispatch);
@@ -66,14 +63,14 @@ describe('updateFavourite() redux action', () => {
   };
 
   it('should add favourite if the item is not already a favourite', async () => {
-    mockAddFavourite.mockImplementation(() => favourites);
+    addFavourite.mockImplementation(() => favourites);
     const returnedReduxThunk = updateFavourite(false, item);
     const mockDispatch = jest.fn();
     await returnedReduxThunk(mockDispatch);
 
-    expect(mockRemoveFavourite).toBeCalledTimes(0);
-    expect(mockAddFavourite).toBeCalledTimes(1);
-    expect(mockAddFavourite).toBeCalledWith(item);
+    expect(removeFavourite).toBeCalledTimes(0);
+    expect(addFavourite).toBeCalledTimes(1);
+    expect(addFavourite).toBeCalledWith(item);
     expect(mockDispatch).toBeCalledTimes(2);
     expect(mockDispatch).toBeCalledWith({
       type: FAVOURITES_ACTION_TYPES.FAVOURITES_STARTED,
@@ -85,14 +82,14 @@ describe('updateFavourite() redux action', () => {
   });
 
   it('should remove favourite if the item is already a favourite', async () => {
-    mockRemoveFavourite.mockImplementation(() => favourites);
+    removeFavourite.mockImplementation(() => favourites);
     const returnedReduxThunk = updateFavourite(true, item);
     const mockDispatch = jest.fn();
     await returnedReduxThunk(mockDispatch);
 
-    expect(mockAddFavourite).toBeCalledTimes(0);
-    expect(mockRemoveFavourite).toBeCalledTimes(1);
-    expect(mockRemoveFavourite).toBeCalledWith(item.id);
+    expect(addFavourite).toBeCalledTimes(0);
+    expect(removeFavourite).toBeCalledTimes(1);
+    expect(removeFavourite).toBeCalledWith(item.id);
     expect(mockDispatch).toBeCalledTimes(2);
     expect(mockDispatch).toBeCalledWith({
       type: FAVOURITES_ACTION_TYPES.FAVOURITES_STARTED,
@@ -105,13 +102,13 @@ describe('updateFavourite() redux action', () => {
 
   it('should dispatch error if an error occurs', async () => {
     const error = new Error('some error');
-    mockAddFavourite.mockImplementation(() => throw error);
+    addFavourite.mockImplementation(() => throw error);
     const returnedReduxThunk = updateFavourite(false, item);
     const mockDispatch = jest.fn();
     await returnedReduxThunk(mockDispatch);
 
-    expect(mockAddFavourite).toBeCalledTimes(1);
-    expect(mockAddFavourite).toBeCalledWith(item);
+    expect(addFavourite).toBeCalledTimes(1);
+    expect(addFavourite).toBeCalledWith(item);
     expect(mockDispatch).toBeCalledTimes(2);
     expect(mockDispatch).toBeCalledWith({
       type: FAVOURITES_ACTION_TYPES.FAVOURITES_STARTED,

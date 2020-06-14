@@ -16,9 +16,10 @@ import SearchResults from '../components/SearchResults';
 import Loading from '../components/shared/Loading';
 import TestButtons from '../../bin/TestButtons';
 import {explorePageLabels} from '../constants/labels';
+import {isAndroidOS} from '../config/platform';
 const {width} = Dimensions.get('window');
 
-const isAndroid = Platform.OS === 'android';
+const isAndroid = isAndroidOS();
 
 /**
  * The home page of the application, showing horizontal scrolling favourites, a search bar, and the search results

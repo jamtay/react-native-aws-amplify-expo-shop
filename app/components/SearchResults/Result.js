@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useIsFavHook} from '../Favourites/isFavHook';
 import {getImageFromStoreName} from '../Favourites/utils';
 import {filterNull, removeTrailingComma} from './stringFormatter';
+import {isAndroidOS} from '../../config/platform';
 import {PAGE_NAMES} from '../../screens/pageNames';
 import {BUTTONS} from '../../styles/button';
 
@@ -24,7 +25,7 @@ const Result = ({
   isLarge = false,
   isFavouriteCard = false,
 }) => {
-  const isAndroid = Platform.OS === 'android';
+  const isAndroid = isAndroidOS();
 
   // Workout the height based on if it is android, a large card or a favourite card
   const height = isLarge

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FavouritesCard component tests snapshot test should match stored snapshot 1`] = `
+<View
+  testID="favourite-id"
+>
+  <SearchResults>
+    <Result
+      isFavouriteCard={true}
+      item={
+        Object {
+          "addressLine1": "addressLine1",
+          "addressLine2": "addressLine2",
+          "addressLine3": "addressLine3",
+          "country": "country",
+          "description": "description",
+          "fullAddress": "fullAddress",
+          "id": "id",
+          "name": "name",
+          "postcode": "postcode",
+        }
+      }
+      topStyle={-32}
+      width={75}
+    />
+  </SearchResults>
+</View>
+`;

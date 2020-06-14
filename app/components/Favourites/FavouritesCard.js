@@ -1,6 +1,9 @@
 import React from 'react';
+
+import {View} from 'react-native'
 import Result from '../SearchResults/Result';
 import SearchResults from '../SearchResults';
+import {isAndroidOS} from '../../config/platform';
 
 /**
  * A wrapper component to display favourites with
@@ -8,11 +11,18 @@ import SearchResults from '../SearchResults';
  * @param item
  */
 const FavouritesCard = ({width, item}) => {
-  const isAndroid = Platform.OS === 'android';
+  const isAndroid = isAndroidOS();
   return (
-    <SearchResults>
-      <Result width={width - 25} item={item} topStyle={isAndroid ? -32 : -20} isFavouriteCard/>
-    </SearchResults>
+    <View testID={`favourite-${item.id}`}>
+      <SearchResults>
+        <Result
+          width={width - 25}
+          item={item}
+          topStyle={isAndroid ? -32 : -20}
+          isFavouriteCard
+        />
+      </SearchResults>
+    </View>
   );
 };
 

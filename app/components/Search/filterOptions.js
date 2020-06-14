@@ -1,5 +1,5 @@
 /**
- * From an object of searchCriteria, create a searchable filter to send to GrapohQl search endpoint (using and/regexp searches)
+ * From an object of searchCriteria, create a searchable filter to send to GraphQl search endpoint (using and/regexp searches)
  * Splits search strings and surrounds in .* to make contains searching to work
  * @param {*} searchCriteria An object made up of name,address and currentSearch
  * @returns {*} The graphql search filter
@@ -31,10 +31,9 @@ export const getFilterOptions = searchCriteria => {
     });
   }
 
-  const value = {
+  return {
     filter: {
       and: [...nameFilter, ...addressFilter],
     },
   };
-  return value;
 };

@@ -3,7 +3,7 @@ import {
   verticalTableCardStyle,
   horizontalTableCardStyle,
   genericTableCardStyle,
-} from './table';
+} from '../table';
 
 describe('getTableCardStyle styling util', () => {
   it('should return the vertical styling when horizontal is false', () => {

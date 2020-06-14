@@ -1,8 +1,11 @@
-import { MAXIMUM_ITEM_COUNT, RECORDING_TYPES } from '../constants/recordingConstants';
 import moment from 'moment';
 import {API, graphqlOperation} from 'aws-amplify';
 import {createRecording} from '../../src/graphql/mutations';
 import { getUnixSecondTimestamp, lastWeekTimestampFilter } from './recordingUtils';
+import { MAXIMUM_ITEM_COUNT, RECORDING_TYPES } from '../constants/recordingConstants';
+// searchRecordings is only available when @searchable/elasticsearch is deployed. Add @searchable to Recordings in schema.graphql
+// type Recording @model @searchable { }
+// Then run `amplify push` and `npm run env:development` before running the app
 import { listRecordings, searchRecordings } from '../../src/graphql/queries';
 
 export default class ItemRecording {

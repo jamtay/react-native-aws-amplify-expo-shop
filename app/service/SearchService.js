@@ -1,7 +1,9 @@
 import {API, graphqlOperation} from 'aws-amplify';
-import {searchStores, listStores} from '../../src/graphql/queries';
-
 import {LIMIT_OPTION, DEFAULT_SORT_OPTION} from '../constants/searchConstants';
+// searchStores is only available when @searchable/elasticsearch is deployed. Add @searchable to Store in schema.graphql
+// type Store @model @searchable{}
+// Then run `amplify push` and `npm run env:development` before running the app
+import {searchStores, listStores} from '../../src/graphql/queries';
 
 export default class SearchService {
   /**

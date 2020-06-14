@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+
 import {
   View,
   StyleSheet,
@@ -6,22 +8,22 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
-import {addNewRecordingModal, storePageLabels} from '../constants/labels';
-import {addQueueTime, getQueueTimes} from '../components/QueueTime/actions';
 import SearchResults from '../components/SearchResults';
 import Result from '../components/SearchResults/Result';
 import AverageQueueTime from '../components/QueueTime/AverageQueueTime';
 import ActivityQueueTime from '../components/QueueTime/ActivityQueueTime';
 import Section from '../components/shared/Section';
-import {PAGE_NAMES} from './pageNames';
 import ItemsActivity from '../components/Items';
-import {ITEM_TYPES} from '../components/Items/constants';
 import {addItems, getItems} from '../components/Items/actions';
+import {addQueueTime, getQueueTimes} from '../components/QueueTime/actions';
+import {PAGE_NAMES} from './pageNames';
+import {ITEM_TYPES} from '../components/Items/constants';
+import {addNewRecordingModal, storePageLabels} from '../constants/labels';
 const {width} = Dimensions.get('window');
 
 /**
  * A page displaying the information about single store. Including name, address and activity/averages
+ * A modal is present in each section, which allows adding store activity
  */
 const SingleStorePage = ({navigation, route}) => {
   const {store} = route.params;

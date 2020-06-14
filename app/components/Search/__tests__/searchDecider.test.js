@@ -2,7 +2,7 @@ import {
   isSearchEmpty,
   isGreaterThanSearchLength,
   shouldSearch,
-} from './searchDecider';
+} from '../searchDecider';
 
 describe('isSearchEmpty()', () => {
   it('should return true if search criteria is an empty object', () => {

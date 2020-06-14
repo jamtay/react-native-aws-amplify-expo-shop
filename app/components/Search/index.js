@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
+
 import Icon from 'react-native-vector-icons/Ionicons';
-
 import {Platform, StyleSheet, TextInput, View} from 'react-native';
-import {searchLabels} from '../../constants/labels';
 import {searchStores} from './actions';
+import {searchLabels} from '../../constants/labels';
 
+/**
+ * Search bar used on the home page to find stores
+ */
 const SearchBar = () => {
   const [searchCriteria, setSearchCriteria] = useState({
     name: '',
     address: '',
     currentSearch: '',
   });
+  // Used for changing the position of the search bar on scroll
   const [startHeaderHeight, setStartHeaderHeight] = useState();
 
   useEffect(() => {
@@ -29,6 +33,7 @@ const SearchBar = () => {
             placeholder={searchLabels.NAME}
             placeholderTextColor="grey"
             style={styles.searchInput}
+            autoCorrect={false}
             onChangeText={text => {
               const updatedSearchCriteria = {
                 ...searchCriteria,
@@ -49,6 +54,7 @@ const SearchBar = () => {
             placeholder={searchLabels.ADDRESS}
             placeholderTextColor="grey"
             style={styles.searchInput}
+            autoCorrect={false}
             onChangeText={text => {
               const updatedSearchCriteria = {
                 ...searchCriteria,

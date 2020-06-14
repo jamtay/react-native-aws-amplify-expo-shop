@@ -18,6 +18,13 @@ const initialState = {
   error: null,
 };
 
+/**
+ * Recalculate the average of queue times for a store
+ * This saves calling the backend to get the new average
+ * @param time
+ * @param queueTime
+ * @returns {{average: number, dataLength: number}}
+ */
 const recalculateAverage = (time, queueTime) => {
   if (time.average === No_DATA_INT || time.dataLength === 0) {
     return {
@@ -26,20 +33,17 @@ const recalculateAverage = (time, queueTime) => {
     };
   }
 
-  const newTime = {
+  return {
     average:
       (time.average * time.dataLength + parseFloat(queueTime)) /
       (time.dataLength + 1),
     dataLength: time.dataLength + 1,
   };
-
-  return newTime;
 };
 
 const queueTimeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case QUEUE_TIME_ACTION_TYPES.GET_QUEUE_TIME_STARTED:
-    case QUEUE_TIME_ACTION_TYPES.ADD_QUEUE_TIME_STARTED:
+    case QUEUE_TIME_ACTION_TYPES.QUEUE_TIME_STARTED:
       return {
         ...state,
         loading: true,
@@ -75,8 +79,7 @@ const queueTimeReducer = (state = initialState, action) => {
         additionSuccess: true,
       };
       return newState;
-    case QUEUE_TIME_ACTION_TYPES.GET_QUEUE_TIME_ERROR:
-    case QUEUE_TIME_ACTION_TYPES.ADD_QUEUE_TIME_ERROR:
+    case QUEUE_TIME_ACTION_TYPES.QUEUE_TIME_ERROR:
       return {
         ...state,
         loading: false,

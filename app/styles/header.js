@@ -1,5 +1,6 @@
-import {StyleSheet, Text} from 'react-native';
 import React from 'react';
+
+import {StyleSheet, Text} from 'react-native';
 import {headerLabels} from '../constants/labels';
 import {COLOURS} from './colours';
 

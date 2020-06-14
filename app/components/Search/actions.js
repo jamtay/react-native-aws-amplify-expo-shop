@@ -1,6 +1,6 @@
-import {getFilterOptions} from './filterOptions';
-import {shouldSearch, isSearchEmpty} from './searchDecider';
 import SearchService from '../../service/SearchService';
+import {shouldSearch, isSearchEmpty} from './searchDecider';
+import {getFilterOptions} from './filterOptions';
 import {getIsUsingMock} from '../../config/getConfigVals';
 
 export const SEARCH_ACTION_TYPES = Object.freeze({
@@ -9,6 +9,8 @@ export const SEARCH_ACTION_TYPES = Object.freeze({
   SEARCH_STORES_ERROR: 'SEARCH_STORES_ERROR',
 });
 
+// If using a mock (no elastic search is deployed) then use the ItemRecording service that uses this mocked endpoint
+// Can change to use a mock using "npm run env:mock" and not to use a mock is "npm run env:development"
 const isUsingMock = getIsUsingMock();
 const service = new SearchService(isUsingMock);
 

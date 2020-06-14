@@ -1,4 +1,4 @@
-import {getFilterOptions} from './filterOptions';
+import {getFilterOptions} from '../filterOptions';
 
 describe('getFilterOptions()', () => {
   it('should return empty for empty search criteria', () => {
@@ -10,7 +10,7 @@ describe('getFilterOptions()', () => {
     });
   });
 
-  it('should return empty for empty search criteria', () => {
+  it('should return empty for empty string search criteria', () => {
     const filterOptions = getFilterOptions({
       name: '',
       address: '',

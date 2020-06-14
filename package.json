@@ -4,24 +4,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "old-android": "react-native run-android",
-    "old-ios": "react-native run-ios",
-    "old-start": "react-native start",
+    "start": "expo start --tunnel",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
     "test": "jest",
     "detox:build": "detox build",
     "detox:test": "detox test",
     "lint": "eslint .",
     "storybook": "start-storybook -p 7007",
-    "start": "expo start --tunnel",
-    "start:broken-tunnel": "expo r --tunnel",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
     "env:mock": "expo-env --env=mock --configPath=./config",
     "env:development": "expo-env --env=development --configPath=./config",
+    "env:secret": "expo-env --env=secret --configPath=./config",
     "eject": "expo eject"
   },
   "dependencies": {
+    "@babel/plugin-proposal-throw-expressions": "^7.10.1",
     "@react-native-community/async-storage": "^1.9.0",
     "@react-native-community/masked-view": "0.1.6",
     "@react-native-community/netinfo": "5.5.1",
@@ -36,6 +33,7 @@
     "expo-font": "~8.1.0",
     "moment": "^2.25.1",
     "native-base": "^2.13.12",
+    "node-fetch": "^2.6.0",
     "react": "16.11.0",
     "react-dom": "16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
@@ -69,16 +67,19 @@
     "babel-preset-expo": "~8.1.0",
     "detox": "^16.2.0",
     "eslint": "^6.8.0",
+    "husky": "^4.2.5",
     "jest": "^24.9.0",
     "jest-expect-message": "^1.0.2",
+    "jest-expo": "^37.0.0",
     "metro-react-native-babel-preset": "^0.58.0",
     "mock-async-storage": "^1.0.3",
     "react-dom": "16.11.0",
     "react-native-star-rating": "^1.0.9",
-    "react-test-renderer": "16.11.0"
+    "react-native-testing-library": "^2.0.1",
+    "react-test-renderer": "^16.11.0"
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "jest-expo",
     "testPathIgnorePatterns": [
       "<rootDir>/e2e/"
     ],
@@ -87,6 +88,9 @@
     ],
     "setupFilesAfterEnv": [
       "jest-expect-message"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ]
   },
   "detox": {
@@ -98,6 +102,11 @@
         "type": "ios.simulator",
         "name": "iPhone 11 Pro"
       }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "./bin/precommit.sh"
     }
   }
 }

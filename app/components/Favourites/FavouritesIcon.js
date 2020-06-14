@@ -1,9 +1,11 @@
 import React from 'react';
-import {Icon, Button} from 'native-base';
-import {StyleSheet} from 'react-native';
 import {useDispatch} from 'react-redux';
+
+import {Icon, Button} from 'native-base';
 import {updateFavourite} from './actions';
-import { COLOURS } from '../../styles/colours';
+import {StyleSheet} from 'react-native';
+import {COLOURS} from '../../styles/colours';
+
 /**
  * Get the favourites icon from the supplied boolean parameters
  * @param {bool} displayFavouriteOption Whether or not to display the favourite icon

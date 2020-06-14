@@ -14,6 +14,7 @@ export const createStore = /* GraphQL */ `
       fullAddress
       addressLine1
       addressLine2
+      addressLine3
       postcode
       county
       country
@@ -47,6 +48,7 @@ export const updateStore = /* GraphQL */ `
       fullAddress
       addressLine1
       addressLine2
+      addressLine3
       postcode
       county
       country
@@ -80,6 +82,7 @@ export const deleteStore = /* GraphQL */ `
       fullAddress
       addressLine1
       addressLine2
+      addressLine3
       postcode
       county
       country
@@ -117,6 +120,7 @@ export const createRecording = /* GraphQL */ `
         fullAddress
         addressLine1
         addressLine2
+        addressLine3
         postcode
         county
         country
@@ -150,6 +154,7 @@ export const updateRecording = /* GraphQL */ `
         fullAddress
         addressLine1
         addressLine2
+        addressLine3
         postcode
         county
         country
@@ -183,6 +188,7 @@ export const deleteRecording = /* GraphQL */ `
         fullAddress
         addressLine1
         addressLine2
+        addressLine3
         postcode
         county
         country

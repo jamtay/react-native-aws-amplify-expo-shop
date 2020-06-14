@@ -8,14 +8,12 @@ const initialState = {
 
 const favouritesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FAVOURITES_ACTION_TYPES.GET_FAVOURITES_STARTED:
-    case FAVOURITES_ACTION_TYPES.UPDATE_FAVOURITES_STARTED:
+    case FAVOURITES_ACTION_TYPES.FAVOURITES_STARTED:
       return {
         ...state,
         loading: true,
       };
-    case FAVOURITES_ACTION_TYPES.GET_FAVOURITES_SUCCESS:
-    case FAVOURITES_ACTION_TYPES.UPDATE_FAVOURITES_SUCCESS:
+    case FAVOURITES_ACTION_TYPES.FAVOURITES_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -30,12 +28,11 @@ const favouritesReducer = (state = initialState, action) => {
         error: null,
         favourites: [],
       };
-    case FAVOURITES_ACTION_TYPES.GET_FAVOURITES_ERROR:
-    case FAVOURITES_ACTION_TYPES.UPDATE_FAVOURITES_ERROR:
+    case FAVOURITES_ACTION_TYPES.FAVOURITES_ERROR:
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
+        error: action.payload,
       };
     default:
       return state;

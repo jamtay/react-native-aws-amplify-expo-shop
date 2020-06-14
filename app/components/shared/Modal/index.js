@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+
 import {View, StyleSheet, Button, TouchableHighlight} from 'react-native';
 import {Item, Input, Label, Icon} from 'native-base';
 import ReactNativeModal from 'react-native-modal';
@@ -54,6 +55,7 @@ const Modal = ({
           <Item floatingLabel={isLastItem} style={[styles.textWrapper]}>
             {isLastItem && <Label style={styles.label}>{textLabel}</Label>}
             <Input
+              testID={`multi-entry-input-${index}`}
               keyboardType={keyboardType}
               textAlign="left"
               onChangeText={text => {
@@ -69,7 +71,8 @@ const Modal = ({
               onPress={addNewItem}
               activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
               underlayColor={BUTTONS.CLICK_COLOUR}
-              style={styles.buttonWrapper}>
+              style={styles.buttonWrapper}
+              testID={`multi-entry-add-${index}`}>
               <Icon
                 name={
                   isLastItem ? 'add-circle-outline' : 'minus-circle-outline'
@@ -86,6 +89,7 @@ const Modal = ({
     <Item floatingLabel style={styles.paddedBottom}>
       <Label style={styles.label}>{textLabel}</Label>
       <Input
+        testID="single-input"
         keyboardType={keyboardType}
         textAlign="center"
         onChangeText={text => {
@@ -98,7 +102,7 @@ const Modal = ({
     </Item>
   );
   return (
-    <View>
+    <View testID="modal-component">
       <ReactNativeModal
         isVisible={isVisible}
         onSwipeComplete={onModalDismiss}
@@ -109,7 +113,8 @@ const Modal = ({
             onPress={onModalDismiss}
             activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
             underlayColor={BUTTONS.CLICK_COLOUR}
-            style={styles.buttonWrapper}>
+            style={styles.buttonWrapper}
+            testID="dismiss-button">
             <Icon
               name="close"
               type="MaterialCommunityIcons"

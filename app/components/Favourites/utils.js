@@ -31,14 +31,37 @@ export const isAlreadyFavourite = (dataId, favouriteIds) => {
  */
 export const getImageFromStoreName = storeName => {
   if (!storeName) {
-    return require('../../assets/default.jpeg');
+    return require('../../assets/default.png');
   }
   const lowercaseName = storeName.toLowerCase();
   if (lowercaseName.includes('booths')) {
     return require('../../assets/booths.png');
   } else if (lowercaseName.includes('tesco')) {
     return require('../../assets/tesco.png');
+  } else if (lowercaseName.includes('sainsbury')) {
+    return require('../../assets/sainsburys.png');
+  } else if (lowercaseName.includes('waitrose')) {
+    return require('../../assets/waitrose.jpg');
+  } else if (lowercaseName.includes('spencer')) {
+    return require('../../assets/marksSpencer.png');
+  } else if (
+    lowercaseName.includes('b and q') ||
+    lowercaseName.includes('b&q')
+  ) {
+    return require('../../assets/B-Q.png');
+  } else if (lowercaseName.includes('asda')) {
+    return require('../../assets/asda.png');
+  } else if (lowercaseName.includes('morrisons')) {
+    return require('../../assets/morrisons.png');
+  } else if (lowercaseName.includes('spar')) {
+    return require('../../assets/spar.png');
+  } else if (lowercaseName.includes('nisa')) {
+    return require('../../assets/nisa.png');
+  } else if (lowercaseName.includes('aldi')) {
+    return require('../../assets/aldi.jpg');
+  } else if (lowercaseName.includes('lidl')) {
+    return require('../../assets/lidl.jpg');
   }
 
-  return require('../../assets/default.jpeg');
+  return require('../../assets/default.png');
 };

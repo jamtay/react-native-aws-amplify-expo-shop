@@ -1,4 +1,6 @@
 import React from 'react';
+import {shallowEqual, useSelector} from 'react-redux';
+
 import {
   View,
   Text,
@@ -8,17 +10,19 @@ import {
   Dimensions,
 } from 'react-native';
 import Result from '../components/SearchResults/Result';
-import {shallowEqual, useSelector} from 'react-redux';
 import Favourites from '../components/Favourites';
 import SearchBar from '../components/Search';
 import SearchResults from '../components/SearchResults';
-import {explorePageLabels} from '../constants/labels';
 import Loading from '../components/shared/Loading';
 import TestButtons from '../../bin/TestButtons';
+import {explorePageLabels} from '../constants/labels';
 const {width} = Dimensions.get('window');
 
 const isAndroid = Platform.OS === 'android';
 
+/**
+ * The home page of the application, showing horizontal scrolling favourites, a search bar, and the search results
+ */
 const Explore = () => {
   const {
     storesSearch: {loading, stores},

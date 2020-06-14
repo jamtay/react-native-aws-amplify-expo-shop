@@ -1,43 +1,49 @@
 import {
   getFavouriteData,
   addFavourite,
-  removeFavourite, removeAllFavourites,
+  removeFavourite,
+  removeAllFavourites,
 } from '../../service/localStorage';
 
 export const FAVOURITES_ACTION_TYPES = Object.freeze({
-  GET_FAVOURITES_STARTED: 'GET_FAVOURITES_STARTED',
-  GET_FAVOURITES_SUCCESS: 'GET_FAVOURITES_SUCCESS',
-  GET_FAVOURITES_ERROR: 'GET_FAVOURITES_ERROR',
-  UPDATE_FAVOURITES_STARTED: 'UPDATE_FAVOURITES_STARTED',
-  UPDATE_FAVOURITES_SUCCESS: 'UPDATE_FAVOURITES_SUCCESS',
-  UPDATE_FAVOURITES_ERROR: 'UPDATE_FAVOURITES_ERROR',
+  FAVOURITES_STARTED: 'FAVOURITES_STARTED',
+  FAVOURITES_SUCCESS: 'FAVOURITES_SUCCESS',
+  FAVOURITES_ERROR: 'FAVOURITES_ERROR',
   REMOVE_ALL_FAVOURITES: 'REMOVE_ALL_FAVOURITES',
 });
 
+/**
+ * Get all the favourites and dispatch loading, error and response information into redux
+ */
 export const getFavourites = () => {
   return async dispatch => {
-    dispatch(getFavouritesStarted());
+    dispatch(favouritesStarted());
     try {
       const favourites = await getFavouriteData();
-      dispatch(getFavouritesSuccess(favourites));
+      dispatch(favouritesSuccess(favourites));
     } catch (error) {
       console.error(error);
-      dispatch(getFavouritesFailure());
+      dispatch(favouritesFailure(error));
     }
   };
 };
 
+/**
+ * Add or remove a favourite from local storage and dispatch the updated favourites list into redux
+ * @param isFavourite
+ * @param item
+ */
 export const updateFavourite = (isFavourite, item) => {
   return async dispatch => {
-    dispatch(updateFavouritesStarted());
+    dispatch(favouritesStarted());
     try {
       const updatedFavourites = isFavourite
         ? await removeFavourite(item.id)
         : await addFavourite(item);
-      dispatch(updateFavouritesSuccess(updatedFavourites));
+      dispatch(favouritesSuccess(updatedFavourites));
     } catch (error) {
       console.error(error);
-      dispatch(updateFavouritesFailure());
+      dispatch(favouritesFailure(error));
     }
   };
 };
@@ -47,13 +53,13 @@ export const updateFavourite = (isFavourite, item) => {
  */
 export const removeAllFavouritesDispatch = () => {
   return async dispatch => {
-    dispatch(updateFavouritesStarted());
+    dispatch(favouritesStarted());
     try {
       await removeAllFavourites();
       dispatch(removeAllFavouritesAction());
     } catch (error) {
       console.error(error);
-      dispatch(updateFavouritesFailure());
+      dispatch(favouritesFailure(error));
     }
   };
 };
@@ -66,30 +72,16 @@ const removeAllFavouritesAction = () => ({
   payload: [],
 });
 
-const getFavouritesSuccess = favourites => ({
-  type: FAVOURITES_ACTION_TYPES.GET_FAVOURITES_SUCCESS,
+const favouritesStarted = () => ({
+  type: FAVOURITES_ACTION_TYPES.FAVOURITES_STARTED,
+});
+
+const favouritesSuccess = favourites => ({
+  type: FAVOURITES_ACTION_TYPES.FAVOURITES_SUCCESS,
   payload: favourites,
 });
 
-const getFavouritesStarted = () => ({
-  type: FAVOURITES_ACTION_TYPES.GET_FAVOURITES_STARTED,
-});
-
-const getFavouritesFailure = error => ({
-  type: FAVOURITES_ACTION_TYPES.GET_FAVOURITES_ERROR,
-  payload: error,
-});
-
-const updateFavouritesSuccess = favourites => ({
-  type: FAVOURITES_ACTION_TYPES.UPDATE_FAVOURITES_SUCCESS,
-  payload: favourites,
-});
-
-const updateFavouritesStarted = () => ({
-  type: FAVOURITES_ACTION_TYPES.UPDATE_FAVOURITES_STARTED,
-});
-
-const updateFavouritesFailure = error => ({
-  type: FAVOURITES_ACTION_TYPES.UPDATE_FAVOURITES_ERROR,
+const favouritesFailure = error => ({
+  type: FAVOURITES_ACTION_TYPES.FAVOURITES_ERROR,
   payload: error,
 });

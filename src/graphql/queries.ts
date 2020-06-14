@@ -11,6 +11,7 @@ export const getStore = /* GraphQL */ `
       fullAddress
       addressLine1
       addressLine2
+      addressLine3
       postcode
       county
       country
@@ -46,6 +47,7 @@ export const listStores = /* GraphQL */ `
         fullAddress
         addressLine1
         addressLine2
+        addressLine3
         postcode
         county
         country
@@ -73,6 +75,7 @@ export const getRecording = /* GraphQL */ `
         fullAddress
         addressLine1
         addressLine2
+        addressLine3
         postcode
         county
         country
@@ -108,6 +111,7 @@ export const listRecordings = /* GraphQL */ `
           fullAddress
           addressLine1
           addressLine2
+          addressLine3
           postcode
           county
           country

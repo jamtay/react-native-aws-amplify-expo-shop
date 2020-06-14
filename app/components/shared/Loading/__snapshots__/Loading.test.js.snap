@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component tests snapshot test should match stored snapshot 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="violet"
+  hidesWhenStopped={true}
+  size="large"
+  style={
+    Object {
+      "height": 80,
+    }
+  }
+  testID="spinner"
+/>
+`;

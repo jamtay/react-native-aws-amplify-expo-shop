@@ -5,6 +5,7 @@ type Store @model {
   fullAddress: String!
   addressLine1: String!
   addressLine2: String
+  addressLine3: String
   postcode: String!
   county: String
   country: String!

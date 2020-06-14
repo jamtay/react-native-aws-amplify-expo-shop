@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
+
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {BUTTONS} from '../../../styles/button';
 import {Icon} from 'native-base';
-import {COLOURS} from '../../../styles/colours';
 import Modal from '../Modal';
+import {COLOURS} from '../../../styles/colours';
+import {BUTTONS} from '../../../styles/button';
 
 /**
  * A section used with a border bottom to display information for a single store
@@ -29,12 +30,13 @@ const Section = ({
 
   return (
     <View style={styles.border}>
-      <View style={styles.section}>
+      <View style={styles.section} testID="section-wrapper">
         <View style={[styles.textWrapper]}>
           <Text style={styles.titleText}>{title}</Text>
         </View>
         <View style={styles.buttonWrapper}>
           <TouchableHighlight
+            testID="section-button"
             onPress={onNewRecordingButtonClick}
             activeOpacity={BUTTONS.IMAGE_CLICK_OPACITY}
             underlayColor={BUTTONS.CLICK_COLOUR}>

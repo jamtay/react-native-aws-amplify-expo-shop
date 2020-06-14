@@ -7,6 +7,10 @@ export const ERROR_MESSAGES = Object.freeze({
   GENERIC: 'Something went wrong, please try again later',
 });
 
+/**
+ * Show a toast message on the screen for errors
+ * @param errorMessage
+ */
 export const showErrorToast = errorMessage =>
   Toast.show(errorMessage, {
     containerStyle: {

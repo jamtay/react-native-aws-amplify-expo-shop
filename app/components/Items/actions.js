@@ -1,12 +1,10 @@
+import Toast from 'react-native-tiny-toast';
 import ItemRecording from '../../service/ItemRecording';
 import {getIsUsingMock} from '../../config/getConfigVals';
-import Toast from 'react-native-tiny-toast';
 import {addNewRecordingModal} from '../../constants/labels';
 import {ERROR_MESSAGES, showErrorToast} from '../../constants/error';
 import {ITEM_TYPES} from './constants';
 
-//TODO; Where the switch statement uses two action types for one case, you can combine into one action
-//SAME FOR when GET_MISSING_ITEM_ERROR and GET_AVAILABLE_ITEM_ERROR
 export const ITEM_ACTION_TYPES = Object.freeze({
   ITEM_ACTION_STARTED: type => `${type}_ITEM_ACTION_STARTED`,
   GET_ITEM_SUCCESS: type => `GET_${type}_ITEM_SUCCESS`,
@@ -15,6 +13,7 @@ export const ITEM_ACTION_TYPES = Object.freeze({
 });
 
 // If using a mock (no elastic search is deployed) then use the ItemRecording service that uses this mocked endpoint
+// Can change to use a mock using "npm run env:mock" and not to use a mock is "npm run env:development"
 const isUsingMock = getIsUsingMock();
 const service = new ItemRecording(isUsingMock);
 

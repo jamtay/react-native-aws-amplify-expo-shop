@@ -1,8 +1,9 @@
 import React from 'react';
+
 import Loading from '../shared/Loading';
 import {View, Text} from 'react-native';
-import {storePageLabels} from '../../constants/labels';
 import {useItems} from './itemsHook';
+import {storePageLabels} from '../../constants/labels';
 import {ITEM_TYPES} from './constants';
 
 /**

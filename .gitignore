@@ -91,3 +91,4 @@ amplify-gradle-config.json
 amplifyxc.config
 
 credentials.csv
+config/secret.config.js

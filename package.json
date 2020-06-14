@@ -106,7 +106,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "./bin/precommit.sh"
+      "pre-commit": "./bin/precommit.sh",
+      "post-commit": "./bin/postcommit.sh"
     }
   }
 }
